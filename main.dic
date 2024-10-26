@@ -1,0 +1,45 @@
+PluginLoad
+{
+	
+}
+
+PluginUnload
+{
+	
+}
+
+OnMenuExec : all
+{
+	res_marker = version
+	// res_event = "OnSimplicityPlugin.ExampleEvent"
+	// res_target = "__SYSTEM_ALL_GHOST__"
+	
+	"\0\_q\*\b[2]Hello, world!\n\n"
+	
+	"\![*]\q[Test!,OnTest]\n\n"
+	
+	"\![*]\q[Close menu,OnClose]"
+}
+
+OnTest
+{
+	//res_target = "SSP Angel" //no target means it targets the ghost that pulled up the menu. should look at how that works
+	res_marker = eventfrom
+	
+	"\0\s[104]\b[10050]I'm Spectre, hello world!"
+}
+
+OnClose
+{
+	"\e"
+}
+
+version
+{
+	"Spectre v1.0.0"
+}
+
+eventfrom
+{
+	"Event from Spectre(plugin)"
+}

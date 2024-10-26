@@ -1,0 +1,11 @@
+Charset,UTF-8
+type,plugin
+filename,yaya.dll
+
+name,Spectre
+id,ac531970-933d-11ef-b559-0800200c9a66
+craftman,Galla & Zichqec
+craftmanw,Galla & Zichqec
+craftmanurl,https://github.com/Zichqec/spectre
+homeurl,https://raw.githubusercontent.com/Zichqec/spectre/main/
+secondchangeinterval,1
