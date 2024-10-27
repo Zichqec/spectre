@@ -45,3 +45,8 @@ DeleteFlag
 		if _loop >= 1000; break
 	}
 }
+
+Heading
+{
+	"\f[align,center]\f[bold,1]%(_argv[0])\f[bold,default]\n\f[align,left]"
+}

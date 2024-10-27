@@ -8,6 +8,7 @@ PluginLoad
 	if !ISVAR("GhostCalibrations.Setting"); GhostCalibrations.Setting = IARRAY
 	if !ISVAR("GhostCalibrations.List"); GhostCalibrations.List = IARRAY
 	if !ISVAR("Flags"); Flags = IARRAY
+	if !ISVAR("ExcludedGhosts"); ExcludedGhosts = IARRAY
 }
 
 PluginUnload
@@ -37,13 +38,25 @@ OnSecondChange
 
 OnAiTalk
 {
-	//TODO TEMPORARY
 	LastTalkTime = GETSECCOUNT
-	if reference[0] != "menu"
+	if reference[0] == ""
 	{
-		res_target = ANY(BootedGhosts)
-		TalkingGhost = res_target
+		_possible_ghosts = IARRAY
+		foreach BootedGhosts; _ghost
+		{
+			if ASEARCH(_ghost,ExcludedGhosts) == -1
+			{
+				_possible_ghosts ,= _ghost
+			}
+		}
+		if ARRAYSIZE(_possible_ghosts) == 0; _possible_ghosts = BootedGhosts
+		res_target = ANY(_possible_ghosts)
 	}
+	else
+	{
+		res_target = reference[0]
+	}
+	TalkingGhost = res_target
 	res_marker = eventfrom
 	res_script_option = "nobreak"
 	
