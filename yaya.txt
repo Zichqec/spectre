@@ -13,6 +13,7 @@ dic, utility.dic
 dic, menu.dic
 dic, randomtalk.dic
 dic, expressions.dic
+dic, word.dic
 
 
 
