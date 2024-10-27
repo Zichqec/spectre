@@ -123,20 +123,14 @@ OnCalibration : all
 		GhostCalibrations.List[_index] = CalibrationList
 		CalibrationList = ""
 		"\s[0]"
-		if _amt <= 0
+		if _amt == 0
 		{
-			GhostCalibrations.List[_index] = "none"
-			"This ghost is not able to be calibrated.\n\n"
-			"Are you this ghost's developer? If you would like to make your ghost compatible, check dev_info.txt after spending some time with the plugin." //TODO make that text file a link
-		}
-		elseif _amt < 10
-		{
-			"Partial calibration completed.\n\n"
-			"Are you this ghost's developer? If you would like to increase your ghost's compatibility, check dev_info.txt after spending some time with the plugin." //TODO make that text file a link
+			"Calibration completed successfully."
 		}
 		else
 		{
-			"Calibration completed successfully."
+			"Partial calibration completed.\n\n"
+			"Are you this ghost's developer? If you would like to increase your ghost's compatibility, check \_a[OnOpenDevInfo]dev_info.txt\_a after spending some time with the plugin."
 		}
 		"\x\![raiseplugin,Spectre,OnMainMenu,""%(reference[0])""]"
 	}
@@ -176,6 +170,11 @@ OnCalibration : all
 			"\![*]\__q[OnCalibration,""%(reference[0])"",ExpressionsMain,10,alt,11]No, it looks more unamused / bored\__q"
 		}
 	}
+}
+
+OnOpenDevInfo
+{
+	"\![open,file,%(SpectreFilePath)\dev_info.txt]"
 }
 
 OnCalibrationSet : all
@@ -299,7 +298,7 @@ OnExclusionMenu : all
 	"%(Heading('Exclusion list'))"
 	
 	"Select ghosts to exclude from Spectre's effects:\n"
-	"(Note that ghosts may use Spectre's effects anyway if all ghosts are excluded)\n\n"
+	"(Note that ghosts may use Spectre's effects anyway if all ghosts are excluded.)\n\n"
 	//"%(ExcludedGhosts)\n\n"
 	for _i = 0; _i < ARRAYSIZE(BootedGhosts); _i++
 	{

@@ -85,6 +85,21 @@ AutoPause
 	_talk
 }
 
+pluginpathlist
+{
+	foreach reference; _ref
+	{
+		_files = FENUM(_ref,"|")
+		_files = SPLIT(_files,"|")
+		_index = ASEARCH("\spectre_gz",_files)
+		if _index != -1
+		{
+			SpectreFilePath = _ref + ERASE(_files[_index],0,1) + "\"
+			return
+		}
+	}
+}
+
 version
 {
 	"Spectre v1.0.0"

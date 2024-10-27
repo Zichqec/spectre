@@ -1,0 +1,205 @@
+!!! IMPORTANT !!!
+THIS FILE CONTAINS SPOILERS, it is recommended you spend some time with the plugin running before digging in here! Come back once you've got a feel for it!
+Once you're ready, scroll down <3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hello! If you're reading this you're probably a ghost dev that wants to make your ghost more compatible with Spectre, by customizing which surfaces will be used for which expressions. Doing so is easy!
+Code examples will be provided in YAYA, but this should work for ghosts in any coding language.
+
+There are 3 events to add, one of which is optional.
+
+OnSpectrePlugin.Surface is an event that will be called via embed tags, and is the function that tells the plugin which surfaces to use for which expression. Note that you can use any tags you need here, including \s[], \i[], or other animation tags! Whatever makes it work for your shell.
+
+Expressions will be sent as strings via reference0. The following are the possible expressions (listed in the order they appear in the balloon's files):
+
+"normal"
+"embarrassed"
+"surprised"
+"anxious"
+"discouraged"
+"smile"
+"relieved" //(closed eyes smile)
+"angry"
+"sweat" //(sweat smile / cold smile)
+"indignant" //(embarrassed & angry)
+"thinking"
+"unamused" //(bored)
+
+These are based off the default surfaces specified in Ukadoc (albeit with some names substituted), as well as the "thoughtful" and "bored" surfaces that are commonly found in ghosts based on the GT template.
+
+Here's a simple implementation in YAYA:
+
+
+OnSpectrePlugin.Surface
+{
+	if reference0 == "normal"; "\s[0]"
+	elseif reference0 == "embarrassed"; "\s[14]"
+	elseif reference0 == "surprised"; "\s[11]"
+	elseif reference0 == "anxious"; "\s[2]"
+	elseif reference0 == "discouraged"; "\s[3]"
+	elseif reference0 == "smile"; "\s[1]"
+	elseif reference0 == "relieved"; "\s[4]"
+	elseif reference0 == "angry"; "\s[3]\i[6]"
+	elseif reference0 == "sweat"; "\s[9]"
+	elseif reference0 == "indignant"; "\s[3]\i[6]"
+	elseif reference0 == "thinking"; "\s[7]"
+	elseif reference0 == "unamused"; "\s[3]\i[6]"
+}
+
+
+***NOTE: if you can't come up with a suitable pose for a given expression, OMIT IT COMPLETELY!*** That means fully erasing the elseif for that expression, **don't send a blank string!**
+Expressions that are omitted will show up as the default surface0, and Spectre will take note of how many poses it has available and will comment on this! If your shell only has a handful of suitable expressions, that is perfectly fine and adds to the experience!
+
+Next, you need a response to the event OnSpectrePlugin.ConfirmCalibration, which lets the plugin know that you have a custom calibration set up. This looks like the following:
+
+
+OnSpectrePlugin.ConfirmCalibration
+{
+	"\![raiseplugin,Spectre,OnCustomCalibrationConfirm]"
+}
+
+
+NOTE: if you omitted any expressions, list them here as references! For example, here's an implementation from the ghost Xander's Refuge, where several expressions are omitted. You can see these show up in the raiseplugin command as well!
+Note that the order you write the omitted expressions in the raiseplugin command does not matter.
+
+
+OnSpectrePlugin.ConfirmCalibration
+{
+	"\![raiseplugin,Spectre,OnCustomCalibrationConfirm,embarrassed,smile,relieved,sweat,indignant]"
+}
+
+OnSpectrePlugin.Surface
+{
+	if reference0 == "normal"; "\s[1]"
+	elseif reference0 == "surprised"; "\s[30]"
+	elseif reference0 == "anxious"; "\s[22]"
+	elseif reference0 == "discouraged"; "\s[13]"
+	elseif reference0 == "angry"; "\s[21]"
+	elseif reference0 == "thinking"; "\s[222]"
+	elseif reference0 == "unamused"; "\s[220]"
+}
+
+
+That's it! Now your ghost's surfaces are set up with the plugin! 
+
+One more thing you can do, just for fun. After every dialogue, Spectre will raise the event OnSpectrePlugin.Possession
+You can use this to have your ghost react to being talked through! Just add whatever dialogue you want.
+
+
+OnSpectrePlugin.Possession
+{
+	"\0\s[scream]Eeeek!\w8\w8 I think there's a ghost around here!!\w8\w8\1\s[rolling_eyes]There's no such thing as ghosts..."
+	"\0\s[scream]What was that!?\w8\w8\1\s[neutral_face]What was what...?"
+	"\0\s[scream]\i[26]\i[36]Something touched me!\w8\w8\1\s[expressionless]There's nothing there,\w4 Angel..."
+}
+
+
+If you don't want them to react every time, you can add a RAND as I've done here, to make it a random chance whether they'll respond or not. Do as you like!
+
+
+OnSpectrePlugin.Possession
+{
+	if RAND(4) == 0
+	{
+		"\0\s[scream]Eeeek!\w8\w8 I think there's a ghost around here!!\w8\w8\1\s[rolling_eyes]There's no such thing as ghosts..."
+		"\0\s[scream]What was that!?\w8\w8\1\s[neutral_face]What was what...?"
+		"\0\s[scream]\i[26]\i[36]Something touched me!\w8\w8\1\s[expressionless]There's nothing there,\w4 Angel..."
+	}
+}
+
+
+That's it, have fun! If you have any issues, please get in contact and I'll try to help you out.
