@@ -32,9 +32,12 @@ OnGhostExit
 
 OnSecondChange
 {
-	if GETSECCOUNT >= LastTalkTime + aitalkinterval
+	if SpectreOn
 	{
-		OnAiTalk
+		if GETSECCOUNT >= LastTalkTime + aitalkinterval
+		{
+			OnAiTalk
+		}
 	}
 }
 

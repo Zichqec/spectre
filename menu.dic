@@ -8,6 +8,7 @@ OnMenuExec : all
 
 OnMainMenu : all
 {
+	if !ISVAR("SpectreOn"); SpectreOn = 1
 	if reference[0] != ""; CurrentGhost = reference[0]
 	res_marker = version
 	_index = CalibrationIndex(CurrentGhost)
@@ -19,9 +20,18 @@ OnMainMenu : all
 	"\0\_q\*\b[2]"
 	"%(Heading('Spectre'))"
 	
-
+	"Spectre enhancements: \_a[OnToggleSpectreEnhancements]%(('Off','On')[SpectreOn])\_a\n\n"
 	
-	if MetSpectre; "\![*]\q[Talk,OnAiTalk,""%(CurrentGhost)""]\n\n"
+	if !SpectreOn; "\f[color,disable]"
+	if MetSpectre
+	{
+		switch SpectreOn
+		{
+			"\![*]Talk"
+			"\![*]\q[Talk,OnAiTalk,""%(CurrentGhost)""]"
+		}
+		"\n\n"
+	}
 	
 	if !IsCalibrated(CurrentGhost)
 	{
@@ -35,9 +45,17 @@ OnMainMenu : all
 	
 	//"Calibration: %(GhostCalibrations.List[_index]) - %(_index)\n\n"
 	
-	
+	"\f[color,default]"
 	"\![*]\q[Close menu,OnCancel]"
 	"\![unlock,balloonrepaint]"
+}
+
+OnToggleSpectreEnhancements
+{
+	if SpectreOn == 1; SpectreOn = 0
+	else; SpectreOn = 1
+	
+	"\![raiseplugin,Spectre,OnMainMenu]"
 }
 
 OnCalibrationStart : all
@@ -239,22 +257,25 @@ OnSettings : all
 	
 	"\![*]\__q[OnExclusionMenu,""%(reference[0])""]Exclusion list\__q\n\n"
 	
-	
-	_times = ("15m,900","20m,1200","30m,1800","45m,2700","60m,3000")
-	if DebugMode == 1; _times = ("10s,10",_times)
-	"Talkrate:\n"
-	foreach _times; _time
+	if MetSpectre
 	{
-		switch TOINT(_time[1]) == aitalkinterval
+		_times = ("15m,900","20m,1200","30m,1800","45m,2700","60m,3000")
+		if DebugMode == 1; _times = ("10s,10",_times)
+		"Talkrate:\n"
+		foreach _times; _time
 		{
-			"\__q[OnSetTalkTime,""%(reference[0])"",%(_time[1])]%(_time[0])\__q"
-			"\f[color,default.anchor]\f[underline,1]\__q[OnSetTalkTime,""%(reference[0])"",%(_time[1])]%(_time[0])\__q\f[underline,default]\f[color,default]"
+			switch TOINT(_time[1]) == aitalkinterval
+			{
+				"\__q[OnSetTalkTime,""%(reference[0])"",%(_time[1])]%(_time[0])\__q"
+				"\f[color,default.anchor]\f[underline,1]\__q[OnSetTalkTime,""%(reference[0])"",%(_time[1])]%(_time[0])\__q\f[underline,default]\f[color,default]"
+			}
+			"  "
 		}
-		"  "
+		"\n\n"
 	}
 	
 	
-	"\n\n"
+	
 	"\![*]\__q[OnMainMenu,""%(reference[0])""]Back\__q  \![*]\__q[OnCancel]Done\__q"
 	"\![unlock,balloonrepaint]"
 }
