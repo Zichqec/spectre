@@ -9,6 +9,8 @@ PluginLoad
 	if !ISVAR("GhostCalibrations.List"); GhostCalibrations.List = IARRAY
 	if !ISVAR("Flags"); Flags = IARRAY
 	if !ISVAR("ExcludedGhosts"); ExcludedGhosts = IARRAY
+	if !ISVAR("MetSpectre"); MetSpectre = 0
+	if !ISVAR("SpectreOn"); SpectreOn = 1
 }
 
 PluginUnload

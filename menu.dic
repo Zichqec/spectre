@@ -19,23 +19,21 @@ OnMainMenu : all
 	"\0\_q\*\b[2]"
 	"%(Heading('Spectre'))"
 	
-	"\![*]\q[Talk,OnAiTalk,""%(CurrentGhost)""]\n\n"
+
+	
+	if MetSpectre; "\![*]\q[Talk,OnAiTalk,""%(CurrentGhost)""]\n\n"
 	
 	if !IsCalibrated(CurrentGhost)
 	{
-		"\![*]\_a[OnCalibrationStart,""%(reference[0])""]Calibrate ""%(CurrentGhost)""\_a"
+		"\![*]\_a[OnCalibrationStart,""%(reference[0])"",mainmenu]Calibrate ""%(CurrentGhost)""\_a"
+		"\n\n"
 	}
-	else
-	{
-		"\![*]\__q[OnCalibrationStart,""%(reference[0])""]Recalibrate ""%(CurrentGhost)""\__q"
-	}
-	"\n\n"
 	
 	"\![*]\__q[OnSettings,""%(reference[0])""]Settings\__q\n\n"
 	
 	//"Booted: %(BootedGhosts)\n\n"
 	
-	"Calibration: %(GhostCalibrations.List[_index]) - %(_index)\n\n"
+	//"Calibration: %(GhostCalibrations.List[_index]) - %(_index)\n\n"
 	
 	
 	"\![*]\q[Close menu,OnCancel]"
@@ -45,13 +43,19 @@ OnMainMenu : all
 OnCalibrationStart : all
 {
 	if reference[0] != ""; CurrentGhost = reference[0]
+	MenuToReturnTo = "OnSettings"
+	if reference[1] == "mainmenu"; MenuToReturnTo = "OnMainMenu"
 	
 	"\0\_q\*\b[2]\![no-autopause]\![set,autoscroll,disable]"
 	"\![raise,OnSpectrePlugin.ConfirmCalibration]"
 	
-	"Calibration can improve a ghost's compatibilty with Spectre. This process requires user input and will take a few moments. It is best performed while using the balloon ""Ghost Balloon"".\n\n" //TODO this will give it away tho won't it lol
+	"Calibration can improve a ghost's compatibilty with Spectre. This process requires user input and will take a few moments."
+	if MetSpectre; " It is best performed while using the balloon ""Ghost Balloon""."
+	"\n\n"
+	"Note that the ghost may briefly disappear during this process. If it does, please click ""No"" when prompted for input."
+	"\n\n"
 	"Proceed?\n\n"
-	"\![*]\__q[OnCalibration,""%(reference[0])"",ExpressionsYesNo]Proceed\__q  \![*]\__q[OnMainMenu,""%(reference[0])""]Back\__q"
+	"\![*]\__q[OnCalibration,""%(reference[0])"",ExpressionsYesNo]Proceed\__q  \![*]\__q[%(MenuToReturnTo),""%(reference[0])""]Back\__q"
 }
 
 OnCalibration : all
@@ -85,10 +89,11 @@ OnCalibration : all
 		
 		"Does this ghost have facial expressions?\n\n"
 		
-		"\![*]\__q[OnCalibration,""%(reference[0])"",ExpressionsMain,0]Yes\__q  \__q[OnCalibrationSet,""%(reference[0])"",NoExpressions]No\__q"
+		"\![*]\__q[OnCalibration,""%(reference[0])"",ExpressionsMain,0]Yes\__q  \![*]\__q[OnCalibrationSet,""%(reference[0])"",NoExpressions]No\__q"
 	}
-	elseif reference[2] == "12"
+	elseif reference[2] == "10"
 	{
+		CalibrationList += ",-1,-1"
 		_amt = ASEARCHEX("-1",SPLIT(CalibrationList,","))
 		_amt = ARRAYSIZE(_amt)
 		
@@ -129,7 +134,7 @@ OnCalibration : all
 		"Sweat smile / cold smile",/
 		"Embarrassed anger / Indignant",/
 		"Thoughtful / thinking / confused",/
-		"Bored / unamused"/
+		"Unamused / bored"/
 		)
 		
 		_expression = reference[2]
@@ -145,7 +150,7 @@ OnCalibration : all
 		elseif TOINT(reference[2]) == 9
 		{
 			"\n"
-			"\![*]\__q[OnCalibration,""%(reference[0])"",ExpressionsMain,10,alt,11]No, it looks more bored / unamused\__q"
+			"\![*]\__q[OnCalibration,""%(reference[0])"",ExpressionsMain,10,alt,11]No, it looks more unamused / bored\__q"
 		}
 	}
 }
@@ -171,15 +176,17 @@ OnCalibrationSet : all
 	
 	if reference[1] == "NoExpressions"
 	{
-		"Ghost cannot be calibrated. It is recommended to use the balloon ""Ghost Balloon"" with this ghost." //TODO is this giving it away?
+		"Ghost cannot be calibrated."
+		if MetSpectre; " It is recommended to use the balloon ""Ghost Balloon"" with this ghost."
+		else; " This ghost can still be used with Spectre, but may lack certain effects."
 	}
 	
-	"\x\![raiseplugin,Spectre,OnMainMenu,""%(reference[0])""]"
+	"\x\![raiseplugin,Spectre,%(MenuToReturnTo),""%(reference[0])""]"
 }
 
 OnCustomCalibrationConfirm : all
 {
-	_expressions = ("normal","embarrassed","surprised","anxious","discouraged","smile","relieved","angry","sweat","indignant","thinking","bored")
+	_expressions = ("normal","embarrassed","surprised","anxious","discouraged","smile","relieved","angry","sweat","indignant","thinking","unamused")
 	_calibrationlist = ("*,*,*,*,*,*,*,*,*,*,*,*")
 	foreach reference; _ref
 	{
@@ -208,7 +215,7 @@ OnCustomCalibrationConfirm : all
 	"This ghost has custom calibration provided by the developer.\n\n"
 	"Calibration set."
 	
-	"\x\![raiseplugin,Spectre,OnMainMenu,""%(CurrentGhost)""]"
+	"\x\![raiseplugin,Spectre,%(MenuToReturnTo),""%(CurrentGhost)""]"
 }
 
 OnSettings : all
@@ -219,6 +226,16 @@ OnSettings : all
 	"\0\_q\*\b[2]\![no-autopause]\![set,autoscroll,disable]"
 	
 	"%(Heading('Settings'))"
+	
+	if !IsCalibrated(CurrentGhost)
+	{
+		"\![*]\_a[OnCalibrationStart,""%(reference[0])""]Calibrate ""%(CurrentGhost)""\_a"
+	}
+	else
+	{
+		"\![*]\__q[OnCalibrationStart,""%(reference[0])""]Recalibrate ""%(CurrentGhost)""\__q"
+	}
+	"\n\n"
 	
 	"\![*]\__q[OnExclusionMenu,""%(reference[0])""]Exclusion list\__q\n\n"
 	

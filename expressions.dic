@@ -106,7 +106,7 @@ thinking : all
 	"%(DetermineSurface(10))"
 }
 
-bored : all
+unamused : all
 {
 	"\b[10110,--fallback=0]"
 	"%(DetermineSurface(11))"

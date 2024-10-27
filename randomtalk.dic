@@ -1,7 +1,7 @@
 RandomTalk : nonoverlap
 {
 	//"%(normal)Normal face"
-	"\![no-autopause]%(embarrassed)embarrassed. %(surprised)surprised! %(anxious)anxious... %(discouraged)discouraged. %(smile)smile! %(relieved)relieved...! %(angry)angry. %(sweat)sweat... %(indignant)indignant...! %(thinking)thinking...? %(bored)bored."
+	"\![no-autopause]%(embarrassed)embarrassed. %(surprised)surprised! %(anxious)anxious... %(discouraged)discouraged. %(smile)smile! %(relieved)relieved...! %(angry)angry. %(sweat)sweat... %(indignant)indignant...! %(thinking)thinking...? %(unamused)unamused."
 }
 
 Stage3Talk
@@ -55,7 +55,7 @@ Theorizing.AVividHallucination
 
 Theorizing.DefinitelyDead
 {
-	"\0%(bored(6))What? Just like that? What a boring way to go..."
+	"\0%(unamused(6))What? Just like that? What a boring way to go..."
 }
 
 Theorizing.JustADream
