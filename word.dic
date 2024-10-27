@@ -22,9 +22,16 @@ sodapop
 	"fresh %(fruit) juice"
 	"mug of hot cocoa"
 	"cup of coffee"
+	"latte"
+	"rootbeer float"
+	"tasty %(fruit) and %(fruit) smoothie"
+	"lemonade"
+	"pint of apple cider"
+	"refreshing iced tea"
+	"cheap %(fruit)-flavored juice box"
 }
 
-fruit
+fruit : nonoverlap
 {
 	"orange"
 	"apple"
@@ -36,4 +43,11 @@ fruit
 	"beet"
 	"cranberry"
 	"celery"
+	"pear"
+	"apricot"
+	"peach"
+	"plum"
+	"nectarine"
+	"strawberry"
+	"moss"
 }
