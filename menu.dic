@@ -199,11 +199,9 @@ OnCalibrationSet : all
 	
 	if reference[1] == "NoExpressions"
 	{
-		"Ghost cannot be calibrated."
+		"Calibration completed successfully."
 		if MetSpectre; " It is recommended to use the balloon ""Ghost Balloon"" with this ghost."
-		else; " This ghost can still be used with Spectre, but may lack certain effects."
 	}
-	
 	"\x\![raiseplugin,Spectre,%(MenuToReturnTo),""%(reference[0])""]"
 }
 
@@ -314,7 +312,7 @@ OnExclusionMenu : all
 		}
 	}
 	
-	"\n\n"
+	"\n"
 	"\![*]\__q[OnSettings,""%(reference[0])""]Back\__q  \![*]\__q[OnCancel]Done\__q"
 	"\![unlock,balloonrepaint]"
 }
