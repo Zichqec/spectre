@@ -35,7 +35,7 @@ OnMainMenu : all
 	
 	//"Booted: %(BootedGhosts)\n\n"
 	
-	//"Calibration: %(GhostCalibrations.List[_index]) - %(_index)\n\n"
+	"Calibration: %(GhostCalibrations.List[_index]) - %(_index)\n\n"
 	
 	
 	"\![*]\q[Close menu,OnCancel]"
@@ -87,7 +87,7 @@ OnCalibration : all
 		
 		"\![*]\__q[OnCalibration,""%(reference[0])"",ExpressionsMain,0]Yes\__q  \__q[OnCalibrationSet,""%(reference[0])"",NoExpressions]No\__q"
 	}
-	elseif reference[2] == "10"
+	elseif reference[2] == "12"
 	{
 		_amt = ASEARCHEX("-1",SPLIT(CalibrationList,","))
 		_amt = ARRAYSIZE(_amt)
@@ -128,12 +128,25 @@ OnCalibration : all
 		"Angry / frown",/
 		"Sweat smile / cold smile",/
 		"Embarrassed anger / Indignant",/
+		"Thoughtful / thinking / confused",/
+		"Bored / unamused"/
 		)
 		
 		_expression = reference[2]
 		"%(_expressions[_expression])"
 		"\n\n"
-		"\![*]\__q[OnCalibration,""%(reference[0])"",ExpressionsMain,%(TOINT(reference[2]) + 1),yes]Yes\__q  \![*]\__q[OnCalibration,""%(reference[0])"",ExpressionsMain,%(TOINT(reference[2]) + 1),no]No\__q"
+		"\![*]\__q[OnCalibration,""%(reference[0])"",ExpressionsMain,%(TOINT(reference[2]) + 1),yes]Yes\__q  \__q[OnCalibration,""%(reference[0])"",ExpressionsMain,%(TOINT(reference[2]) + 1),no]No\__q"
+		
+		if TOINT(reference[2]) == 8
+		{
+			"\n"
+			"\![*]\__q[OnCalibration,""%(reference[0])"",ExpressionsMain,9,alt,10]No, it looks more thoughtful / thinking / confused\__q"
+		}
+		elseif TOINT(reference[2]) == 9
+		{
+			"\n"
+			"\![*]\__q[OnCalibration,""%(reference[0])"",ExpressionsMain,10,alt,11]No, it looks more bored / unamused\__q"
+		}
 	}
 }
 
@@ -166,8 +179,8 @@ OnCalibrationSet : all
 
 OnCustomCalibrationConfirm : all
 {
-	_expressions = ("normal","embarrassed","surprised","anxious","discouraged","smile","relieved","angry","sweat","indignant")
-	_calibrationlist = ("*,*,*,*,*,*,*,*,*,*")
+	_expressions = ("normal","embarrassed","surprised","anxious","discouraged","smile","relieved","angry","sweat","indignant","thinking","bored")
+	_calibrationlist = ("*,*,*,*,*,*,*,*,*,*,*,*")
 	foreach reference; _ref
 	{
 		_i = ASEARCH(_ref,_expressions)
