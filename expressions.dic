@@ -11,7 +11,7 @@ fadein
 
 DetermineSurface
 {
-	_expressions = ("normal","embarrassed","surprised","anxious","discouraged","smile","relieved","angry","sweat","indignant","thinking","bored")
+	_expressions = ("normal","embarrassed","surprised","anxious","discouraged","smile","relieved","angry","sweat","indignant")
 	
 	_num = _argv[0]
 	if _num == ""; _num = 0
@@ -100,14 +100,14 @@ indignant : all
 	"%(DetermineSurface(9))"
 }
 
-thinking : all
-{
-	"\b[10100,--fallback=0]"
-	"%(DetermineSurface(10))"
-}
+// thinking : all
+// {
+	// "\b[10100,--fallback=0]"
+	// "%(DetermineSurface(10))"
+// }
 
-bored : all
-{
-	"\b[10110,--fallback=0]"
-	"%(DetermineSurface(11))"
-}
+// bored : all
+// {
+	// "\b[10110,--fallback=0]"
+	// "%(DetermineSurface(11))"
+// }
