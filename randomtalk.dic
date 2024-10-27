@@ -3,3 +3,62 @@ RandomTalk : nonoverlap
 	//"%(normal)Normal face"
 	"\![no-autopause]%(embarrassed)embarrassed. %(surprised)surprised! %(anxious)anxious... %(discouraged)discouraged. %(smile)smile! %(relieved)relieved...! %(angry)angry. %(sweat)sweat... %(indignant)indignant...! %(thinking)thinking...? %(bored)bored."
 }
+
+Stage3Talk
+{
+	//Theorizing
+	{
+	_choices = IARRAY
+	_choices ,= "\![*]\__q[Theorizing.DefinitelyDead]You're definitely dead.\![dummy] Heart attack out of the blue.\__q"
+	_choices ,= "\![*]\__q[Theorizing.JustADream]This is all just a dream.\__q"
+	_choices ,= "\![*]\__q[Theorizing.AVividHallucination]I think you took something,\![dummy] and this is a vivid hallucination.\__q"
+	//etc...
+	
+	_choice1 = ANY(_choices)
+	_choices[LSO] = IARRAY
+	
+	_choice2 = ANY(_choices)
+	_choices[LSO] = IARRAY
+	
+	_choice3 = ANY(_choices)
+	_choices[LSO] = IARRAY
+	
+	if Flag("Theorized twice")
+	{
+		"\0%(smile)\![set,autoscroll,disable]I'm bored. \n\n... Theory time!"
+		"\0%(smile)\![set,autoscroll,disable]I have a new idea about me. Want to hear it? Or, do you have another good one?"
+		"\0%(smile)\![set,autoscroll,disable]Pop quiz! \n\nAm I dead? Am I not dead? Quick, for 30 points, what's your answer?"
+	}
+	
+	elseif Flag("Theorized once")
+	{
+		"\0%(thinking)\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized twice]Out of curiosity, have you come up with any more theories? For what's happening, you know?"
+	}
+	else
+	{
+		"\0%(thinking)\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized once]We don't know what's going on with me, right? Right. It makes me think, 'What's the harm in making some theories?' So... how about it? Have you had any ideas?"
+	}
+	--
+	"\n\n\_q\![*]\__q[Theorizing.SpectreTheory]What's your theory?\__q\n\n%(_choice1)\n\n%(_choice2)\n\n%(_choice3)"
+	}
+}
+
+Theorizing.SpectreTheory
+{
+	"idk im a ghost bro"
+}
+
+Theorizing.AVividHallucination
+{
+	"\0%(anxious)Do you think so? I've never really been into drugs... I don't know how that would have happened, unless... %(surprised)Someone did it to me!? Maybe it was a kidnapping and I was incapacitated by a hallucinagenic powder bomb! \n\n%(indignant)Aww... I bet my clothes are covered in the stuff. I'll have to get them super clean so it doesn't hit me again."
+}
+
+Theorizing.DefinitelyDead
+{
+	"\0%(bored(6))What? Just like that? What a boring way to go..."
+}
+
+Theorizing.JustADream
+{
+	"\0%(sweat(6))You think so? This would make an interesting story when I wake up, then."
+}
