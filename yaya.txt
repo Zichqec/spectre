@@ -9,6 +9,13 @@ msglang,english
 
 dic, yaya_plugin2.dic
 dic, main.dic
+dic, utility.dic
+dic, menu.dic
+dic, randomtalk.dic
+dic, expressions.dic
+
+
+
 
 
 //Logging commands, use if you need them.

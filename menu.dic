@@ -1,0 +1,209 @@
+OnMenuExec : all
+{
+	CurrentGhost = reference[1]
+	TalkingGhost = CurrentGhost
+	OnMainMenu
+}
+
+OnMainMenu : all
+{
+	res_marker = version
+	_index = CalibrationIndex(CurrentGhost)
+	
+	// res_event = "OnSimplicityPlugin.ExampleEvent"
+	// res_target = "__SYSTEM_ALL_GHOST__"
+	
+	"\C\![lock,balloonrepaint]\c" //I don't think this is working but whatever
+	"\0\_q\*\b[2]"
+	
+	"\![*]\q[Talk,OnAiTalk,menu]\n\n"
+	
+	if !IsCalibrated(CurrentGhost)
+	{
+		"\![*]\_a[OnCalibrationStart]Calibrate ""%(CurrentGhost)""\_a"
+	}
+	else
+	{
+		"\![*]\__q[OnCalibrationStart]Recalibrate ""%(CurrentGhost)""\__q"
+	}
+	"\n\n"
+	
+	
+	//"Booted: %(BootedGhosts)\n\n"
+	
+	"Talk time: %(aitalkinterval)\n\q[10s,OnSetTalkTime,10]  \q[15m,OnSetTalkTime,900]\n\n"
+	
+	//"Calibration: %(GhostCalibrations.List[_index])\n\n"
+	
+	
+	"\![*]\q[Close menu,OnClose]"
+	"\![unlock,balloonrepaint]"
+}
+
+OnCalibrationStart : all
+{
+	"\0\_q\*\b[2]\![no-autopause]"
+	"\![raise,OnSpectrePlugin.ConfirmCalibration]"
+	
+	"Calibration can improve a ghost's compatibilty with Spectre. This process requires user input and will take a few moments. It is best performed while using the balloon ""Ghost Balloon"".\n\n" //TODO this will give it away tho won't it lol
+	"Proceed?\n\n"
+	"\![*]\__q[OnCalibration,ExpressionsYesNo]Proceed\__q  \![*]\__q[OnMainMenu]Back\__q"
+}
+
+OnCalibration : all
+{
+	_index = CalibrationIndex(CurrentGhost)
+	
+	if reference[2] == "yes"
+	{
+		if CalibrationList != ""; CalibrationList += ","
+		CalibrationList += "%(TOINT(reference[1]) - 1)"
+	}
+	elseif reference[2] == "no"
+	{
+		if CalibrationList != ""; CalibrationList += ","
+		CalibrationList += "-1"
+	}
+	
+	"\0\_q\*\b[2]\![no-autopause]"
+	if reference[0] == "ExpressionsYesNo"
+	{
+		CalibrationList = ""
+		if _index == -1
+		{
+			GhostCalibrations.Name ,= CurrentGhost
+			GhostCalibrations.List ,= ""
+		}
+		
+		
+		"Does this ghost have facial expressions?\n\n"
+		
+		"\![*]\__q[OnCalibration,ExpressionsMain,0]Yes\__q  \__q[OnCalibrationSet,NoExpressions]No\__q"
+	}
+	elseif reference[1] == "12"
+	{
+		_amt = ASEARCHEX("-1",SPLIT(CalibrationList,","))
+		_amt = ARRAYSIZE(_amt)
+		
+		GhostCalibrations.List[_index] = CalibrationList
+		CalibrationList = ""
+		"\s[0]"
+		if _amt <= 0
+		{
+			GhostCalibrations.List[_index] = "none"
+			"This ghost is not able to be calibrated.\n\n"
+			"Are you this ghost's developer? If you would like to make your ghost compatible, check dev_info.txt after spending some time with the plugin." //TODO make that text file a link
+		}
+		elseif _amt < 10
+		{
+			"Partial calibration completed.\n\n"
+			"Are you this ghost's developer? If you would like to increase your ghost's compatibility, check dev_info.txt after spending some time with the plugin." //TODO make that text file a link
+		}
+		else
+		{
+			"Calibration completed successfully."
+		}
+		"\x\![raiseplugin,Spectre,OnMainMenu]"
+	}
+	elseif reference[0] == "ExpressionsMain"
+	{
+		"\s[%(reference[1])]"
+		"Please assess the current surface. Does it fit the following description?\n\n"
+		
+		_expressions = (/
+		"Normal / default / neutral",/
+		"Embarrassed / blush",/
+		"Surprised / startled",/
+		"Anxious / worried",/
+		"Sad / discouraged",/
+		"Smile",/
+		"Closed eyes smile / content / relieved",/
+		"Angry / frown",/
+		"Sweat smile / cold smile",/
+		"Embarrassed anger / Indignant",/
+		"Thoughtful / thinking / confused",/
+		"Bored / unamused"/
+		)
+		
+		_expression = reference[1]
+		"%(_expressions[_expression])"
+		"\n\n"
+		"\![*]\__q[OnCalibration,ExpressionsMain,%(TOINT(reference[1]) + 1),yes]Yes\__q  \__q[OnCalibration,ExpressionsMain,%(TOINT(reference[1]) + 1),no]No\__q"
+		
+		if TOINT(reference[1]) == 8
+		{
+			"\n"
+			"\![*]\__q[OnCalibration,ExpressionsMain,9,alt,10]No, it looks more thoughtful / thinking / confused\__q"
+		}
+		elseif TOINT(reference[1]) == 9
+		{
+			"\n"
+			"\![*]\__q[OnCalibration,ExpressionsMain,10,alt,11]No, it looks more bored / unamused\__q"
+		}
+	}
+}
+
+OnCalibrationSet : all
+{
+	_index = CalibrationIndex(CurrentGhost)
+	
+	if _index == -1
+	{
+		GhostCalibrations.Name ,= CurrentGhost
+		GhostCalibrations.List ,= "none"
+	}
+	else
+	{
+		GhostCalibrations.List[_index] = "none"
+	}
+	
+	"\0\_q\*\b[2]\![no-autopause]"
+	
+	if reference[0] == "NoExpressions"
+	{
+		"Ghost cannot be calibrated. It is recommended to use the balloon ""Ghost Balloon"" with this ghost." //TODO is this giving it away?
+	}
+	
+	"\x\![raiseplugin,Spectre,OnMainMenu]"
+}
+
+OnCustomCalibrationConfirm : all
+{
+	_index = CalibrationIndex(CurrentGhost)
+	
+	if _index == -1
+	{
+		GhostCalibrations.Name ,= CurrentGhost
+		GhostCalibrations.List ,= "none"
+	}
+	else
+	{
+		GhostCalibrations.List[_index] = "none"
+	}
+	
+	"\0\_q\*\b[2]\![no-autopause]"
+	
+	"This ghost has custom calibration provided by the developer.\n\n"
+	"Calibration set."
+	
+	"\x\![raiseplugin,Spectre,OnMainMenu]"
+}
+
+OnSetTalkTime
+{
+	aitalkinterval = TOINT(reference[0])
+	"\C\![raiseplugin,Spectre,OnMainMenu]"
+}
+
+OnTest
+{
+	//res_target = "SSP Angel" //no target means it targets the ghost that pulled up the menu. should look at how that works
+	res_marker = eventfrom
+	
+	"\0\s[104]\b[10050]I'm Spectre, hello world!"
+}
+
+OnClose
+{
+	"\e"
+}

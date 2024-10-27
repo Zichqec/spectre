@@ -8,4 +8,4 @@ craftman,Galla & Zichqec
 craftmanw,Galla & Zichqec
 craftmanurl,https://github.com/Zichqec/spectre
 homeurl,https://raw.githubusercontent.com/Zichqec/spectre/main/
-secondchangeinterval,1
+secondchangeinterval,10

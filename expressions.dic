@@ -1,0 +1,112 @@
+//expressions
+blank : all
+{
+	"\b[11000,--fallback=0]"
+}
+
+fadein
+{
+	
+}
+
+DetermineSurface
+{
+	_num = _argv[0]
+	if _num == ""; _num = 0
+	_surface = "0"
+	_index = CalibrationIndex(TalkingGhost)
+	if _index != -1
+	{
+		_list = GhostCalibrations.List[_index]
+		
+		if _list != "none" && _list[_num] != -1
+		{
+			_surface = _list[_num]
+		}
+	}
+	_surface
+}
+
+normal : all
+{	
+	"\s[%(DetermineSurface(0))]"
+	"\b[10000,--fallback=0]"
+	"\![embed,OnSpectrePlugin.Surface,normal]"
+}
+
+embarrassed : all
+{
+	"\s[%(DetermineSurface(1))]"
+	"\b[10010,--fallback=0]"
+	"\![embed,OnSpectrePlugin.Surface,embarrassed]"
+}
+
+surprised : all
+{
+	"\s[%(DetermineSurface(2))]"
+	"\b[10020,--fallback=0]"
+	"\![embed,OnSpectrePlugin.Surface,surprised]"
+}
+
+anxious : all
+{
+	"\s[%(DetermineSurface(3))]"
+	"\b[10030,--fallback=0]"
+	"\![embed,OnSpectrePlugin.Surface,anxious]"
+}
+
+discouraged : all
+{
+	"\s[%(DetermineSurface(4))]"
+	"\b[10040,--fallback=0]"
+	"\![embed,OnSpectrePlugin.Surface,discouraged]"
+}
+
+smile : all
+{
+	"\s[%(DetermineSurface(5))]"
+	"\b[10050,--fallback=0]"
+	"\![embed,OnSpectrePlugin.Surface,smile]"
+}
+
+relieved : all
+{
+	"\s[%(DetermineSurface(6))]"
+	"\b[10060,--fallback=0]"
+	"\![embed,OnSpectrePlugin.Surface,relieved]"
+}
+
+angry : all
+{
+	"\s[%(DetermineSurface(7))]"
+	"\b[10070,--fallback=0]"
+	"\![embed,OnSpectrePlugin.Surface,angry]"
+}
+
+sweat : all
+{
+	"\s[%(DetermineSurface(8))]"
+	"\b[10080,--fallback=0]"
+	"\![embed,OnSpectrePlugin.Surface,sweat]"
+}
+
+indignant : all
+{
+	"\s[%(DetermineSurface(9))]"
+	"\b[10090,--fallback=0]"
+	"\![embed,OnSpectrePlugin.Surface,indignant]"
+}
+
+thinking : all
+{
+	"\s[%(DetermineSurface(10))]"
+	"\b[10100,--fallback=0]"
+	"\![embed,OnSpectrePlugin.Surface,thinking]"
+}
+
+bored : all
+{
+	"\s[%(DetermineSurface(11))]"
+	"\b[10110,--fallback=0]"
+	"\![embed,OnSpectrePlugin.Surface,bored]"
+}

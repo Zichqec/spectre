@@ -1,0 +1,19 @@
+IsCalibrated
+{
+	_index = ASEARCH(_argv[0],GhostCalibrations.Name)
+	if _index != -1
+	{
+		_list = GhostCalibrations.List[_index]
+		if _list != ""
+		{
+			1
+			return
+		}
+	}
+	0
+}
+
+CalibrationIndex
+{
+	ASEARCH(_argv[0],GhostCalibrations.Name)
+}

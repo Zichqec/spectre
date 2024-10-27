@@ -1,37 +1,69 @@
 PluginLoad
 {
+	LastTalkTime = GETSECCOUNT
+	if !ISVAR("BootedGhosts"); BootedGhosts = IARRAY
+	if !ISVAR("aitalkinterval"); aitalkinterval = 900
 	
+	if !ISVAR("GhostCalibrations.Name"); GhostCalibrations.Name = IARRAY
+	if !ISVAR("GhostCalibrations.Setting"); GhostCalibrations.Setting = IARRAY
+	if !ISVAR("GhostCalibrations.List"); GhostCalibrations.List = IARRAY
 }
 
 PluginUnload
 {
-	
+	BootedGhosts = IARRAY
 }
 
-OnMenuExec : all
+//How does this behave with duplicates? should figure that out
+OnGhostBoot
 {
-	res_marker = version
-	// res_event = "OnSimplicityPlugin.ExampleEvent"
-	// res_target = "__SYSTEM_ALL_GHOST__"
-	
-	"\0\_q\*\b[2]Hello, world!\n\n"
-	
-	"\![*]\q[Test!,OnTest]\n\n"
-	
-	"\![*]\q[Close menu,OnClose]"
+	BootedGhosts ,= reference[1]
 }
 
-OnTest
+OnGhostExit
 {
-	//res_target = "SSP Angel" //no target means it targets the ghost that pulled up the menu. should look at how that works
+	_index = ASEARCH(reference[1],BootedGhosts)
+	BootedGhosts[_index] = IARRAY
+}
+
+OnSecondChange
+{
+	if GETSECCOUNT >= LastTalkTime + aitalkinterval
+	{
+		OnAiTalk
+	}
+}
+
+OnAiTalk
+{
+	//TODO TEMPORARY
+	LastTalkTime = GETSECCOUNT
+	if reference[0] != "menu"
+	{
+		res_target = ANY(BootedGhosts)
+		TalkingGhost = res_target
+	}
 	res_marker = eventfrom
+	res_script_option = "nobreak"
 	
-	"\0\s[104]\b[10050]I'm Spectre, hello world!"
+	LastTalk = AutoPause(RandomTalk)
+	LastTalk = "\![no-autopause]" + LastTalk + "\![timerraise,15000,1,OnSpectrePlugin.Possession]"
+	LastTalk
 }
 
-OnClose
+//writing this again cuz i'll die without it... and hey! what do you know! YAYA as PLUGIN doesn't have OnTranslateInternal...
+AutoPause
 {
-	"\e"
+	_talk = _argv[0]
+	_talk = REPLACE(_talk,"... ","...\w8\w8 ")
+	_talk = REPLACE(_talk,"...! ","...!\w8\w8 ")
+	_talk = REPLACE(_talk,"...? ","...?\w8\w8 ")
+	_talk = REPLACE(_talk,". ",".\w8\w8 ")
+	_talk = REPLACE(_talk,"! ","!\w8\w8 ")
+	_talk = REPLACE(_talk,"? ","?\w8\w8 ")
+	_talk = REPLACE(_talk,"; ",";\w8 ")
+	_talk = REPLACE(_talk,", ",",\w4 ")
+	_talk
 }
 
 version
