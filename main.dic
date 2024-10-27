@@ -7,6 +7,7 @@ PluginLoad
 	if !ISVAR("GhostCalibrations.Name"); GhostCalibrations.Name = IARRAY
 	if !ISVAR("GhostCalibrations.Setting"); GhostCalibrations.Setting = IARRAY
 	if !ISVAR("GhostCalibrations.List"); GhostCalibrations.List = IARRAY
+	if !ISVAR("Flags"); Flags = IARRAY
 }
 
 PluginUnload

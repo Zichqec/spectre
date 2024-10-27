@@ -17,3 +17,31 @@ CalibrationIndex
 {
 	ASEARCH(_argv[0],GhostCalibrations.Name)
 }
+
+Flag
+{
+	if ASEARCH(_argv[0],Flags) != -1; 1
+	else; 0
+}
+
+OnAddFlag
+{
+	AddFlag(reference0)
+}
+
+AddFlag
+{
+	if ASEARCH(_argv[0],Flags) == -1; Flags ,= _argv[0]
+}
+
+DeleteFlag
+{
+	_loop = 0
+	while ASEARCH(_argv[0],Flags) != -1
+	{
+		_i = ASEARCH(_argv[0],Flags)
+		Flags[_i] = IARRAY
+		_loop++
+		if _loop >= 1000; break
+	}
+}
