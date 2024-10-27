@@ -3,7 +3,9 @@ OnMenuExec : all
 	CurrentGhost = reference[1]
 	TalkingGhost = CurrentGhost
 	reference[0] = reference[1]
-	OnMainMenu
+	CalibrationConfirm = "OnMainMenu"
+	if !IsCalibrated(CurrentGhost); "\![raise,OnSpectrePlugin.ConfirmCalibration]"
+	"\![raiseplugin,Spectre,OnMainMenu]"
 }
 
 OnMainMenu : all
@@ -19,6 +21,8 @@ OnMainMenu : all
 	"\C\![lock,balloonrepaint]\c" //I don't think this is working but whatever
 	"\0\_q\*\b[2]"
 	"%(Heading('Spectre'))"
+	
+	//"%(ControlLevel)\n\n"
 	
 	"Spectre enhancements: \_a[OnToggleSpectreEnhancements]%(('Off','On')[SpectreOn])\_a\n\n"
 	
@@ -63,6 +67,7 @@ OnCalibrationStart : all
 	if reference[0] != ""; CurrentGhost = reference[0]
 	MenuToReturnTo = "OnSettings"
 	if reference[1] == "mainmenu"; MenuToReturnTo = "OnMainMenu"
+	CalibrationConfirm = "OnCalibrationStart"
 	
 	"\0\_q\*\b[2]\![no-autopause]\![set,autoscroll,disable]"
 	"\![raise,OnSpectrePlugin.ConfirmCalibration]"
@@ -227,13 +232,20 @@ OnCustomCalibrationConfirm : all
 		GhostCalibrations.List[_index] = _calibrationlist
 	}
 	
-	"\0\_q\*\b[2]\![no-autopause]\![set,autoscroll,disable]"
-	"%(Heading('Calibration'))"
-	
-	"This ghost has custom calibration provided by the developer.\n\n"
-	"Calibration set."
-	
-	"\x\![raiseplugin,Spectre,%(MenuToReturnTo),""%(CurrentGhost)""]"
+	if CalibrationConfirm == "OnCalibrationStart"
+	{
+		"\0\_q\*\b[2]\![no-autopause]\![set,autoscroll,disable]"
+		"%(Heading('Calibration'))"
+		
+		"This ghost has custom calibration provided by the developer.\n\n"
+		"Calibration set."
+		
+		"\x\![raiseplugin,Spectre,%(MenuToReturnTo),""%(CurrentGhost)""]"
+	}
+	else
+	{
+		"\![raiseplugin,Spectre,OnMainMenu]"
+	}
 }
 
 OnSettings : all

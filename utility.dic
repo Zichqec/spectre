@@ -50,3 +50,42 @@ Heading
 {
 	"\f[align,center]\f[bold,1]%(_argv[0])\f[bold,default]\n\f[align,left]"
 }
+
+FaceFade : all
+{
+	for _i = 0; _i < 9; _i++
+	{
+		"\b[110%(_i)0,--fallback=0]\_w[200]"
+	}
+	"\b[10000,--fallback=0]"
+}
+
+ControlLevel
+{
+	_ghost = TalkingGhost
+	_index = CalibrationIndex(_ghost)
+	
+	if _index == -1; "Uncalibrated"
+	else
+	{
+		_list = GhostCalibrations.List[_index]
+		
+		if _list == "none"; "No control"
+		else
+		{
+			_i = 0
+			foreach _list; _surface
+			{
+				if _surface != -1; _i++
+			}
+			
+			case _i
+			{
+				when 0; "No control"
+				when 1-4; "Minimal control"
+				when 5-8; "Medium control"
+				others; "Good control"
+			}
+		}
+	}
+}
