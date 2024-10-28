@@ -49,9 +49,12 @@ OnMainMenu : all
 	
 	//"Calibration: %(GhostCalibrations.List[_index]) - %(_index)\n\n"
 	
-	"DEBUG:\n"
-	"Met spectre: \__q[OnToggleMetSpectre]%(MetSpectre) ---\__q\n"
-	"Stage: \__q[OnToggleStage]%(Flag('Stage 1') + Flag('Stage 2') + Flag('Stage 3')) ---\__q\n\n"
+	if DebugMode == 1
+	{
+		"DEBUG:\n"
+		"Met spectre: \__q[OnToggleMetSpectre]%(MetSpectre) ---\__q\n"
+		"Stage: \__q[OnToggleStage]%(Flag('Stage 1') + Flag('Stage 2') + Flag('Stage 3')) ---\__q\n\n"
+	}
 	
 	"\f[color,default]"
 	"\![*]\q[Close menu,OnCancel]"
@@ -314,7 +317,7 @@ OnSettings : all
 	if MetSpectre
 	{
 		_times = ("15m,900","20m,1200","30m,1800","45m,2700","60m,3000")
-		if DebugMode == 1; _times = ("10s,10",_times)
+		if DebugMode == 1; _times = ("30s,30",_times)
 		"Talkrate:\n"
 		foreach _times; _time
 		{
