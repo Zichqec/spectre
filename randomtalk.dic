@@ -6,6 +6,16 @@ RandomTalk : nonoverlap
 
 Stage3Talk
 {
+	//upbeat
+	"\0%(normal)Oh, you know something that's weird? \n\nEven though I don't get thirsty, I really want a drink anyways... %(smile)But, can you blame me? A %(sodapop) sounds good right now!"
+	
+	//lowbeat
+	"\0%(discouraged)... I can't... feel my fingers... They were here a moment ago... Where... Give them back..."
+	"\0%(discouraged(6))It's in my ear... I feel it squirming... deeper... deeper... My head...!"
+	
+	//curiousbeat
+	"\0%(thinking(4))This body I'm borrowing, you know them, right? Do I sound the same as they do when I talk?\n\n\_q\![*]\__q[WhenITalk.UsingTheirVoice]Yes,\![dummy] you're using their voice.\__q\n\n\![*]\__q[WhenITalk.SoundCompletelyDifferent]No,\![dummy] you sound completely different,\__q\n\n\![*]\__q[WhenITalk.DoesntSoundLikeThem]Sort of;\![dummy] it's their voice,\![dummy] but it doesn't sound like them.\__q\n\n\![*]\__q[WhenITalk.TheyDontSpeak]They don't usually speak.\__q"
+	
 	//Theorizing
 	{
 	_choices = IARRAY
@@ -26,18 +36,18 @@ Stage3Talk
 	
 	if Flag("Theorized twice")
 	{
-		"\0%(smile)\![set,autoscroll,disable]I'm bored. \n\n... Theory time!"
-		"\0%(smile)\![set,autoscroll,disable]I have a new idea about me. Want to hear it? Or, do you have another good one?"
-		"\0%(smile)\![set,autoscroll,disable]Pop quiz! \n\nAm I dead? Am I not dead? Quick, for 30 points, what's your answer?"
+		"\0%(smile(4))\![set,autoscroll,disable]I'm bored. \n\n... Theory time!"
+		"\0%(smile(4))\![set,autoscroll,disable]I have a new idea about me. Want to hear it? Or, do you have another good one?"
+		"\0%(smile(4))\![set,autoscroll,disable]Pop quiz! \n\nAm I dead? Am I not dead? Quick, for 30 points, what's your answer?"
 	}
 	
 	elseif Flag("Theorized once")
 	{
-		"\0%(thinking)\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized twice]Out of curiosity, have you come up with any more theories? For what's happening, you know?"
+		"\0%(thinking(4))\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized twice]Out of curiosity, have you come up with any more theories? For what's happening, you know?"
 	}
 	else
 	{
-		"\0%(thinking)\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized once]We don't know what's going on with me, right? Right. It makes me think, 'What's the harm in making some theories?' So... how about it? Have you had any ideas?"
+		"\0%(thinking(4))\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized once]We don't know what's going on with me, right? Right. It makes me think, 'What's the harm in making some theories?' So... how about it? Have you had any ideas?"
 	}
 	--
 	"\n\n\_q\![*]\__q[Theorizing.SpectreTheory]What's your theory?\__q\n\n%(_choice1)\n\n%(_choice2)\n\n%(_choice3)"
@@ -62,4 +72,49 @@ Theorizing.DefinitelyDead
 Theorizing.JustADream
 {
 	"\0%(sweat(6))You think so? This would make an interesting story when I wake up, then."
+}
+
+WhenITalk.DoesntSoundLikeThem
+{
+	"\0%(relieved(2))I see! Good, that's good...\n\n%(normal(2))Wait, what does that mean? %(anxious(2))Is it an overlapping voices sort of thing, like in those horror films?\n\n\_q\![*]\__q[WhenITalk.DoesntSoundLikeThem.ItsScary]Yes,\![dummy] it's scary.\__q\n\n\_q\![*]\__q[WhenITalk.DoesntSoundLikeThem.LikeAnEcho]No,\![dummy] it's like an echo.\__q\n\n\![*]\__q[WhenITalk.DoesntSoundLikeThem.HardToExplain]It's hard to explain.\__q"
+}
+
+WhenITalk.DoesntSoundLikeThem.HardToExplain
+{
+	"\0%(embarrassed)If you're as close to them as you seem, any difference would seem obvious to you, so it makes sense...\n\n%(sweat)Still, that makes me even more curious to figure out the difference!"
+}
+
+WhenITalk.DoesntSoundLikeThem.ItsScary
+{
+	"\0%(surprised)Ohh, am I scary? Do I scare you?\n\n%(smile)OoOoOo I'm going to climb on the ceiling and make the walls bleed! Watch out!"
+}
+
+WhenITalk.DoesntSoundLikeThem.LikeAnEcho
+{
+	"\0%(thinking(6))Like the throat is a box that I'm sitting inside of? Neat."
+}
+
+WhenITalk.SoundCompletelyDifferent
+{
+	"\0%(thinking)Huh... I didn't expect that. %(sweat)I wish I could ask if I sound like me, but you can't exactly know, can you...\n\n%(anxious)Oh well."
+}
+
+WhenITalk.TheyDontSpeak
+{
+	"\0%(embarrassed)Right, right right, because they're a doll or something?\n\n\_q\![*]\__q[WhenITalk.TheyDontSpeak.Right]Right.\__q\n\n\![*]\__q[WhenITalk.TheyDontSpeak.No]No.\__q"
+}
+
+WhenITalk.TheyDontSpeak.No
+{
+	"\0%(discouraged(6))Oh..."
+}
+
+WhenITalk.TheyDontSpeak.Right
+{
+	"\0%(thinking)I wonder what would happen if I took over one with a voice box then. %(smile)Hey, think about getting one for me. It'll be fun!"
+}
+
+WhenITalk.UsingTheirVoice
+{
+	"\0%(sweat)Ha, that's probably confusing, huh? %(thinking)Maybe I should start announcing myself when I speak... \n\n%(smile)Here's an idea! Get me confetti and I'll throw some at you whenever it's me."
 }
