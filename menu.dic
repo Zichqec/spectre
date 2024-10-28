@@ -64,6 +64,8 @@ OnToggleSpectreEnhancements
 
 OnCalibrationStart : all
 {
+	res_marker = version
+	
 	if reference[0] != ""; CurrentGhost = reference[0]
 	MenuToReturnTo = "OnSettings"
 	if reference[1] == "mainmenu"; MenuToReturnTo = "OnMainMenu"
@@ -83,6 +85,8 @@ OnCalibrationStart : all
 
 OnCalibration : all
 {
+	res_marker = version
+	
 	if reference[0] != ""; CurrentGhost = reference[0]
 	
 	_index = CalibrationIndex(CurrentGhost)
@@ -179,6 +183,8 @@ OnOpenDevInfo
 
 OnCalibrationSet : all
 {
+	res_marker = version
+	
 	if reference[0] != ""; CurrentGhost = reference[0]
 	
 	_index = CalibrationIndex(CurrentGhost)
@@ -206,6 +212,8 @@ OnCalibrationSet : all
 
 OnCustomCalibrationConfirm : all
 {
+	res_marker = version
+	
 	_expressions = ("normal","embarrassed","surprised","anxious","discouraged","smile","relieved","angry","sweat","indignant","thinking","unamused")
 	_calibrationlist = ("*,*,*,*,*,*,*,*,*,*,*,*")
 	foreach reference; _ref
@@ -247,6 +255,8 @@ OnCustomCalibrationConfirm : all
 
 OnSettings : all
 {
+	res_marker = version
+	
 	if reference[0] != ""; CurrentGhost = reference[0]
 	
 	"\C\![lock,balloonrepaint]\c"
@@ -291,6 +301,8 @@ OnSettings : all
 
 OnExclusionMenu : all
 {
+	res_marker = version
+	
 	if reference[0] != ""; CurrentGhost = reference[0]
 	
 	"\C\![lock,balloonrepaint]\c"

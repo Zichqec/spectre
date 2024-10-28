@@ -4,9 +4,13 @@ blank : all
 	"\b[11000,--fallback=0]"
 }
 
-fadein
+fadein : all
 {
-	
+	for _i = 0; _i < 9; _i++
+	{
+		"\b[110%(_i)0,--fallback=0]\_w[200]"
+	}
+	"\b[10000,--fallback=0]"
 }
 
 DetermineSurface

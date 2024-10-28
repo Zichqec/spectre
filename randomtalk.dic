@@ -12,6 +12,7 @@ Stage3Talk
 	_choices ,= "\![*]\__q[Theorizing.DefinitelyDead]You're definitely dead.\![dummy] Heart attack out of the blue.\__q"
 	_choices ,= "\![*]\__q[Theorizing.JustADream]This is all just a dream.\__q"
 	_choices ,= "\![*]\__q[Theorizing.AVividHallucination]I think you took something,\![dummy] and this is a vivid hallucination.\__q"
+	_choices ,= "\![*]\__q[Theorizing.BugAteBrain]A bug crawled in your ear while you were sleeping and ate your brain.\__q"
 	//etc...
 	
 	_choice1 = ANY(_choices)

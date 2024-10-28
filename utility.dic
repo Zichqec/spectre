@@ -51,15 +51,6 @@ Heading
 	"\f[align,center]\f[bold,1]%(_argv[0])\f[bold,default]\n\f[align,left]"
 }
 
-FaceFade : all
-{
-	for _i = 0; _i < 9; _i++
-	{
-		"\b[110%(_i)0,--fallback=0]\_w[200]"
-	}
-	"\b[10000,--fallback=0]"
-}
-
 ControlLevel
 {
 	_ghost = TalkingGhost
