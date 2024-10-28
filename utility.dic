@@ -61,7 +61,7 @@ ControlLevel
 	{
 		_list = GhostCalibrations.List[_index]
 		
-		if _list == "none"; "No control"
+		if _list == "none"; "None"
 		else
 		{
 			_i = 0
@@ -72,10 +72,10 @@ ControlLevel
 			
 			case _i
 			{
-				when 0; "No control"
-				when 1-4; "Minimal control"
-				when 5-8; "Medium control"
-				others; "Good control"
+				when 0; "none"
+				when 1-4; "low"
+				when 5-8; "medium"
+				others; "high"
 			}
 		}
 	}

@@ -1,10 +1,19 @@
-RandomTalk : nonoverlap
+Stage0Talk : nonoverlap
 {
-	//"%(normal)Normal face"
-	"\![no-autopause]%(embarrassed)embarrassed. %(surprised)surprised! %(anxious)anxious... %(discouraged)discouraged. %(smile)smile! %(relieved)relieved...! %(angry)angry. %(sweat)sweat... %(indignant)indignant...! %(thinking)thinking...? %(unamused)unamused."
+	"Stage 0 (doesn't know the user hears them yet)"
 }
 
-Stage3Talk
+Stage1Talk : nonoverlap
+{
+	"Stage 1 (met the user but dunno what's going on)"
+}
+
+Stage2Talk : nonoverlap
+{
+	"Stage 2 (figured it out and struggling to process)"
+}
+
+Stage3Talk : nonoverlap
 {
 	//upbeat
 	"\0%(normal)Oh, you know something that's weird? \n\nEven though I don't get thirsty, I really want a drink anyways... %(smile)But, can you blame me? A %(sodapop) sounds good right now!"
@@ -18,103 +27,121 @@ Stage3Talk
 	
 	//Theorizing
 	{
-	_choices = IARRAY
-	_choices ,= "\![*]\__q[OnTheorizing.DefinitelyDead]You're definitely dead.\![dummy] Heart attack out of the blue.\__q"
-	_choices ,= "\![*]\__q[OnTheorizing.JustADream]This is all just a dream.\__q"
-	_choices ,= "\![*]\__q[OnTheorizing.AVividHallucination]I think you took something,\![dummy] and this is a vivid hallucination.\__q"
-	_choices ,= "\![*]\__q[OnTheorizing.BugAteBrain]A bug crawled in your ear while you were sleeping and ate your brain.\__q"
-	//etc...
-	
-	_choice1 = ANY(_choices)
-	_choices[LSO] = IARRAY
-	
-	_choice2 = ANY(_choices)
-	_choices[LSO] = IARRAY
-	
-	_choice3 = ANY(_choices)
-	_choices[LSO] = IARRAY
-	
-	if Flag("Theorized twice")
-	{
-		"\0%(smile(4))\![set,autoscroll,disable]I'm bored. \n\n... Theory time!"
-		"\0%(smile(4))\![set,autoscroll,disable]I have a new idea about me. Want to hear it? Or, do you have another good one?"
-		"\0%(smile(4))\![set,autoscroll,disable]Pop quiz! \n\nAm I dead? Am I not dead? Quick, for 30 points, what's your answer?"
+		_choices = IARRAY
+		_choices ,= "\![*]\__q[OnTheorizing.DefinitelyDead]You're definitely dead.\![dummy] Heart attack out of the blue.\__q"
+		_choices ,= "\![*]\__q[OnTheorizing.JustADream]This is all just a dream.\__q"
+		_choices ,= "\![*]\__q[OnTheorizing.AVividHallucination]I think you took something,\![dummy] and this is a vivid hallucination.\__q"
+		_choices ,= "\![*]\__q[OnTheorizing.BugAteBrain]A bug crawled in your ear while you were sleeping and ate your brain.\__q"
+		//etc...
+		
+		_choice1 = ANY(_choices)
+		_choices[LSO] = IARRAY
+		
+		_choice2 = ANY(_choices)
+		_choices[LSO] = IARRAY
+		
+		_choice3 = ANY(_choices)
+		_choices[LSO] = IARRAY
+		
+		if Flag("Theorized twice")
+		{
+			"\0%(smile(4))\![set,autoscroll,disable]I'm bored. \n\n... Theory time!"
+			"\0%(smile(4))\![set,autoscroll,disable]I have a new idea about me. Want to hear it? Or, do you have another good one?"
+			"\0%(smile(4))\![set,autoscroll,disable]Pop quiz! \n\nAm I dead? Am I not dead? Quick, for 30 points, what's your answer?"
+		}
+		
+		elseif Flag("Theorized once")
+		{
+			"\0%(thinking(4))\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized twice]Out of curiosity, have you come up with any more theories? For what's happening, you know?"
+		}
+		else
+		{
+			"\0%(thinking(4))\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized once]We don't know what's going on with me, right? Right. It makes me think, 'What's the harm in making some theories?' So... how about it? Have you had any ideas?"
+		}
+		--
+		"\n\n\_q\![*]\__q[OnTheorizing.SpectreTheory]What's your theory?\__q\n\n%(_choice1)\n\n%(_choice2)\n\n%(_choice3)"
 	}
 	
-	elseif Flag("Theorized once")
+	//Control Levels
+	if ControlLevel == "none"
 	{
-		"\0%(thinking(4))\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized twice]Out of curiosity, have you come up with any more theories? For what's happening, you know?"
+		"I'm grateful to be able to speak with you at all, but this body feels like %(gettingsquished)... I can't get it to do anything."
 	}
-	else
+	if ControlLevel == "low"
 	{
-		"\0%(thinking(4))\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized once]We don't know what's going on with me, right? Right. It makes me think, 'What's the harm in making some theories?' So... how about it? Have you had any ideas?"
+		"Taking control of this body has been a little awkward. It's like, %(ifyouran)... Do you know what I mean?"
 	}
-	--
-	"\n\n\_q\![*]\__q[OnTheorizing.SpectreTheory]What's your theory?\__q\n\n%(_choice1)\n\n%(_choice2)\n\n%(_choice3)"
+	if ControlLevel == "medium"
+	{
+		"I'm glad you had this body around for me to borrow. It's like I'm finally %(stretching)."
+	}
+	if ControlLevel == "high"
+	{
+		
 	}
 }
 
 OnTheorizing.SpectreTheory
 {
-	"idk im a ghost bro"
+	AutoPause("idk im a ghost bro")
 }
 
 OnTheorizing.AVividHallucination
 {
-	"\0%(anxious)Do you think so? I've never really been into drugs... I don't know how that would have happened, unless... %(surprised)Someone did it to me!? Maybe it was a kidnapping and I was incapacitated by a hallucinagenic powder bomb! \n\n%(indignant)Aww... I bet my clothes are covered in the stuff. I'll have to get them super clean so it doesn't hit me again."
+	AutoPause("\0%(anxious)Do you think so? I've never really been into drugs... I don't know how that would have happened, unless... %(surprised)Someone did it to me!? Maybe it was a kidnapping and I was incapacitated by a hallucinagenic powder bomb! \n\n%(indignant)Aww... I bet my clothes are covered in the stuff. I'll have to get them super clean so it doesn't hit me again.")
 }
 
 OnTheorizing.DefinitelyDead
 {
-	"\0%(unamused(6))What? Just like that? What a boring way to go..."
+	AutoPause("\0%(unamused(6))What? Just like that? What a boring way to go...")
 }
 
 OnTheorizing.JustADream
 {
-	"\0%(sweat(6))You think so? This would make an interesting story when I wake up, then."
+	AutoPause("\0%(sweat(6))You think so? This would make an interesting story when I wake up, then.")
 }
 
 OnWhenITalk.DoesntSoundLikeThem
 {
-	"\0%(relieved(2))I see! Good, that's good...\n\n%(normal(2))Wait, what does that mean? %(anxious(2))Is it an overlapping voices sort of thing, like in those horror films?\n\n\_q\![*]\__q[OnWhenITalk.DoesntSoundLikeThem.ItsScary]Yes,\![dummy] it's scary.\__q\n\n\_q\![*]\__q[OnWhenITalk.DoesntSoundLikeThem.LikeAnEcho]No,\![dummy] it's like an echo.\__q\n\n\![*]\__q[OnWhenITalk.DoesntSoundLikeThem.HardToExplain]It's hard to explain.\__q"
+	AutoPause("\0%(relieved(2))I see! Good, that's good...\n\n%(normal(2))Wait, what does that mean? %(anxious(2))Is it an overlapping voices sort of thing, like in those horror films?\n\n\_q\![*]\__q[OnWhenITalk.DoesntSoundLikeThem.ItsScary]Yes,\![dummy] it's scary.\__q\n\n\_q\![*]\__q[OnWhenITalk.DoesntSoundLikeThem.LikeAnEcho]No,\![dummy] it's like an echo.\__q\n\n\![*]\__q[OnWhenITalk.DoesntSoundLikeThem.HardToExplain]It's hard to explain.\__q")
 }
 
 OnWhenITalk.DoesntSoundLikeThem.HardToExplain
 {
-	"\0%(embarrassed)If you're as close to them as you seem, any difference would seem obvious to you, so it makes sense...\n\n%(sweat)Still, that makes me even more curious to figure out the difference!"
+	AutoPause("\0%(embarrassed)If you're as close to them as you seem, any difference would seem obvious to you, so it makes sense...\n\n%(sweat)Still, that makes me even more curious to figure out the difference!")
 }
 
 OnWhenITalk.DoesntSoundLikeThem.ItsScary
 {
-	"\0%(surprised)Ohh, am I scary? Do I scare you?\n\n%(smile)OoOoOo I'm going to climb on the ceiling and make the walls bleed! Watch out!"
+	AutoPause("\0%(surprised)Ohh, am I scary? Do I scare you?\n\n%(smile)OoOoOo I'm going to climb on the ceiling and make the walls bleed! Watch out!")
 }
 
 OnWhenITalk.DoesntSoundLikeThem.LikeAnEcho
 {
-	"\0%(thinking(6))Like the throat is a box that I'm sitting inside of? Neat."
+	AutoPause("\0%(thinking(6))Like the throat is a box that I'm sitting inside of? Neat.")
 }
 
 OnWhenITalk.SoundCompletelyDifferent
 {
-	"\0%(thinking)Huh... I didn't expect that. %(sweat)I wish I could ask if I sound like me, but you can't exactly know, can you...\n\n%(anxious)Oh well."
+	AutoPause("\0%(thinking)Huh... I didn't expect that. %(sweat)I wish I could ask if I sound like me, but you can't exactly know, can you...\n\n%(anxious)Oh well.")
 }
 
 OnWhenITalk.TheyDontSpeak
 {
-	"\0%(embarrassed)Right, right right, because they're a doll or something?\n\n\_q\![*]\__q[OnWhenITalk.TheyDontSpeak.Right]Right.\__q\n\n\![*]\__q[OnWhenITalk.TheyDontSpeak.No]No.\__q"
+	AutoPause("\0%(embarrassed)Right, right right, because they're a doll or something?\n\n\_q\![*]\__q[OnWhenITalk.TheyDontSpeak.Right]Right.\__q\n\n\![*]\__q[OnWhenITalk.TheyDontSpeak.No]No.\__q")
 }
 
 OnWhenITalk.TheyDontSpeak.No
 {
-	"\0%(discouraged(6))Oh..."
+	AutoPause("\0%(discouraged(6))Oh...")
 }
 
 OnWhenITalk.TheyDontSpeak.Right
 {
-	"\0%(thinking)I wonder what would happen if I took over one with a voice box then. %(smile)Hey, think about getting one for me. It'll be fun!"
+	AutoPause("\0%(thinking)I wonder what would happen if I took over one with a voice box then. %(smile)Hey, think about getting one for me. It'll be fun!")
 }
 
 OnWhenITalk.UsingTheirVoice
 {
-	"\0%(sweat)Ha, that's probably confusing, huh? %(thinking)Maybe I should start announcing myself when I speak... \n\n%(smile)Here's an idea! Get me confetti and I'll throw some at you whenever it's me."
+	AutoPause("\0%(sweat)Ha, that's probably confusing, huh? %(thinking)Maybe I should start announcing myself when I speak... \n\n%(smile)Here's an idea! Get me confetti and I'll throw some at you whenever it's me.")
 }
