@@ -19,7 +19,7 @@ OnMainMenu : all
 	// res_target = "__SYSTEM_ALL_GHOST__"
 	
 	"\C\![lock,balloonrepaint]\c" //I don't think this is working but whatever
-	"\0\_q\*\b[2]"
+	"\0\_q\*\b[2]\![no-autopause]\![set,autoscroll,disable]"
 	"%(Heading('Spectre'))"
 	
 	//"%(ControlLevel)\n\n"
@@ -49,9 +49,44 @@ OnMainMenu : all
 	
 	//"Calibration: %(GhostCalibrations.List[_index]) - %(_index)\n\n"
 	
+	"DEBUG:\n"
+	"Met spectre: \__q[OnToggleMetSpectre]%(MetSpectre) ---\__q\n"
+	"Stage: \__q[OnToggleStage]%(Flag('Stage 1') + Flag('Stage 2') + Flag('Stage 3')) ---\__q\n\n"
+	
 	"\f[color,default]"
 	"\![*]\q[Close menu,OnCancel]"
 	"\![unlock,balloonrepaint]"
+}
+
+OnToggleMetSpectre
+{
+	if MetSpectre != 1; MetSpectre = 1
+	else; MetSpectre = 0
+	
+	"\![raiseplugin,Spectre,OnMainMenu]"
+}
+
+OnToggleStage
+{
+	if Flag("Stage 3")
+	{
+		DeleteFlag("Stage 1")
+		DeleteFlag("Stage 2")
+		DeleteFlag("Stage 3")
+	}
+	elseif Flag("Stage 2")
+	{
+		AddFlag("Stage 3")
+	}
+	elseif Flag("Stage 1")
+	{
+		AddFlag("Stage 2")
+	}
+	else
+	{
+		AddFlag("Stage 1")
+	}
+	"\![raiseplugin,Spectre,OnMainMenu]"
 }
 
 OnToggleSpectreEnhancements

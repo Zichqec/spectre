@@ -1,26 +1,26 @@
 Stage0Talk : nonoverlap
 {
-	"Stage 0 (doesn't know the user hears them yet)"
+	"Stage 0 (doesn't know the user hears them yet)%(end)"
 }
 
 Stage1Talk : nonoverlap
 {
-	"Stage 1 (met the user but dunno what's going on)"
+	"Stage 1 (met the user but dunno what's going on)%(end)"
 }
 
 Stage2Talk : nonoverlap
 {
-	"Stage 2 (figured it out and struggling to process)"
+	"Stage 2 (figured it out and struggling to process)%(end)"
 }
 
 Stage3Talk : nonoverlap
 {
 	//upbeat
-	"\0%(normal)Oh, you know something that's weird? \n\nEven though I don't get thirsty, I really want a drink anyways... %(smile)But, can you blame me? A %(sodapop) sounds good right now!"
+	"\0%(normal)Oh, you know something that's weird? \n\nEven though I don't get thirsty, I really want a drink anyways... %(smile)But, can you blame me? A %(sodapop) sounds good right now!%(end)"
 	
 	//lowbeat
-	"\0%(discouraged)... I can't... feel my fingers... They were here a moment ago... Where... Give them back..."
-	"\0%(discouraged(6))It's in my ear... I feel it squirming... deeper... deeper... My head...!"
+	"\0%(discouraged)... I can't... feel my fingers... They were here a moment ago... Where... Give them back...%(end)"
+	"\0%(discouraged(6))It's in my ear... I feel it squirming... deeper... deeper... My head...!%(end)"
 	
 	//curiousbeat
 	"\0%(thinking(4))This body I'm borrowing, you know them, right? Do I sound the same as they do when I talk?\n\n\_q\![*]\__q[OnWhenITalk.UsingTheirVoice]Yes,\![dummy] you're using their voice.\__q\n\n\![*]\__q[OnWhenITalk.SoundCompletelyDifferent]No,\![dummy] you sound completely different,\__q\n\n\![*]\__q[OnWhenITalk.DoesntSoundLikeThem]Sort of;\![dummy] it's their voice,\![dummy] but it doesn't sound like them.\__q\n\n\![*]\__q[OnWhenITalk.TheyDontSpeak]They don't usually speak.\__q"
@@ -65,15 +65,15 @@ Stage3Talk : nonoverlap
 	//Control Levels
 	if ControlLevel == "none"
 	{
-		"I'm grateful to be able to speak with you at all, but this body feels like %(gettingsquished)... I can't get it to do anything."
+		"I'm grateful to be able to speak with you at all, but this body feels like %(gettingsquished)... I can't get it to do anything.%(end)"
 	}
 	if ControlLevel == "low"
 	{
-		"Taking control of this body has been a little awkward. It's like, %(ifyouran)... Do you know what I mean?"
+		"Taking control of this body has been a little awkward. It's like, %(ifyouran)... Do you know what I mean?%(end)"
 	}
 	if ControlLevel == "medium"
 	{
-		"I'm glad you had this body around for me to borrow. It's like I'm finally %(stretching)."
+		"I'm glad you had this body around for me to borrow. It's like I'm finally %(stretching).%(end)"
 	}
 	if ControlLevel == "high"
 	{
@@ -88,17 +88,17 @@ OnTheorizing.SpectreTheory
 
 OnTheorizing.AVividHallucination
 {
-	AutoPause("\0%(anxious)Do you think so? I've never really been into drugs... I don't know how that would have happened, unless... %(surprised)Someone did it to me!? Maybe it was a kidnapping and I was incapacitated by a hallucinagenic powder bomb! \n\n%(indignant)Aww... I bet my clothes are covered in the stuff. I'll have to get them super clean so it doesn't hit me again.")
+	AutoPause("\0%(anxious)Do you think so? I've never really been into drugs... I don't know how that would have happened, unless... %(surprised)Someone did it to me!? Maybe it was a kidnapping and I was incapacitated by a hallucinagenic powder bomb! \n\n%(indignant)Aww... I bet my clothes are covered in the stuff. I'll have to get them super clean so it doesn't hit me again.%(end)")
 }
 
 OnTheorizing.DefinitelyDead
 {
-	AutoPause("\0%(unamused(6))What? Just like that? What a boring way to go...")
+	AutoPause("\0%(unamused(6))What? Just like that? What a boring way to go...%(end)")
 }
 
 OnTheorizing.JustADream
 {
-	AutoPause("\0%(sweat(6))You think so? This would make an interesting story when I wake up, then.")
+	AutoPause("\0%(sweat(6))You think so? This would make an interesting story when I wake up, then.%(end)")
 }
 
 OnWhenITalk.DoesntSoundLikeThem
@@ -108,22 +108,22 @@ OnWhenITalk.DoesntSoundLikeThem
 
 OnWhenITalk.DoesntSoundLikeThem.HardToExplain
 {
-	AutoPause("\0%(embarrassed)If you're as close to them as you seem, any difference would seem obvious to you, so it makes sense...\n\n%(sweat)Still, that makes me even more curious to figure out the difference!")
+	AutoPause("\0%(embarrassed)If you're as close to them as you seem, any difference would seem obvious to you, so it makes sense...\n\n%(sweat)Still, that makes me even more curious to figure out the difference!%(end)")
 }
 
 OnWhenITalk.DoesntSoundLikeThem.ItsScary
 {
-	AutoPause("\0%(surprised)Ohh, am I scary? Do I scare you?\n\n%(smile)OoOoOo I'm going to climb on the ceiling and make the walls bleed! Watch out!")
+	AutoPause("\0%(surprised)Ohh, am I scary? Do I scare you?\n\n%(smile)OoOoOo I'm going to climb on the ceiling and make the walls bleed! Watch out!%(end)")
 }
 
 OnWhenITalk.DoesntSoundLikeThem.LikeAnEcho
 {
-	AutoPause("\0%(thinking(6))Like the throat is a box that I'm sitting inside of? Neat.")
+	AutoPause("\0%(thinking(6))Like the throat is a box that I'm sitting inside of? Neat.%(end)")
 }
 
 OnWhenITalk.SoundCompletelyDifferent
 {
-	AutoPause("\0%(thinking)Huh... I didn't expect that. %(sweat)I wish I could ask if I sound like me, but you can't exactly know, can you...\n\n%(anxious)Oh well.")
+	AutoPause("\0%(thinking)Huh... I didn't expect that. %(sweat)I wish I could ask if I sound like me, but you can't exactly know, can you...\n\n%(anxious)Oh well.%(end)")
 }
 
 OnWhenITalk.TheyDontSpeak
@@ -133,15 +133,15 @@ OnWhenITalk.TheyDontSpeak
 
 OnWhenITalk.TheyDontSpeak.No
 {
-	AutoPause("\0%(discouraged(6))Oh...")
+	AutoPause("\0%(discouraged(6))Oh...%(end)")
 }
 
 OnWhenITalk.TheyDontSpeak.Right
 {
-	AutoPause("\0%(thinking)I wonder what would happen if I took over one with a voice box then. %(smile)Hey, think about getting one for me. It'll be fun!")
+	AutoPause("\0%(thinking)I wonder what would happen if I took over one with a voice box then. %(smile)Hey, think about getting one for me. It'll be fun!%(end)")
 }
 
 OnWhenITalk.UsingTheirVoice
 {
-	AutoPause("\0%(sweat)Ha, that's probably confusing, huh? %(thinking)Maybe I should start announcing myself when I speak... \n\n%(smile)Here's an idea! Get me confetti and I'll throw some at you whenever it's me.")
+	AutoPause("\0%(sweat)Ha, that's probably confusing, huh? %(thinking)Maybe I should start announcing myself when I speak... \n\n%(smile)Here's an idea! Get me confetti and I'll throw some at you whenever it's me.%(end)")
 }

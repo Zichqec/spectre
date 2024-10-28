@@ -80,3 +80,8 @@ ControlLevel
 		}
 	}
 }
+
+end
+{
+	"\![timerraise,15000,1,OnSpectrePlugin.Possession]"
+}

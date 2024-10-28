@@ -66,11 +66,11 @@ OnAiTalk
 	
 	if Flag("Stage 3"); LastTalk = Stage3Talk
 	elseif Flag("Stage 2"); LastTalk = Stage2Talk
-	elseif Flag{"Stage 1"}; LastTalk = Stage1Talk
+	elseif Flag("Stage 1"); LastTalk = Stage1Talk
 	else; LastTalk = Stage0Talk
 	
 	LastTalk = AutoPause(LastTalk)
-	LastTalk = "\![no-autopause]" + LastTalk + "\![timerraise,15000,1,OnSpectrePlugin.Possession]"
+	LastTalk = "\![no-autopause]" + LastTalk
 	LastTalk
 }
 
