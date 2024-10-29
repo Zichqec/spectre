@@ -46,72 +46,84 @@ DetermineSurface
 
 normal : all
 {	
-	"\b[10000,--fallback=0]"
-	"%(DetermineSurface(0))"
+	if Flag("Stage 1"); "\b[10000,--fallback=0]"
+	else; "%(blank)"
+	if Flag("Stage 2"); "%(DetermineSurface(0))"
 }
 
 embarrassed : all
 {
-	"\b[10010,--fallback=0]"
-	"%(DetermineSurface(1))"
+	if Flag("Stage 1"); "\b[10010,--fallback=0]"
+	else; "%(blank)"
+	if Flag("Stage 2"); "%(DetermineSurface(1))"
 }
 
 surprised : all
 {
-	"\b[10020,--fallback=0]"
-	"%(DetermineSurface(2))"
+	if Flag("Stage 1"); "\b[10020,--fallback=0]"
+	else; "%(blank)"
+	if Flag("Stage 2"); "%(DetermineSurface(2))"
 }
 
 anxious : all
 {
-	"\b[10030,--fallback=0]"
-	"%(DetermineSurface(3))"
+	if Flag("Stage 1"); "\b[10030,--fallback=0]"
+	else; "%(blank)"
+	if Flag("Stage 2"); "%(DetermineSurface(3))"
 }
 
 discouraged : all
 {
-	"\b[10040,--fallback=0]"
-	"%(DetermineSurface(4))"
+	if Flag("Stage 1"); "\b[10040,--fallback=0]"
+	else; "%(blank)"
+	if Flag("Stage 2"); "%(DetermineSurface(4))"
 }
 
 smile : all
 {
-	"\b[10050,--fallback=0]"
-	"%(DetermineSurface(5))"
+	if Flag("Stage 1"); "\b[10050,--fallback=0]"
+	else; "%(blank)"
+	if Flag("Stage 2"); "%(DetermineSurface(5))"
 }
 
 relieved : all
 {
-	"\b[10060,--fallback=0]"
-	"%(DetermineSurface(6))"
+	if Flag("Stage 1"); "\b[10060,--fallback=0]"
+	else; "%(blank)"
+	if Flag("Stage 2"); "%(DetermineSurface(6))"
 }
 
 angry : all
 {
-	"\b[10070,--fallback=0]"
-	"%(DetermineSurface(7))"
+	if Flag("Stage 1"); "\b[10070,--fallback=0]"
+	else; "%(blank)"
+	if Flag("Stage 2"); "%(DetermineSurface(7))"
 }
 
 sweat : all
 {
-	"\b[10080,--fallback=0]"
-	"%(DetermineSurface(8))"
+	if Flag("Stage 1"); "\b[10080,--fallback=0]"
+	else; "%(blank)"
+	if Flag("Stage 2"); "%(DetermineSurface(8))"
 }
 
 indignant : all
 {
-	"\b[10090,--fallback=0]"
-	"%(DetermineSurface(9))"
+	if Flag("Stage 1"); "\b[10090,--fallback=0]"
+	else; "%(blank)"
+	if Flag("Stage 2"); "%(DetermineSurface(9))"
 }
 
 thinking : all
 {
-	"\b[10100,--fallback=0]"
-	"%(DetermineSurface(10))"
+	if Flag("Stage 1"); "\b[10100,--fallback=0]"
+	else; "%(blank)"
+	if Flag("Stage 2"); "%(DetermineSurface(10))"
 }
 
 unamused : all
 {
-	"\b[10110,--fallback=0]"
-	"%(DetermineSurface(11))"
+	if Flag("Stage 1"); "\b[10110,--fallback=0]"
+	else; "%(blank)"
+	if Flag("Stage 2"); "%(DetermineSurface(11))"
 }
