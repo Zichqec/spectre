@@ -85,3 +85,140 @@ end
 {
 	"\![timerraise,15000,1,OnSpectrePlugin.Possession]"
 }
+
+SpookyText
+{
+	_list = GETFUNCLIST("SpookyText.")
+	_effect = ANY(_list)
+	
+	EVAL("%(_effect)(""%(_argv[0])"")")
+}
+
+SpookyText.scatter : all
+{
+	_amt = STRLEN(_argv[0])
+	for _i = 0; _i < _amt; _i++
+	{
+		"\f[height,%(ANY('+,-'))%(RAND(2) + 1)]"
+		"\_l[%(RAND(247)),%(RAND(25))]"
+		SUBSTR(_argv[0],_i,1)
+	}
+}
+
+SpookyText.droopy : all
+{
+	_y = 0
+	_word = _argv[0]
+	for _i = 0; _i < STRLEN(_word); _i++
+	{
+		_randy = RAND(11) - 5
+		_y += _randy
+		if _y < 0; _y = 0
+		"\_l[,%(_y)]"
+		SUBSTR(_word,_i,1)
+	}
+}
+
+SpookyText.drippy : all
+{
+	_word = _argv[0]
+	for _i = 0; _i < STRLEN(_word); _i++
+	{
+		for _y = 0; _y < 25; _y++
+		{
+			"\_l[%(_i)em,%(_y)]"
+			SUBSTR(_word,_i,1)
+		}
+	}
+}
+
+SpookyText.overflow : all
+{
+	_word = _argv[0]
+	"\![set,balloonwait,0.10]"
+	for _y = 0; _y < 15; _y++
+	{
+		_word
+		"\_l[0,0]\n[%(_y)0]"
+	}
+	_word
+}
+
+SpookyText.grow : all
+{
+	_word = _argv[0]
+	"\f[height,6]"
+	for _i = 0; _i < STRLEN(_word); _i++
+	{
+		if STRLEN(_word) < 20 || _i % 2 == 0; "\f[height,+1]"
+		SUBSTR(_word,_i,1)
+	}
+}
+
+SpookyText.shrink : all
+{
+	_word = _argv[0]
+	"\f[height,20]"
+	for _i = 0; _i < STRLEN(_word); _i++
+	{
+		if STRLEN(_word) < 20 || _i % 2 == 0; "\f[height,-1]"
+		SUBSTR(_word,_i,1)
+	}
+}
+
+SpookyText.patchy : all
+{
+	_word = _argv[0]
+	_color = 0
+	for _i = 0; _i < STRLEN(_word); _i++
+	{
+		if RAND(8) == 0
+		{
+			if _color != 1; _color = 1
+			else; _color = 0
+			
+			switch _color
+			{
+				"\f[color,default]"
+				"\f[color,disable]"
+			}
+		}
+		SUBSTR(_word,_i,1)
+	}
+}
+
+SpookyText.screams : all
+{
+	_word = _argv[0]
+	for _i = 0; _i < STRLEN(_word); _i++
+	{
+		if RAND(10) == 0
+		{
+			_rand = RAND(8) + 3
+			for _ii = 0; _ii < _rand; _ii++
+			{
+				TOUPPER(SUBSTR(_word,_i,1))
+			}
+		}
+		SUBSTR(_word,_i,1)
+	}
+}
+
+SpookyText.crossword : all
+{
+	_word = _argv[0]
+	_x = 0
+	_y = 0
+	for _i = 0; _i < STRLEN(_word); _i++
+	{
+		if SUBSTR(_word,_i,1) == " "; continue
+		"\_l[%(_x)em,%(_y)em]"
+		SUBSTR(_word,_i,1)
+		_y++
+		if _y >= 3
+		{
+			_x++
+			_y = 0
+		}
+	}
+}
