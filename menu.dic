@@ -31,9 +31,25 @@ OnMainMenu : all
 	{
 		switch SpectreOn
 		{
-			"\![*]Talk"
-			"\![*]\q[Talk,OnAiTalk,""%(CurrentGhost)""]"
+			"\![*]Talk to Spectre"
+			"\![*]\__q[OnAiTalk,""%(CurrentGhost)""]Talk to Spectre\__q"
 		}
+		"\n\n"
+	}
+	
+	if Flag("Stage 3") && TodaysPool == "dissociated"
+	{
+		"\![*]\__q[OnReachOut]"
+		switch ReachedOut //this is in REVERSE ORDER!!! when it hits 0 you win and get through
+		{
+			"" //leave blank
+			"Take as long as you need. I'll be here." //Last time bothering
+			"Try to breathe, nice and slowly."
+			"You'll get through this. It's not forever."
+			"It's okay now. Everything is fine."
+			"Hey, can you hear me?" //First time bothering
+		}
+		"\__q"
 		"\n\n"
 	}
 	
@@ -53,12 +69,47 @@ OnMainMenu : all
 	{
 		"DEBUG:\n"
 		"Met spectre: \__q[OnToggleMetSpectre]%(MetSpectre) ---\__q\n"
-		"Stage: \__q[OnToggleStage]%(Flag('Stage 1') + Flag('Stage 2') + Flag('Stage 3')) ---\__q\n\n"
+		"Stage: \__q[OnToggleStage]%(Flag('Stage 1') + Flag('Stage 2') + Flag('Stage 3')) ---\__q\n"
+		"Today's pool: %(TodaysPool)\n"
+		//"\![*]\q[Tester!,script:""%(smile)Smiling? Maybe. %(embarrassed)Embarrassed... perhaps.""]"
+		"\n"
 	}
 	
 	"\f[color,default]"
 	"\![*]\q[Close menu,OnCancel]"
 	"\![unlock,balloonrepaint]"
+}
+
+OnReachOut
+{
+	ReachedOut--
+	ReachedOutTime = GETSECCOUNT
+	if ReachedOut < 0; ReachedOut = 0
+	
+	if ReachedOut == 4 //First time reaching out
+	{
+		"zzzzz"
+	}
+
+	elseif ReachedOut == 3
+	{
+		"zzzznoOOoOoOoooooo i'm sleepy"
+	}
+	elseif ReachedOut == 2
+	{
+		"just 10 more minutes..."
+	}
+	elseif ReachedOut == 1
+	{
+		"just 5 more minutes....... zzzzzzzzzzzzzz......"
+	}
+	else //0, break through!
+	{
+		ReachedOut = 0
+		TodaysPool = "miserable"
+		
+		"ok fine im awake :c"
+	}
 }
 
 OnToggleMetSpectre
