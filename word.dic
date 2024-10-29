@@ -68,3 +68,57 @@ fruit : nonoverlap
 	"strawberry"
 	"moss"
 }
+
+bug
+{
+	"roach"
+	"spider"
+	"mosquito"
+	"maggot"
+	"pill bug"
+	"firefly"
+	"beetle"
+	"stink bug"
+	//"ear wig"
+	"caterpillar"
+	"fly"
+	"horsefly"
+	"honeybee"
+	"bumblebee"
+	"hornet"
+	"wasp"
+	"fire ant"
+	"carpenter ant"
+	"grasshopper"
+	"cricket"
+	"praying mantis"
+	"dragonfly"
+	"centipede"
+	"millipede"
+	"moth"
+	"butterfly"
+	"worm"
+}
+
+graymatter
+{
+	"gray matter"
+	"spinal fluid"
+	"blood"
+	"mucus"
+	"saliva"
+	"bile"
+	"tears"
+}
+
+toes
+{
+	"toes"
+	"toenails"
+	"fingers"
+	"fingernails"
+	"eyelids"
+	"heels"
+	"elbows"
+	"knees"
+}
