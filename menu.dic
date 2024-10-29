@@ -31,8 +31,8 @@ OnMainMenu : all
 	{
 		switch SpectreOn
 		{
-			"\![*]Talk to Spectre"
-			"\![*]\__q[OnAiTalk,""%(CurrentGhost)""]Talk to Spectre\__q"
+			"\![*]Listen to Spectre"
+			"\![*]\__q[OnAiTalk,""%(CurrentGhost)""]Listen to Spectre\__q"
 		}
 		"\n\n"
 	}
@@ -249,6 +249,7 @@ OnCalibration : all
 		
 		_expression = reference[2]
 		"%(_expressions[_expression])"
+		if MetSpectre; "\b[100%(_expression)2]"
 		"\n\n"
 		"\![*]\__q[OnCalibration,""%(reference[0])"",ExpressionsMain,%(TOINT(reference[2]) + 1),yes]Yes\__q  \__q[OnCalibration,""%(reference[0])"",ExpressionsMain,%(TOINT(reference[2]) + 1),no]No\__q"
 		
