@@ -13,10 +13,10 @@ PluginLoad
 	if !ISVAR("SpectreOn"); SpectreOn = 1
 	
 	YesterdaysPool = TodaysPool
-	_pools = "dissociated,miserable,cheerful"
+	_pools = "dissociated,miserable,cheerful,cheerful2"
 	TodaysPool = ANY(_pools)
 	_i = 0
-	while TodaysPool == YesterdaysPool && TodaysPool != "cheerful"
+	while TodaysPool == YesterdaysPool
 	{
 		TodaysPool = ANY(_pools)
 		_i++
@@ -80,14 +80,13 @@ OnAiTalk
 	res_marker = eventfrom
 	res_script_option = "nobreak"
 	
-	if Flag("Stage 3") && TodaysPool == "dissociated"; GreetedToday = 1 //this feels wibbly wobbly
+	if Flag("Stage 3") && TodaysPool == "dissociated" || !Flag("First boot seen"); GreetedToday = 1 //this feels wibbly wobbly
 	if !GreetedToday //"boot" dialogues
 	{
 		if Flag("All boots complete"); LastTalk = Boot.Normal
 		elseif Flag("Stage 1") && Flag("Second boot complete"); LastTalk = Boot.Returned
 		elseif Flag("Stage 1"); LastTalk = Boot.Greeted
 		elseif Flag("Stage 0") && Flag("First boot seen"); LastTalk = Boot.Greeted
-		else; LastTalk = Boot.First
 	}
 	else
 	{
@@ -109,6 +108,7 @@ OnAiTalk
 AutoPause
 {
 	_talk = _argv[0]
+	_talk = REPLACE(_talk,"\n\n ","\n\n\w8\w8")
 	_talk = REPLACE(_talk,"... ","...\w8\w8 ")
 	_talk = REPLACE(_talk,"...! ","...!\w8\w8 ")
 	_talk = REPLACE(_talk,"...? ","...?\w8\w8 ")
