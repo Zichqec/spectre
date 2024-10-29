@@ -150,11 +150,11 @@ Stage3Talk : nonoverlap_pool
 			
 			elseif Flag("Theorized once")
 			{
-				"\0%(thinking(4))\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized twice]Out of curiosity, have you come up with any more theories? For what's happening, you know?"
+				"\0%(thinking(4))\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized twice]Out of curiosity, have you come up with any more theories? For what's happening with the 'dead or alive' thing, you know?"
 			}
 			else
 			{
-				"\0%(thinking(4))\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized once]We don't know what's going on with me, right? Right. It makes me think, 'What's the harm in making some theories?' So... how about it? Have you had any ideas?"
+				"\0%(thinking(4))\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized once]We don't know what's going on with me, with the whole 'am I dead or am I alive' thing, right? Right. It makes me think, 'What's the harm in making some theories?' So... how about it? Have you had any ideas?"
 			}
 			--
 			"\n\n\_q\![*]\__q[OnTheorizing.SpectreTheory]What's your theory?\__q\n\n%(_choice1)\n\n%(_choice2)\n\n%(_choice3)"
@@ -163,21 +163,31 @@ Stage3Talk : nonoverlap_pool
 		//Control Levels
 		if ControlLevel == "none"
 		{
-			"I'm grateful to be able to speak with you at all, but this body feels like %(gettingsquished)... I can't get it to do anything.%(end)"
+			"\0%(discouraged)I'm grateful to be able to speak with you at all, but this body feels like %(gettingsquished)... %(indignant)I can't get it to do anything.%(end)"
 		}
 		if ControlLevel == "low"
 		{
-			"Taking control of this body has been a little awkward. It's like, %(ifyouran)... Do you know what I mean?%(end)"
+			"\0%(sweat)Taking control of this body has been a little awkward. It's like, %(ifyouran)... Do you know what I mean?%(end)"
 		}
 		if ControlLevel == "medium"
 		{
-			"I'm glad you had this body around for me to borrow. It's like I'm finally %(stretching).%(end)"
+			"\0%(relieved)I'm glad you had this body around for me to borrow. It's like I'm finally %(stretching).%(end)"
 		}
 		if ControlLevel == "high"
 		{
-			
+			"\0%(relieved(4))You know... talking to you like this, I almost feel like myself again. I'm glad we met — even if the circumstances are strange.\n\n%(smile(4))No, no no, you don't have to say anything! I can tell you feel the same, right?\n\n\_q\![*]\__q[OnHighControl.HappyToMeet]I do.\__q\n\n\![*]\__q[OnHighControl.UnhappyToMeet]I don't.\__q"
 		}
 	}
+}
+
+OnHighControl.HappyToMeet
+{
+	"\0%(smile(6))Ha! I knew it! What a softie.%(end)"
+}
+
+OnHighControl.UnhappyToMeet
+{
+	"\0%(indignant)Oh yeah? If you hate me and keep me around anyways, I think that says a lot about you.\n\n\f[color,disable]%(smile)... Hehe.%(end)"
 }
 
 OnTheorizing.SpectreTheory
