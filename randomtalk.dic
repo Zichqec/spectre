@@ -1,83 +1,182 @@
-Stage0Talk : nonoverlap
+//BOOT RELATED DIALOGUES
+Boot.First
 {
-	"Stage 0 (doesn't know the user hears them yet)%(end)"
+	"wehhh where is everyone"
 }
 
-Stage1Talk : nonoverlap
+Boot.Greeted
+{
+	_ending = SpookyText.shrink("it wasn't, it wasn't...")
+	"\0%(discouraged(6))Hello? \w8\w8I know you're there... \w8\w8\w8\w8%(angry)\f[bold,1]\f[italic,1]Answer me!%(end)"
+	"\0%(anxious(6))Please come back... I don't want to be alone...%(end)"
+	"\0%(discouraged)I heard it, I know I did... It wasn't my imagination... It wasn't, it wasn't, \f[color,disable]it wasn't, it wasn't, %(_ending)%(end)"
+	"\0%(discouraged)No, no, no, I don't like the quiet... Where did you go...?%(end)"
+	"\0%(anxious(6))Say something... Anything... \w8\f[italic,1]hic...\w8\w8\f[italic,default] Please, talk to me...%(end)"
+}
+
+Boot.Returned
+{
+	GreetedToday = 1
+	
+	"\0%(normal(6))...? That's... that's \f[italic,1]you\f[italic,default], isn't it?%(end)"
+	"\0%(normal(6))Oh... I can sense you there. You really came back...%(end)"
+	"\0%(normal(6))\f[color,disable]Someone's here. Who...? \f[color,default]Hello? ... I remember you.%(end)"
+	"\0%(normal(6))You're back? %(smile(6))You're back... Hi.%(end)"
+	"\0%(normal)\f[color,disable]It's not forever... It can't be forever... It's not... \n\n\f[color,default]%(surprised)...! I knew it. I knew you wouldn't leave me here...%(end)"
+}
+
+Boot.Normal
+{
+	GreetedToday = 1
+	
+	"hey! it's you! hiiiii"
+}
+
+//Random dialogues
+Stage0Talk : nonoverlap_pool
+{
+	"\0%(blank)\f[color,disable]Can anyone hear me? Please... I don't know where I am...%(end)"
+	"\0%(blank)\f[color,disable]I can't move... Why... why can't I move? Someone, help me...%(end)"
+	"\0%(blank)\f[color,disable]It's so dark... Am I going to die like this...?%(end)"
+	"\0%(blank)\f[color,disable]No... \f[italic,1]hic...\f[italic,default] No more... I'm sorry...!%(end)"
+	"\0%(blank)\f[color,disable]Why are you doing this...? I just want to go home...%(end)"
+	
+	parallel Pool.SpookyText
+}
+
+Pool.SpookyText : array
+{
+	"\0%(discouraged)" + SpookyText("Get out get out get out...!") + "%(end)"
+	"\0%(discouraged)" + SpookyText("No more, no more...") + "%(end)"
+	"\0%(discouraged)" + SpookyText("I can't breathe...!") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Enough...!") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Someone, please...!") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Scratching, scratching, bleed bleed bleed...") + "%(end)"
+	"\0%(discouraged)" + SpookyText("It won't stop, it won't stop, it won't stop") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Alone alone alone alone alone") + "%(end)"
+	"\0%(discouraged)" + SpookyText("H... hell... help...") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Lost... stuck? Stuck... trapped.") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Bugs in the walls, in the ceiling, in the floorboards, IN MY SKIN...") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Nobody knows, all alone, nobody knows...") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Will anyone ever find me? Does anyone care...?") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Burning, burning, turning to ash...") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Churning, burning, squirming, worming...") + "%(end)"
+}
+
+Stage1Talk : nonoverlap_pool
 {
 	"Stage 1 (met the user but dunno what's going on)%(end)"
 }
 
-Stage2Talk : nonoverlap
+Stage2Talk : nonoverlap_pool
 {
-	"Stage 2 (figured it out and struggling to process)%(end)"
+	"\0%(thinking)Wonder how long it's been... How much of my life has been spent here as opposed to... normal? %(discouraged)Don't have a way to know...%(end)"
+	"\0%(thinking)Been thinking about the future... %(discouraged)I know, I know I know, I shouldn't. I just... %(thinking)It's hard not to sometimes.%(end)"
+	"\0%(thinking)I wish I could describe everything I'm feeling right now. %(discouraged)Then again, maybe I should spare you the details anyway...%(end)"
+	"\0%(thinking)I wonder if it's like this for everyone eventually. Is this what happens when we die? %(discouraged)Or... am I special?%(end)"
+	"\0%(discouraged)Ah, I'm making myself miserable by ruminating... %(thinking)I know I shouldn't,\w8 %(anxious)but it's hard to stop once I've gotten going...%(end)"
 }
 
-Stage3Talk : nonoverlap
+Stage3Talk : nonoverlap_pool
 {
-	//upbeat
-	"\0%(normal)Oh, you know something that's weird? \n\nEven though I don't get thirsty, I really want a drink anyways... %(smile)But, can you blame me? A %(sodapop) sounds good right now!%(end)"
-	
-	//lowbeat
-	"\0%(discouraged)... I can't... feel my fingers... They were here a moment ago... Where... Give them back...%(end)"
-	"\0%(discouraged(6))It's in my ear... I feel it squirming... deeper... deeper... My head...!%(end)"
-	
-	//curiousbeat
-	"\0%(thinking(4))This body I'm borrowing, you know them, right? Do I sound the same as they do when I talk?\n\n\_q\![*]\__q[OnWhenITalk.UsingTheirVoice]Yes,\![dummy] you're using their voice.\__q\n\n\![*]\__q[OnWhenITalk.SoundCompletelyDifferent]No,\![dummy] you sound completely different,\__q\n\n\![*]\__q[OnWhenITalk.DoesntSoundLikeThem]Sort of;\![dummy] it's their voice,\![dummy] but it doesn't sound like them.\__q\n\n\![*]\__q[OnWhenITalk.TheyDontSpeak]They don't usually speak.\__q"
-	
-	//Theorizing
+	if TodaysPool == "dissociated"
 	{
-		_choices = IARRAY
-		_choices ,= "\![*]\__q[OnTheorizing.DefinitelyDead]You're definitely dead.\![dummy] Heart attack out of the blue.\__q"
-		_choices ,= "\![*]\__q[OnTheorizing.JustADream]This is all just a dream.\__q"
-		_choices ,= "\![*]\__q[OnTheorizing.AVividHallucination]I think you took something,\![dummy] and this is a vivid hallucination.\__q"
-		_choices ,= "\![*]\__q[OnTheorizing.BugAteBrain]A bug crawled in your ear while you were sleeping and ate your brain.\__q"
-		//etc...
+		//lowbeat
+		"\0%(discouraged)... I can't... feel my fingers... They were here a moment ago... Where... Give them back...%(end)"
+		"\0%(discouraged(6))It's in my ear... I feel it squirming... deeper... deeper... My head...!%(end)"
+		"\0%(discouraged)Wrapped around my foot, pulling me down, deeper, deeper... Pressure, can't breathe... Don't crack...%(end)"
+		"\0%(discouraged)Oozing out... What is it...? %(graymatter)......?%(end)"
+		"\0%(discouraged)This is the end, is it...? It'll always be this way? Always......?%(end)"
+		"\0%(discouraged)I'm falling, always... down down down, deeper into the abyss, but still able to see the light above...%(end)"
+		"\0%(discouraged)Someone's there, someone... Not you, no, not you... I don't think I should let them see me...%(end)"
+		"\0%(discouraged)Just want to stop feeling... anything......%(end)"
+		"\0%(discouraged)Don't reach out, don't... Not safe, don't get swallowed...%(end)"
+		"\0%(discouraged)All gone, I'm all gone, nothing left...%(end)"
+		"\0%(discouraged)Hey. Do you think. This is always? Could it be...?%(end)"
+		"\0%(discouraged)Wonder what happens at the end... Is there an end? ... I wish there would be.%(end)"
+		"\0%(discouraged)Around... and around... and around. Feeling... sick. No more. No more...%(end)"
+		"\0%(discouraged)Something's got my %(toes)... %(surprised)Let go, let go let go! %(discouraged)Those are mine...!%(end)"
+		"\0%(discouraged)Am I dreaming...? %(thinking)Maybe it's all a nightmare... maybe I'll wake up soon. Wake up and... %(discouraged)forget all this. Please...%(end)"
 		
-		_choice1 = ANY(_choices)
-		_choices[LSO] = IARRAY
+		parallel Pool.SpookyText
+	}
+	elseif TodaysPool == "miserable"
+	{
+		//less coherent
+		"\0%(discouraged)I wish I could cry, I might feel better...%(end)"
+		"\0%(discouraged)I think there's a %(bug) in my mouth. I'm gonna die.%(end)"
+		"\0%(discouraged)Getting tired of feeling mud all the time. Clings to me... gross.%(end)"
+		"\0%(discouraged)There's a pebble digging into my back. It's usually tolerable, but today it's really getting to me.%(end)"
+		"\0%(thinking)I'm bored, but I can't think of much to talk about... %(discouraged)Just hurting.%(end)"
+		"\0%(thinking)What a dreary day... %(discouraged)Not that that's unusual, but...%(end)"
+		"\0%(thinking)It's a strange feeling. I can't feel my body that well, and yet, I'm getting a lot of sensation from it. %(discouraged)It's like... a big blob of hurt. Generalized hurt, rather than being able to tell what's going on.%(end)"
+		"\0%(discouraged)It's hard to think right now... Wonder how long it will last...%(end)"
+		"\0%(thinking)Hey, do you think... %(discouraged)Well, nevermind. Maybe another time...%(end)"
+		"\0%(thinking)Sorry I don't have much to say, I'm just... %(discouraged)I'm just... I don't know, it's hard right now.%(end)"
+		"\0%(thinking)You know that feeling when you're really sleepy but you can't sleep? %(discouraged)I've been feeling that way for... probably several hours. Wanna sleep...%(end)"
+	}
+	else //cheerful
+	{
+		//upbeat
+		"\0%(normal)Oh, you know something that's weird? \n\nEven though I don't get thirsty, I really want a drink anyways... %(smile)But, can you blame me? A %(sodapop) sounds good right now!%(end)"
 		
-		_choice2 = ANY(_choices)
-		_choices[LSO] = IARRAY
+		//curiousbeat
+		"\0%(thinking(4))This body I'm borrowing, you know them, right? Do I sound the same as they do when I talk?\n\n\_q\![*]\__q[OnWhenITalk.UsingTheirVoice]Yes,\![dummy] you're using their voice.\__q\n\n\![*]\__q[OnWhenITalk.SoundCompletelyDifferent]No,\![dummy] you sound completely different,\__q\n\n\![*]\__q[OnWhenITalk.DoesntSoundLikeThem]Sort of;\![dummy] it's their voice,\![dummy] but it doesn't sound like them.\__q\n\n\![*]\__q[OnWhenITalk.TheyDontSpeak]They don't usually speak.\__q"
 		
-		_choice3 = ANY(_choices)
-		_choices[LSO] = IARRAY
-		
-		if Flag("Theorized twice")
+		//Theorizing
 		{
-			"\0%(smile(4))\![set,autoscroll,disable]I'm bored. \n\n... Theory time!"
-			"\0%(smile(4))\![set,autoscroll,disable]I have a new idea about me. Want to hear it? Or, do you have another good one?"
-			"\0%(smile(4))\![set,autoscroll,disable]Pop quiz! \n\nAm I dead? Am I not dead? Quick, for 30 points, what's your answer?"
+			_choices = IARRAY
+			_choices ,= "\![*]\__q[OnTheorizing.DefinitelyDead]You're definitely dead.\![dummy] Heart attack out of the blue.\__q"
+			_choices ,= "\![*]\__q[OnTheorizing.JustADream]This is all just a dream.\__q"
+			_choices ,= "\![*]\__q[OnTheorizing.AVividHallucination]I think you took something,\![dummy] and this is a vivid hallucination.\__q"
+			_choices ,= "\![*]\__q[OnTheorizing.BugAteBrain]A bug crawled in your ear while you were sleeping and ate your brain.\__q"
+			//etc...
+			
+			_choice1 = ANY(_choices)
+			_choices[LSO] = IARRAY
+			
+			_choice2 = ANY(_choices)
+			_choices[LSO] = IARRAY
+			
+			_choice3 = ANY(_choices)
+			_choices[LSO] = IARRAY
+			
+			if Flag("Theorized twice")
+			{
+				"\0%(smile(4))\![set,autoscroll,disable]I'm bored. \n\n... Theory time!"
+				"\0%(smile(4))\![set,autoscroll,disable]I have a new idea about me. Want to hear it? Or, do you have another good one?"
+				"\0%(smile(4))\![set,autoscroll,disable]Pop quiz! \n\nAm I dead? Am I not dead? Quick, for 30 points, what's your answer?"
+			}
+			
+			elseif Flag("Theorized once")
+			{
+				"\0%(thinking(4))\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized twice]Out of curiosity, have you come up with any more theories? For what's happening, you know?"
+			}
+			else
+			{
+				"\0%(thinking(4))\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized once]We don't know what's going on with me, right? Right. It makes me think, 'What's the harm in making some theories?' So... how about it? Have you had any ideas?"
+			}
+			--
+			"\n\n\_q\![*]\__q[OnTheorizing.SpectreTheory]What's your theory?\__q\n\n%(_choice1)\n\n%(_choice2)\n\n%(_choice3)"
 		}
 		
-		elseif Flag("Theorized once")
+		//Control Levels
+		if ControlLevel == "none"
 		{
-			"\0%(thinking(4))\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized twice]Out of curiosity, have you come up with any more theories? For what's happening, you know?"
+			"I'm grateful to be able to speak with you at all, but this body feels like %(gettingsquished)... I can't get it to do anything.%(end)"
 		}
-		else
+		if ControlLevel == "low"
 		{
-			"\0%(thinking(4))\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized once]We don't know what's going on with me, right? Right. It makes me think, 'What's the harm in making some theories?' So... how about it? Have you had any ideas?"
+			"Taking control of this body has been a little awkward. It's like, %(ifyouran)... Do you know what I mean?%(end)"
 		}
-		--
-		"\n\n\_q\![*]\__q[OnTheorizing.SpectreTheory]What's your theory?\__q\n\n%(_choice1)\n\n%(_choice2)\n\n%(_choice3)"
-	}
-	
-	//Control Levels
-	if ControlLevel == "none"
-	{
-		"I'm grateful to be able to speak with you at all, but this body feels like %(gettingsquished)... I can't get it to do anything.%(end)"
-	}
-	if ControlLevel == "low"
-	{
-		"Taking control of this body has been a little awkward. It's like, %(ifyouran)... Do you know what I mean?%(end)"
-	}
-	if ControlLevel == "medium"
-	{
-		"I'm glad you had this body around for me to borrow. It's like I'm finally %(stretching).%(end)"
-	}
-	if ControlLevel == "high"
-	{
-		
+		if ControlLevel == "medium"
+		{
+			"I'm glad you had this body around for me to borrow. It's like I'm finally %(stretching).%(end)"
+		}
+		if ControlLevel == "high"
+		{
+			
+		}
 	}
 }
 
