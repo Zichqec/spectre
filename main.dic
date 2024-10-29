@@ -101,7 +101,7 @@ OnAiTalk
 		}
 	}
 	LastTalk = AutoPause(LastTalk)
-	LastTalk = "\![no-autopause]" + LastTalk
+	LastTalk = "\![no-autopause]\![timerraise,0,1,OnSpectrePlugin.Possession]" + LastTalk
 	LastTalk
 }
 
