@@ -46,84 +46,120 @@ DetermineSurface
 
 normal : all
 {	
-	if Flag("Stage 1"); "\b[10000,--fallback=0]"
+	_size = 0
+	if _argv[0] != ""; _size = _argv[0]
+	
+	if Flag("Stage 1"); "\b[1000%(_size),--fallback=%(_size)]"
 	else; "%(blank)"
 	if Flag("Stage 2"); "%(DetermineSurface(0))"
 }
 
 embarrassed : all
 {
-	if Flag("Stage 1"); "\b[10010,--fallback=0]"
+	_size = 0
+	if _argv[0] != ""; _size = _argv[0]
+	
+	if Flag("Stage 1"); "\b[1001%(_size),--fallback=%(_size)]"
 	else; "%(blank)"
 	if Flag("Stage 2"); "%(DetermineSurface(1))"
 }
 
 surprised : all
 {
-	if Flag("Stage 1"); "\b[10020,--fallback=0]"
+	_size = 0
+	if _argv[0] != ""; _size = _argv[0]
+	
+	if Flag("Stage 1"); "\b[1002%(_size),--fallback=%(_size)]"
 	else; "%(blank)"
 	if Flag("Stage 2"); "%(DetermineSurface(2))"
 }
 
 anxious : all
 {
-	if Flag("Stage 1"); "\b[10030,--fallback=0]"
+	_size = 0
+	if _argv[0] != ""; _size = _argv[0]
+	
+	if Flag("Stage 1"); "\b[1003%(_size),--fallback=%(_size)]"
 	else; "%(blank)"
 	if Flag("Stage 2"); "%(DetermineSurface(3))"
 }
 
 discouraged : all
 {
-	if Flag("Stage 1"); "\b[10040,--fallback=0]"
+	_size = 0
+	if _argv[0] != ""; _size = _argv[0]
+	
+	if Flag("Stage 1"); "\b[1004%(_size),--fallback=%(_size)]"
 	else; "%(blank)"
 	if Flag("Stage 2"); "%(DetermineSurface(4))"
 }
 
 smile : all
 {
-	if Flag("Stage 1"); "\b[10050,--fallback=0]"
+	_size = 0
+	if _argv[0] != ""; _size = _argv[0]
+	
+	if Flag("Stage 1"); "\b[1005%(_size),--fallback=%(_size)]"
 	else; "%(blank)"
 	if Flag("Stage 2"); "%(DetermineSurface(5))"
 }
 
 relieved : all
 {
-	if Flag("Stage 1"); "\b[10060,--fallback=0]"
+	_size = 0
+	if _argv[0] != ""; _size = _argv[0]
+	
+	if Flag("Stage 1"); "\b[1006%(_size),--fallback=%(_size)]"
 	else; "%(blank)"
 	if Flag("Stage 2"); "%(DetermineSurface(6))"
 }
 
 angry : all
 {
-	if Flag("Stage 1"); "\b[10070,--fallback=0]"
+	_size = 0
+	if _argv[0] != ""; _size = _argv[0]
+	
+	if Flag("Stage 1"); "\b[1007%(_size),--fallback=%(_size)]"
 	else; "%(blank)"
 	if Flag("Stage 2"); "%(DetermineSurface(7))"
 }
 
 sweat : all
 {
-	if Flag("Stage 1"); "\b[10080,--fallback=0]"
+	_size = 0
+	if _argv[0] != ""; _size = _argv[0]
+	
+	if Flag("Stage 1"); "\b[1008%(_size),--fallback=%(_size)]"
 	else; "%(blank)"
 	if Flag("Stage 2"); "%(DetermineSurface(8))"
 }
 
 indignant : all
 {
-	if Flag("Stage 1"); "\b[10090,--fallback=0]"
+	_size = 0
+	if _argv[0] != ""; _size = _argv[0]
+	
+	if Flag("Stage 1"); "\b[1009%(_size),--fallback=%(_size)]"
 	else; "%(blank)"
 	if Flag("Stage 2"); "%(DetermineSurface(9))"
 }
 
 thinking : all
 {
-	if Flag("Stage 1"); "\b[10100,--fallback=0]"
+	_size = 0
+	if _argv[0] != ""; _size = _argv[0]
+	
+	if Flag("Stage 1"); "\b[1010%(_size),--fallback=%(_size)]"
 	else; "%(blank)"
 	if Flag("Stage 2"); "%(DetermineSurface(10))"
 }
 
 unamused : all
 {
-	if Flag("Stage 1"); "\b[10110,--fallback=0]"
+	_size = 0
+	if _argv[0] != ""; _size = _argv[0]
+	
+	if Flag("Stage 1"); "\b[1011%(_size),--fallback=%(_size)]"
 	else; "%(blank)"
 	if Flag("Stage 2"); "%(DetermineSurface(11))"
 }
