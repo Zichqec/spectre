@@ -1,9 +1,4 @@
 //BOOT RELATED DIALOGUES
-Boot.First
-{
-	"wehhh where is everyone"
-}
-
 Boot.Greeted
 {
 	_ending = SpookyText.shrink("it wasn't, it wasn't...")
@@ -29,7 +24,20 @@ Boot.Normal
 {
 	GreetedToday = 1
 	
-	"hey! it's you! hiiiii"
+	if Flag("Stage 2") || TodaysPool == "miserable"
+	{
+		"\0%(discouraged)... \n\n... I don't think I'll be very good company today... Sorry..."
+		"\0%(thinking)...? Oh. You're here. \n\n... Hey. I hope you're having a better day than I am.%(end)"
+		"\0%(angry(6))Must be nice to come and go as you please.%(end)"
+	}
+	else //cheerful, cheerful2
+	{
+		"\0%(surprised(6))Oh! You're here! %(smile(6))It's good to see you.%(end)"
+		"\0%(indignant)There you are! It's about time. I wanted to ask you... %(thinking) ask you... uhh... uhm... \n\n%(smile)... I forgot what I wanted to ask you. Hehe.%(end)"
+		"\0%(normal)Hum dee hum... %(smile)Hum dee dee! \n\n%(thinking)Hummm...? %(smile)Oh. Hello! I was trying to remember a song.%(end)"
+		"\0%(surprised)BOO! Ghost surprise! \n\n%(smile)Hi. Did I scare you?%(end)"
+		"\0%(smile)Oh, good timing. I was just wondering where you went and how much longer you would be gone and when you would be back. Now I know! You'll be back now!%(end)"
+	}
 }
 
 //Random dialogues
@@ -65,16 +73,93 @@ Pool.SpookyText : array
 
 Stage1Talk : nonoverlap_pool
 {
-	"Stage 1 (met the user but dunno what's going on)%(end)"
+	"\0%(anxious)It's so dark, I don't know why... %(discouraged)And cold. It's really, really cold. I feel like I've been cold for so long...%(end)"
+	"\0%(surprise)What's that!? ... %(thinking)Hm... There was something strange, but I'm not sure...%(end)"
+	"\0%(thinking)Maybe this is all a bad dream...? %(sweat)Maybe I'll wake up and it'll all go away... %(anxious)Maybe.%(end)"
+	"\0%(normal)Maybe I'm... in a coma? %(thinking)Maybe I'll wake up...?%(end)"
+	"\0%(angry)I wish someone would turn the lights on already, I can't see anything.\n\n ... %(anxious)Please?%(end)"
+	"\0%(normal)Are you a figment of my imagination? %(thinking)Maybe I conjured you up to make the loneliness more bearable. %(anxious)Can I make more of you? %(thinking)Hmmmm...%(end)"
+	"\0%(discouraged)Feels like my skin is soaked... Don't like it, so cold... clammy.%(end)"
+	"\0%(normal)What if I'm, like, really sick. %(thinking)But with what...? I've never been a sickly person, I was reasonably healthy...\n\n %(anxious)I hope I'm not contagious."
+	"\0%(normal)I really want to go home, it's scary here... %(discouraged)Cold and dark...%(end)"
+	"\0%(normal)Maybe I'm just... stuck somewhere. And someone will come and rescue me. %(sweat)They'll know I'm stuck somewhere and will be searching. Yeah...%(end)"
+	"\0%(sweat)When I get out of here, I'm going to %(sitinthesun)."
+	"\0%(normal)I hope my parents are ok. %(anxious)They'll be wondering where I am...%(end)"
+	"\0%(anxious)Want food... I could sure go for a %(cheeseburger) right now.%(end)"
+	"\0%(anxious)Wish I had a flashlight... %(thinking)Maybe a headlamp, I can't really... %(discouraged)move right now.%(end)"
+	"\0%(thinking)I feel weird. %(normal)Like, physically weird? %(anxious)Not just in a funk, but... I dunno, I sorta feel like I'm starving for air. %(discouraged)And cold, I feel so cold. That's not normal, right?\n\n %(anxious)I hope I don't get frostbite or something..."
+	"\0%(anxious)There's this whooshing sound... I don't think it's my heart though, it sounds like something else.\n\n ... %(discouraged)Is it bad that I don't hear my heart...?%(end)"
+	"\0%(discouraged)This place sucks. I'm gonna die in here. %(anxious)... Wherever ""here"" is.%(end)"
+	"\0%(normal)How long have I been here? Are they worried for me at home? %(anxious)Are they searching? %(discouraged)I hope so...%(end)"
+	"\0%(normal)What I wouldn't give for %(ablanket) right now...%(end)"
+	"\0%(normal)Drifting... %(anxious)Drifting where? %(discouraged)Not sure...%(end)"
+	"\0%(normal)I'm really tired. %(thinking)But I don't think I can sleep. %(anxious)I've tried...%(end)"
+	"\0%(anxious)I wish something would happen. Anything. %(discouraged)All this waiting is killing me...%(end)"
+	"\0%(anxious)Nothing's changed for a while... %(sweat)Besides meeting you, I mean. %(thinking)I wonder how much longer I'll have to wait...%(end)"
+	"\0%(anxious)Is any of this even real? How would I know...?%(end)"
+	"\0%(thinking)I feel... hmm. %(anxious)I'm not sure, everything is so far away right now.%(end)"
+	"\0%(anxious)I hope you're doing better than I am.\n\n ... %(sweat)I feel like that's a low bar to clear...%(end)"
+
+
+
+	//CHOICES
+	/*
+	"\0%(thinking)I can't help but think about... What if... %(discouraged)What if I die before someone finds me...?\n\n %(thinking)Then again, I guess you already found me... %(normal)I hope you've sent for help.%(end)" //unsure about choices
+
+	"\0%(normal)I've been lonely for so long... %(thinking)Yours is the first voice I've heard besides my own in... I'm not sure how long.\n\n %(anxious)... You're not going to leave me, are you? %(surprise)Don't leave, I don't want to be alone!%(end)"
+
+	"\0%(thinking)Did I hear something...? %(anxious)Might just be in my own head..."
+	//I heard it too
+	"\0%(surprised)Oh, really...? %(thinking)Wonder what it was...%(end)"
+	//I didn't hear anything, it must be in your head //lmao this feels mean and idk why maybe a bit lol
+	"\0%(discouraged)Oh. %(anxious)Good to know, I guess...%(end)"
+
+	"\0%(normal)\f[italic,1]You're\f[italic,default] not playing some sort of trick on me, are you? %(angry)If you are, then, then... cut it out! %(discouraged)It's not funny...%(end)"
+	*/
 }
 
 Stage2Talk : nonoverlap_pool
 {
 	"\0%(thinking)Wonder how long it's been... How much of my life has been spent here as opposed to... normal? %(discouraged)Don't have a way to know...%(end)"
 	"\0%(thinking)Been thinking about the future... %(discouraged)I know, I know I know, I shouldn't. I just... %(thinking)It's hard not to sometimes.%(end)"
-	"\0%(thinking)I wish I could describe everything I'm feeling right now. %(discouraged)Then again, maybe I should spare you the details anyway...%(end)"
+	"\0%(thinking)I wish I could describe everything I'm feeling right now. %(discouraged)Then again, maybe I should spare you the details anyways...%(end)"
 	"\0%(thinking)I wonder if it's like this for everyone eventually. Is this what happens when we die? %(discouraged)Or... am I special?%(end)"
 	"\0%(discouraged)Ah, I'm making myself miserable by ruminating... %(thinking)I know I shouldn't,\w8 %(anxious)but it's hard to stop once I've gotten going...%(end)"
+	"\0%(thinking)What if like... I was never real in the first place? %(anxious)Is it any less bad if life was just a dream...?\n\n %(discouraged)... Not really, honestly...%(end)"
+	"\0%(anxious)This can't be how it ends... %(angry)It can't be, it's not fair. There's gotta be \f[italic,1]something\f[italic,default] I can do...!%(end)"
+	"\0%(anxious)This has all gotta be some kind of mistake. %(sweat)Maybe we're wrong. If I died I'd probably remember how, right...?\n\n %(discouraged)Aw man, if I died and never know how it's gonna bug me forever...!%(end)"
+	"\0%(anxious)If this is death then it's kinda boring. %(angry)Seriously, I have nothing to do!\n\n %(thinking)Nothing to do forever...? %(discouraged)That's too miserable to think about.%(end)"
+	"\0%(anxious)Do dead people usually feel their bodies...? %(discouraged)If only I'd rot away so I didn't have to feel it anymore...%(end)"
+	"\0%(discouraged)I always thought death would just be infinite nothingness. It would be better than this...%(end)"
+	"\0%(unamused)Whoever did this to me, I hate them. %(angry)Did they know I'd be stuck like this!? I bet they did...!%(end)"
+	"\0%(unamused)If this is like, hell or purgatory or whatever, it's kinda boring. Like at least torture me or whatever, y'know? %(angry)Don't just leave me alone with my thoughts and a disembodied voice!%(end)"
+	"\0%(unamused)If I'm gonna be dead can I at least, like, go and haunt people? %(normal) Besides your %(dolls) or whatever. %(angry)I wanna drift around and scare the hell outta people. %(sweat)It sounds like a fun way to relieve stress.%(end)"
+	"\0%(normal)I'm so bored. %(unamused)Maybe I'll see how long it takes me to count to a million. %(angry)Man, if I'm stuck in eternal damnation I'd rather have menial tasks like that to do instead of sitting around waiting for... nothing.%(end)"
+	"\0%(anxious)There's gotta be more to this. There's gotta be something we missed...%(end)"
+	"\0%(discouraged)Gotta be something, think, think think, other possibilities...%(end)"
+	"\0%(thinking)I wonder if this is... normal. Maybe it's not, maybe something weird happened and there's still a chance to get out of here...?%(end)"
+	"\0%(anxious)Sigh... %(discouraged)I can't actually sigh, I'm trying but nothing's happening.%(end)"
+	"\0%(discouraged)If this is my grave, why can't I roll over? I'm supposed to be able to do that right? %(angry)Nothing I ever heard about death is true, apparently.%(end)"
+	"\0%(discouraged)I can't handle this being forever, what am I supposed to do...?%(end)"
+	"\0%(sweat)This is all some kinda complex prank, it must be. %(thinking)I can't really be dead, death isn't supposed to feel like this... %(sweat)Right.....?%(end)"
+	"\0%(discouraged)Feel like my heart got smashed with a brick... %(thinking)Not literally, just... %(anxious)you know.%(end)"
+	"\0%(discouraged)I wish I had something to look at. %(anxious)I mean, I'm sure looking back over my life would have some unpleasant parts. %(embarrassed)Second hand embarrassment for my past self... %(indignant)But at least it'd be something, y'know!?%(end)"
+	"\0%(discouraged)Someone, give me some relief... Let me live, or let me become nothing...%(end)"
+	"\0%(anxious)Maybe it's all a long, horrible dream... %(sweat)When I wake up, it'll feel like it's been no time at all, and I'll forget most of it. %(thinking)Yeah...%(end)"
+	"\0%(discouraged)This can't be real, I refuse. %(thinking)Maybe if I refuse to believe it it'll go away...\n\n %(angry)This is me loudly refusing to believe this is real!!%(end)"
+	"\0%(thinking)Maybe the reaper forgot about me. %(anxious)Maybe I'm stuck like this because he forgot to come and claim my soul.\n\n %(angry)Hey! Reaper! Come get me, damn you!! I'm willing to go, this sucks!!%(end)"
+	"\0%(thinking)I keep thinking, ""I'm gonna die"". %(anxious)But, well... %(discouraged)Can you die if you're theoretically maybe already dead...?\n\n %(thinking)... I kinda hope so.%(end)"
+	"\0%(anxious)Could this get any worse...?\n\n %(angry)Don't answer that.%(end)"
+	"\0%(discouraged)It's too much... Just, all of it. %(thinking)Maybe if I can find a way to just... stop thinking... it'll all go away? %(anxious)Hmm...%(end)"
+	"\0%(thinking)I might be out of ideas for how to get out of this... %(unamused)But I guess I have nothing but time, so I'll try coming up with some more.%(end)"
+	"\0%(unamused)Would be nice if someone could come turn out the lights. I don't need some fancy afterlife, I just wanna stop being aware of it all, y'know?%(end)"
+	"\0%(surprised)Eek! %(embarrassed)I feel something... %(discouraged)Ick, I can't tell what it is but there's something \f[italic,1]on\f[italic,default] me.%(end)"
+	"\0%(discouraged)Why couldn't I like... recarnate into a tree or something. %(thinking)Being a tree sounds kinda nice...\n\n %(angry)Whatever this is, it sucks.%(end)"
+	
+	//QUESTIONS
+	/*
+	"\0%(anxious)If I'm dead, then I wonder what \f[italic,1]you\f[italic,default] are. %(thinking)A medium? A sorcerer? A witch...?\n\n %(angry)If you can help me, then why don't you?%(end)" //maybe choices here but i'm not sure what they would be, so... putting a pin in it ye, could also reword like "If you could help me, you would, right!?" or somesuch maybe but i kind of like the misdirected anger... yeah same
+	*/
 }
 
 Stage3Talk : nonoverlap_pool
@@ -98,6 +183,11 @@ Stage3Talk : nonoverlap_pool
 		"\0%(discouraged)Something's got my %(toes)... %(surprised)Let go, let go let go! %(discouraged)Those are mine...!%(end)"
 		"\0%(discouraged)Am I dreaming...? %(thinking)Maybe it's all a nightmare... maybe I'll wake up soon. Wake up and... %(discouraged)forget all this. Please...%(end)"
 		
+		{
+			_ending = SpookyText.shrink("Pip...")
+			"\0%(discouraged(4))\f[color,disable]Pip pip pip... It's so loud, I can feel it in my teeth. Banging and banging and banging and banging and banging and banging and banging... Pip pip pip... It's above me. Hammering into my skull. My bones are cracking. Loud. Loud. Crack. Crack. I want to sleep. Pip pip pip. It hurts. Bang bang. Leave me alone. I want to go home. \w8\w8\w8\w8\c%(discouraged(6))\f[color,disable]Pip...\w8\w8\w8\w8\c%(discouraged(6))\f[color,disable]Pip...\w8\w8\w8\w8\c%(discouraged(6))\f[color,disable]%(_ending)\w8\w8\w8\w8%(end)"
+		}
+		
 		parallel Pool.SpookyText
 	}
 	elseif TodaysPool == "miserable"
@@ -114,6 +204,102 @@ Stage3Talk : nonoverlap_pool
 		"\0%(thinking)Hey, do you think... %(discouraged)Well, nevermind. Maybe another time...%(end)"
 		"\0%(thinking)Sorry I don't have much to say, I'm just... %(discouraged)I'm just... I don't know, it's hard right now.%(end)"
 		"\0%(thinking)You know that feeling when you're really sleepy but you can't sleep? %(discouraged)I've been feeling that way for... probably several hours. Wanna sleep...%(end)"
+		"\0%(thinking)I always thought I had more time, up until suddenly I didn't... %(normal)I wasn't that old, you know? I had a lot ahead of me still...%(end)"
+		"\0%(thinking)Nothing to do but think... %(discouraged)and I'm not even doing very good at that today.%(end)"
+		"\0%(normal)Chilly... %(discouraged)Trying to keep my mind off it, but it's hard.%(end)"
+		"\0%(normal)Brrr, so cold... %(discouraged)I wonder if it would have helped if I dressed warmer, or if it would be the same in the end...%(end)"
+		"\0%(anxious)I wonder if anyone fishes around here... %(surprised)What if they stick a hook in me? %(discouraged)Sounds painful...%(end)"
+		"\0%(surprised)Ow! %(anxious)What was that...?\n\n \_w[1500]%(thinking)Hmm... %(discouraged)Hopefully it doesn't come back.%(end)"
+		"\0%(anxious)Maybe I'll never be found, maybe I'll be down here after humanity has gone totally extinct.\n\n %(discouraged)I don't wanna be the last one left, all alone on the planet...%(end)"
+		"\0%(thinking)I wish I had something to work on. %(anxious)It'd get my mind off things...%(end)"
+		"\0%(anxious)If I could just move my arms a little... %(discouraged)Nothing. Not even a little bit.%(end)"
+		"\0%(thinking)I wonder if I'll eventually fade away... %(anxious)I hope it doesn't hurt.%(end)"
+		"\0%(discouraged)Days like today need to not exist.%(end)"
+		"\0%(anxious)I wonder if I'll eventually be picked apart by archaeologists or something.%(end)"
+		"\0%(anxious)I think if I somehow got out of here, I wouldn't even look at a bath again...%(end)"
+		"\0%(discouraged)Being cooped up on one place all the time sucks.%(end)"
+		"\0%(anxious)Wonder what's gonna nibble at me next. %(discouraged)Maybe a %(fishbug).%(end)"
+		"\0%(anxious)I wish I could melt away and become part of the water... %(discouraged)I could be evil and drag people in to drown with me. %(anxious)That sounds nice...%(end)"
+		"\0%(thinking)My %(toes) kinda hurt. %(anxious)Just... aching. Cold.%(end)"
+		"\0%(anxious)I never thought I'd miss having blood flow around my veins. %(thinking)Not that I was ever scared of blood or anything, just,\w8 %(normal)I didn't expect I'd ever lack it, you know? %(anxious)Not while retaining consciousness, anyways.%(end)"
+		"\0%(thinking)The quiet can be really unsettling... %(anxious)I hope you don't mind if I talk just to hear my own voice.%(end)"
+		"\0%(anxious)I wish I could have more friends. %(sweat)You're great, I don't mean anything bad about you. %(anxious)It's just... I miss having a network of people, y'know?%(end)"
+		"\0%(thinking)I bet I eventually get pulled out of here by some hungry animal and eaten. %(anxious)That'd suck.%(end)"
+		"\0%(anxious)Y'know how in movies and whatever they scratch marks into the walls so they can tell how many years they've been stuck somewhere? %(discouraged)I can't even do that. How's that fair?%(end)"
+		"\0%(anxious)Maybe they'll eventually drain this place out to build a city or something on it. %(thinking)What would happen to me then...?\n\n %(discouraged)God, I hope they find me and don't, just, like, pour cement over me without noticing...%(end)"
+		"\0%(anxious)Even if I'm dead, I haven't really... reached my end. %(thinking)I'm still conscious and aware... %(anxious)Makes me wonder what my end will be. Will I even get one? %(discouraged)I have to eventually, but I wonder how long it will take...%(end)"
+		"\0%(anxious)What if someone finds me, and like... I dunno, throws me to the wolves or off a cliff or something. %(discouraged)Man, at least this place is familiar... don't take me out and ditch me somewhere worse...%(end)"
+		"\0%(anxious)I hope nobody drowns trying to fish me out of here. %(thinking)Then again, I guess I might get another friend that way...\n\n ... %(discouraged)I'm sorry, that's a horrible, selfish thought.%(end)"
+		"\0%(anxious)I wouldn't blame you if you stopped reaching out to me, you know. %(thinking)I can't be that pleasant of company, constantly reminding you of death and... and fates worse than it.\n\n %(sweat)Not that I wouldn't miss you, just... %(anxious)I wouldn't be mad. You're not obligated to stay and listen to me moan.%(end)"
+		"\0%(thinking)This too shall pass, they say... %(anxious)I'll miss talking to you, whenever it stops. %(thinking)Dunno when it will, but like... %(anxious)it has to eventually, right?%(end)"
+		"\0%(thinking)I hope nobody has like... stolen my identity. %(angry)That'd be a cruel thing to do.\n\n ... %(anxious)It's unlikely it's happened, it's just one of thousands of possibilities I've sifted through from boredom...%(end)"
+		"\0%(thinking)I wonder if things will ever change around here. %(anxious)I guess they have to eventually, but I wonder if it will be for better or worse...%(end)"
+		"\0%(discourage)Sorry, I'm having one of those ""doom and gloom"" kind of days. %(anxious)I hope I'm not upsetting you.%(end)"
+		"\0%(anxious)Wonder if anyone will remember my name... %(discouraged)Probably not, I wasn't exactly an important person.%(end)"
+		
+		//low control
+		//"\0%(thinking)This body is hard to move... %(anxious)I hope the lack of body language isn't making it hard to understand me.%(end)"
+	}
+	elseif TodaysPool == "cheerful2"
+	{
+		"\0%(relieved)I've been working on bringing back more of my memories. %(smile)It's kinda nice to remember how it felt to walk through the woods in Autumn, or how a fresh batch of cookies smelled.\n\n %(sweat)It stings a little that I can't experience those things anymore, but... %(relieved)I can at least hold the memories close.%(end)"
+		"\0%(relieved)I'm glad we get to talk. %(sweat)This all could be a whole lot worse.\n\n %(thinking)Sometimes I'm in pain, but not always. %(sweat)That's something, right...?%(end)"
+		"\0%(relieved)I remember what %(fruit) pie tasted like... %(smile)We used to make it a lot. %(relieved)It makes me happy even just to think about it.%(end)"
+		"\0%(thinking)I hope my family is alright. %(anxious)I'm sure they worry for me a lot... %(sweat)I hope the things I left behind bring them some sort of comfort.%(end)"
+		"\0%(thinking)I miss my %(apron). %(sweat)Wish I could hold it again...%(end)"
+		"\0%(relieved)I'm glad to have a friend still. %(smile)I'll be ok as long as I have someone to talk to.%(end)"
+		"\0%(thinking)I wonder how much the world has changed out there... %(smile)It's kinda fun to think about. I wonder if they have %(flyingcars)?%(end)"
+		"\0%(sweat)You know, as unpleasant as it is being cold all the time, I think I'd rather be cold than hot... %(end)"
+		"\0%(relieved)Hey, you know what I never have to worry about now? %(smile)Old age! I'll be young forever! %(relieved)If only you could be so lucky, hehe.%(end)"
+		"\0%(thinking)I wonder if people will eventually dig me up in the future. %(sweat)Some archeologist might find me or something... %(relieved)That might not be so bad, maybe it would mean I'd finally have an end. %(smile)I think I'd welcome it eventually, even though I'm enjoying my time with you now.%(end)"
+		"\0%(thinking)I was never interested in donating my body to science, but I guess if they ever find me they'll probably take it anyways, huh? %(sweat)Maybe it depends on how long it takes... If they found me tomorrow they might consider it respectful to bury me, but once I'm ancient history, who knows...%(end)"
+		"\0%(thinking)I wonder if they put up a tombstone for me anywhere. %(smile)Shame I can't go haunt it, that would be fun.%(end)"
+		"\0%(thinking)If I knew how I died, I'd warn you not to do whatever it was. %(smile)But I don't, so you're on your own! %(relieved)Good luck, hehe.%(end)"
+		"\0%(thinking)I wonder if I'll ever make another ghost friend. %(relieved)Or a whatever-I-am-now friend. %(smile)I can't be the only one to ever end up like this, right...?\n\n %(sweat)Not that I'd wish this on anyone else, but better we end up together than apart if it has to happen...?%(end)"
+		"\0%(smile)Hey, you know what I don't have to do anymore? %(gotowork)! %(relieved)Hehe, all those suckers up there, having to participate in society...%(end)"
+		"\0%(thinking)I wonder what my family will do with my recipes. %(relieved)I had collected a bunch of recipes passed down through my family and put them in a book. I added some favorites of mine, too... %(smile)I wanted to pass it down to my kids eventually. %(sweat)But, well... I guess kids are out of the question these days.%(end)"
+		"\0%(thinking)I miss a lot of things, but I might miss baking most of all. %(relieved)It was my stress relief, you know?%(end)"
+		"\0%(relieved)Feeling a little nostalgic... Thinking about all the movies I've seen. %(sweat)I guess they're probably considered old movies by now... %(smile)Makes me wonder what new stories they've told.%(end)"
+		"\0%(relieved)I wonder if they know how I died. The people up above, I mean. %(smile) Maybe I died so spectacularly they had to make a sign, like ""BEWARE OF %(TOUPPER(bears))"". Hehe!%(end)"
+		"\0%(thinking)I wonder what my obituary was like. Did I even get one, or am I just a missing person? %(relieved)I guess I'll never know... but I'm guessing most dead people don't.%(end)"
+		"\0%(thinking)I guess a watery grave isn't the worst thing ever. %(relieved)To be honest, I never wanted to be buried in a cemetery... %(sweat)Sounds like a crowded place to be.%(end)"
+		"\0%(thinking)I wonder if my family still thinks of me... %(relieved)Then again, I don't know how much time has passed, they might all be dead... %(normal)It's really a shame that I'll never know.%(end)"
+		"\0%(smile)Man, I bet I have the world record for staying underwater the longest by now. %(sweat)If only I could get someone to recognize it, hehe.%(end)"
+		"\0%(sweat)Hey, if you ever become a ghost and aren't stuck in your body, do me a favor and haunt a bunch of people, ok? %(smile)I'd love to try it...%(end)"
+		"\0%(sweat)Hey, if I ever like... disappear... don't feel bad for me, ok? %(smile)I enjoy talking with you,\w8 %(relieved)but I wouldn't say no to finally getting to rest..."
+		"\0%(thinking)I wonder if they ever fixed the city's transportation. %(sweat)It was kind of a nightmare while I was in it. %(smile)That's something I really don't miss.%(end)"
+		"\0%(sweat)I wonder if I'm contaminating the water here. I hope not...%(end)"
+		"\0%(surprised)Look out behind you!!\n\n \_w[1500]%(sweat)Hehe, just kidding...%(end)"
+		"\0%(smile)I remember what it was like to look up at the stars... They always filled me with so much wonder. %(sweat)It's a shame I'll never see them again, down here...%(end)"
+		"\0%(thinking)I hope you don't mind me reminiscing. %(anxious)It kinda makes me sad,\w8 %(sweat)but it also makes me feel good. %(smile)And it keeps my memories fresh so I don't lose them.%(end)"
+		
+		"\0%(smile)Let's play ""I Spy""! %(relieved)I spy something that is %(coldandslimy)." //hehehehehehe
+		
+		//High control
+		//"\0%(smile)Wiggle wiggle, hehehe.%(end)"
+
+		//CHOICES
+		/*
+		//guesses
+		A stone
+		A %(bug)
+		Kelp
+		Moss 
+		The water
+		A wood chip
+		An egg
+		A crab
+		A lobster
+		A beaver
+		A pipe
+		A fish
+		//responses when anything is chosen
+		"\0%(smile)Sike! I have no idea! Hehehe.%(end)"
+		"\0%(smile)Your guess is as good as mine! Hehehe.%(end)"
+		"\0%(smile)Not a clue! Hehehe.%(end)" //:3c 😂i love this 😊
+		
+		"\0%(thinking)Y'know, since I can hear you, you could read stories out loud to me. %(relieved)That could be fun, right? Would your uh... %(dolls) or whatever mind?" //TODO feels like it needs questions, maybe this one is a bad idea lol uhhhhh possible choices possible choices... "I'll think about it" "That might be a little awkward..." "I've already been reading stories, you mean you haven't been hearing them?" //idk if this one's a good idea 🤣 IT'S QUITE MEAN unless we bamboozle and have a followup like "just kidding!" and spectre is like LOL U GOT ME pls don't do it again yessss "That would be fun."
+		*/
 	}
 	else //cheerful
 	{
@@ -177,6 +363,50 @@ Stage3Talk : nonoverlap_pool
 		{
 			
 		}
+		
+		"\0%(surprised)Hey, did you know that %(bearsarealiens)?\n\n %(smile)Just kidding! Hehe. %(relieved)I made that up.%(end)"
+		"\0%(thinking)I wonder what time it is, I wonder if the sun is up... %(sweat)Even if it %(('isn''t','is')[isdaytime]) for you, I'm not sure it is for me.%(end)"
+		"\0%(thinking)I wonder what great achievements humanity has accomplished since I've been gone. %(normal)Man, I'm probably missing out, huh. %(sweat)Or maybe we've started backsliding and I don't wanna know...\n\n %(smile)Well, as they say, ignorance is bliss! Hehe.%(end)"
+		"\0%(thinking)Kinda craving some %(candy)... %(normal)Even if you happened to have some, I suppose there's no way to share, huh. %(sweat)Oh well.%(end)"
+		"\0%(thinking)Man, I wonder if they're gonna put me in a museum one day. %(normal)If they find my body, I mean. %(thinking)I don't know if I want to be on display...\n\n %(relieved)I guess I might be super famous though, for what that's worth...%(end)"
+		"\0%(thinking)I can't say I recommend dying. %(normal)2/10, kind of a bland experience honestly. %(relieved)They could make a lot of improvements.%(end)"
+		"\0%(sweat)I wonder if someone else will find me when you're gone... %(thinking)Could you pass on your %(dolls('not people')) or whatever to someone else? Is that how it works? %(smile)I wanna be a generational heirloom, then I would always have friends to talk to...%(end)"
+		"\0%(thinking)I wonder if I could eventually get out of this place and crawl around on Halloween like a spooky zombie. %(smile)I could frighten kids and steal their candy! Hehe.%(end)"
+		"\0%(normal)I wonder what I'm missing out on up there... %(smile)Then again, if I was up there I'd miss out on talking to you, wouldn't I?%(end)"
+		"\0%(normal)Maybe there's a trick to going out and haunting. %(thinking)Maybe I have to wait until a full moon...? %(anxious)Aw, darn... %(indignant)I have no way to tell when it's a full moon!%(end)"
+		"\0%(anxious)Is the water getting colder or is it just me...? %(sweat)Maybe it's getting toward winter or something...%(end)"
+		"\0%(thinking)You know, I kinda don't mind not being around the hustle and bustle of the city all the time. %(sweat)Now that I'm not always alone, having some peace and quiet has been nice... I wish I could have found it while I was up there.%(end)"
+		"\0%(thinking)I wonder if %(birdsstillexist). %(normal)Like, obviously, right? %(sweat)But who knows, anything could happen...%(end)"
+		"\0%(thinking)Man, do they have rad birthday parties in the future? %(normal)I bet they have rad birthday parties. %(sweat)I want a rad birthday party...%(end)"
+		"\0%(smile)I've been thinking really hard about what it was like to bake %(cupcakes). The sights, the smells, the sounds, the textures... %(relieved)It makes me feel happy to get absorbed in those memories.%(end)"
+		"\0%(relieved)I guess I'm glad I didn't sink years into studying something super complicated at college, only to end up stuck here, unable to use it... %(smile)That would've sucked, hehe.%(end)"
+		"\0%(thinking)I wonder if it's possible there's more people like me and I just can't reach them. %(anxious)Is there a whole ghost society I'm missing out on, are we all stuck out on our own, or am I the only one like me... %(sweat)I'm not sure which is worse.%(end)"
+		"\0%(thinking)Man, if I ever got out of here I could write so many books about this experience. %(normal)I wonder if anyone would really get it though, without actually experiencing it.\n\n %(relieved)I guess I could raise some awareness for ghosts...%(end)"
+		"\0%(relieved)Hey, hey hey, I got a good one. %(whatscoldandwet)? %(smile)Me! Hehe."
+		"\0%(thinking)I wish I could write down my thoughts. I'd keep a journal, or maybe get into writing novels or something... %(sweat)It'd be something to do.\n\n %(smile)Hey, here's an idea! If you got into transcription you could write my stories down for me! %(relieved)I could be a ghost writer, hehe."
+		"\0%(thinking)I used to like the feeling of sand between my fingers at the beach, but honestly I feel like I could do without right now.%(end)"
+		"\0%(relieved)Kinda wish I could be a fish. Then at least I'd get to swim around here, hehe...%(end)"
+		"\0%(smile)It's my birthday! Shower me with gifts!!\n\n ... %(relieved)I'm kidding, I have no idea what day it is...%(end)"
+		"\0%(relieved)I wonder what kind of flowers are blooming up there... %(sweat)I'm actually really allergic to flowers,\w8 %(smile)but they can't affect me anymore, right?%(end)"
+		"\0%(normal)Wonder how many kinds of creatures live here. ... %(thinking)Would I count as one of them...?%(end)"
+		"\0%(thinking)I wonder if I'll eventually get found by a ghost hunter or something. %(normal)Do they usually look underwater, though? %(thinking)Maybe not...%(end)"
+		"\0%(relieved)I wonder what I'm wearing... I genuinely have no idea. %(thinking)I can feel long sleeves, maybe, but it's so slimy and waterlogged I can't tell anything else...\n\n  %(smile)I hope it's my fall jacket with the patches on the elbows. That one's my favorite.%(end)"
+		"\0%(relieved)I hope the weather's nice up there.\n\n %(thinking)Then again, it doesn't make a difference to me, so why should I care? %(smile)I hope it %(poursdownrain)! Hehe."
+		"\0%(smile)I'm \f[italic,1]so\f[italic,default] hydrated right now. I should get a medal, hehe.%(end)"
+		"\0%(relieved)I'm sure glad I'm missing out on whatever dumb stuff is going on in the world right now. %(smile)There's always something, and I'm totally missing out on it, hehe!%(end)"
+		"\0%(thinking)I wonder how many laps I've made around the sun? %(smile)At some point, I'll probably have more than the average human. Most bodies don't stay intact like mine will!%(end)"
+		"\0%(relieved)Hehe, I bet my fingers are super wrinkly. %(smile)The wrinkliest in the world!%(end)"
+		
+		//CHOICES
+		/*
+		"\0%(thinking)Man, I thought being dead would be easy. %(normal)You just kinda do nothing, right? Cuz you're dead? %(sweat)Guess not... not for me, anyways.%(end)" //what are you doing tho, spectre...... i guess you're talking... and thinking... and trying to remember??? idk is it weird makes choice just so user can point this out lmao nooooo 😂 %(indignant)I'm working very hard to stay coherent you know!! i kinda like this even if it';s mean LOL sure 😂
+
+		"\0%(normal)Hey, do you remember when I wondered if I could make more of you?"
+		//Yes
+			"\0%(sweat)Well, I tried, and nothing happened. %(smile)I think maybe you're not a figment of my imagination after all! %(relieved)So... that's nice, hehe.%(end)"
+		//No - cuz you might not have seen that dialogue lol yea makes sense
+			"\0%(surprise)Oh.\n\n ... %(sweat)Hehe, maybe I kept that thought to myself, I don't remember...%(end)"
+		*/
 	}
 }
 

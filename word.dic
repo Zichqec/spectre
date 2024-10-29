@@ -122,3 +122,294 @@ toes
 	"elbows"
 	"knees"
 }
+
+dolls : pool
+{
+	"dolls"
+	"weird cardboard cutouts"
+	"%(bird) statues"
+	"posters"
+	"stuffed animals"
+	"action figures"
+	"mannequins"
+	"slippers with cat faces on them"
+	"strange sculptures"
+	"appliances with googly eyes"
+	if _argv[0] != "'not people"
+	{
+		"friends"
+		"pets"
+		"neighbors"
+	}
+}
+
+bird
+{
+	"finch"
+	"bluejay"
+	"lark"
+	"eagle"
+	"hawk"
+	"raven"
+	"crow"
+	"pigeon"
+}
+
+sitinthesun
+{
+	"sit in the sun all day long and warm up"
+	"take a warm, luxurious bath, with lots of bubbles"
+	"watch a funny movie to forget all this"
+	"go for an invigorating walk in the woods"
+	"lay down on my bed and do nothing for a few hours"
+	"lay on the floor and decompress"
+	"go to the store. We're almost out of milk.."
+}
+
+cheeseburger
+{
+	"cheeseburger"
+	"grilled cheese"
+	"bucket of chicken"
+	"fruit salad"
+	"Caesar salad"
+	"banana"
+	"BLT"
+	"turkey sandwich"
+	"hotdog"
+	"cinnamon roll"
+	"chicken pot pie"
+	"bowl of soup"
+}
+
+ablanket
+{
+	"a blanket"
+	"a candle"
+	"a good book"
+	"a warm rice bag"
+	"a soft pillow"
+	"something warm to sip on"
+	"some chewing gum"
+	"a cozy couch to curl up on"
+	"some music"
+	"a radio"
+	"a magazine"
+	"a pencil and paper"
+	"some mints"
+}
+
+apron
+{
+	"apron"
+	"recipe book"
+	"winter coat"
+	"locket"
+	"mug"
+	"pillow"
+	"hat"
+	"cat"
+	"bird"
+}
+
+flyingcars
+{
+	"flying cars yet"
+	"space ships"
+	"skyscrapers that go all the way to space"
+	"cures for all kinds of diseases yet"
+	"cities that span entire continents"
+	"giant tomatoes as big as your head"
+	"evidence of alien lifeforms yet"
+	"ad-free radio"
+	"new TV shows that are actually interesting"
+	"a way to teleport groceries directly to your house yet"
+	"robots that handle all of the cooking and cleaning"
+	"any fun new cake flavors"
+}
+
+gotowork
+{
+	"Go to work"
+	"Pay taxes"
+	"Put up with obnoxious coworkers"
+	"Paperwork"
+	"Pay rent"
+	"Saving for a downpayment on a house"
+	"Pay off my student loans"
+	"Pay bills"
+	"Manage my finances"
+	"Look for a new job"
+	"Save for retirement"
+	"Go to the doctor"
+	"Get my eyes checked"
+	"Worry about getting sick"
+	"Go to Christmas parties at work and wish I was anywhere else"
+	"Sit in traffic for hours"
+	"Take the bus"
+	"Read the news and feel depressed about it"
+	"Cut my hair"
+	"Spend hours cleaning the kitchen"
+	"Trim my nails"
+	"Coordinate outfits"
+	"Laundry"
+	"Put quarters in the parking meters"
+	"Try and fail to understand legalese"
+	"Go grocery shopping"
+	"Wear clothes"
+}
+
+bears
+{
+	"bears"
+	"falling rocks"
+	"meteorites"
+	"giant %(bugs)"
+	"thin ice"
+	"careening cars"
+	"sinkholes"
+	"magical explosions"
+	"poison ivy"
+	"extreme sunlight"
+	"sudden heart attacks"
+	"unbreathable air"
+	"steep cliffs"
+	"canoes with holes in the bottom"
+	"falling trees"
+	"potholes"
+	"poison gas"
+	"carnivorous plants"
+	"toxic mold"
+	"sudden electric shocks"
+}
+
+bugs
+{
+	"cockroaches"
+	"grasshoppers"
+	"wasps"
+	"ants"
+	"hornets"
+	"beetles"
+	"earwigs"
+	"bees"
+	"spiders"
+	"caterpillars"
+	"worms"
+	"butterflies"
+	"moths"
+	"pill bugs"
+	"mosquitos"
+}
+
+coldandslimy
+{
+	"cold and slimy"
+	"tough and gritty"
+	"thick and smushy"
+	"thin and grainy"
+	"small and sharp"
+	"big and round"
+	"long and stringy"
+	"short and firm"
+	"light and crumbly"
+	"firm and scaly"
+}
+
+bearsarealiens
+{
+	"bears are actually aliens from outer space"
+	"honey is super effective as a toothpaste"
+	"skyscrapers are never actually as tall on the inside as they're made to look on the outside"
+	"trees are a fabricated plant made by humans so that they could grow building materials"
+	"soap is a complete scam that makes hands dirtier"
+	"all umbrellas are made by a single company that has a stranglehold on the market"
+	"humans can fly if they flap all four limbs and try hard enough"
+	"giraffes are actually genetically modified horses with cheetah and worm DNA spliced in"
+	"birds aren't real, the aliens just make us think they are"
+	"the earth is actually a cube"
+	"most wigs are actually made of the leg hairs of big, fuzzy spiders, glued together into long strands"
+}
+
+candy
+{
+	"sour lemon drops"
+	"taffy"
+	"bubblegum"
+	"lollipops"
+	"fruit rolls"
+	"chocolate chips"
+	"gum drops"
+	"mints"
+	"strawbery lozenges"
+}
+
+birdsstillexist
+{
+	"birds still exist"
+	"gravity is still the same"
+	"the moon is still up there"
+	"trees are still a thing"
+	"humans still wear clothing"
+	"oceans are still the biggest bodies of water"
+	"people still celebrate birthdays"
+	"humans still communicate verbally"
+	"people still read books"
+	"the concept of sandwiches still exists"
+	"there are still nature reserves"
+	"2 + 2 still equals 4"
+}
+
+cupcakes
+{
+	"cupcakes"
+	"cookies"
+	"pies"
+	"rolls"
+	"bread"
+	"cakes"
+	"lasagna"
+	"brownies"
+	"profiteroles"
+	"eclairs"
+}
+
+whatscoldandwet
+{
+	"What's cold and wet and stuck in eternal limbo"
+	"What's lurking in the darkness waiting for a chance to spring up and haunt someone"
+	"Who could win any challenge to stay underwater the longest"
+	"What do you call a creature that hypothetically might be dead or alive, and you can't know for sure until you check on them"
+	"Who's the most hydrated person in the whole entire world"
+	"Who's the hide-and-seek champion of the whole entire universe"
+}
+
+poursdownrain
+{
+	"pours down rain"
+	"hails"
+	"gets all cold and slushy"
+	"gets super hot and muggy"
+	"clouds up and there's a big scary thunderstorm"
+}
+
+fishbug
+{
+	"tadpole"
+	"frog"
+	"roach"
+	"beetle"
+	"pond skater"
+	"watersnake"
+	"turtle"
+	"crab"
+	"lobster"
+	"swordfish"
+	"crawfish"
+	"leech"
+	"piranha"
+	"copepod"
+	"cormorant"
+	"bunch of plankton"
+	"jellyfish"
+}
