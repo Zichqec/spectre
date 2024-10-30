@@ -413,3 +413,17 @@ fishbug
 	"bunch of plankton"
 	"jellyfish"
 }
+
+reachingout
+{
+	"I'm cold..."
+	"It's so quiet..."
+	"It hurts..."
+	"Make it stop..."
+	"Where did everyone go...?"
+	"It itches..."
+	"I can't move..."
+	"Everything's so dark..."
+	"Help me..."
+	//"Stop..."
+}
