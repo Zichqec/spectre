@@ -61,7 +61,7 @@ ControlLevel
 	{
 		_list = GhostCalibrations.List[_index]
 		
-		if _list == "none"; "None"
+		if _list == "none"; "none"
 		else
 		{
 			_i = 0
@@ -72,8 +72,8 @@ ControlLevel
 			
 			case _i
 			{
-				when 0; "none"
-				when 1-4; "low"
+				when 0-1; "none"
+				when 2-4; "low"
 				when 5-8; "medium"
 				others; "high"
 			}
@@ -135,8 +135,10 @@ SpookyText.drippy : all
 SpookyText.overflow : all
 {
 	_word = _argv[0]
+	_amt = 15
+	if _argv[1] != ""; _amt = TOINT(_argv[1])
 	"\![set,balloonwait,0.10]"
-	for _y = 0; _y < 15; _y++
+	for _y = 0; _y < _amt; _y++
 	{
 		_word
 		"\_l[0,0]\n[%(_y)0]"
@@ -227,4 +229,20 @@ isdaytime
 {
 	if hour >= 7 && hour <= 19; 1
 	else; 0
+}
+
+//yes this variable got replaced with a flag don't @ me this is easier to type for checks
+MetSpectre
+{
+	Flag("Stage 1")
+}
+
+emdash
+{
+	"\f[name,calibri]—\f[name,default]"
+}
+
+CanGoToStage2
+{
+	if Flag("User is not lost") && (Flag("Spectre hasn't eaten") || Flag("Spectre hasn't drank") || Flag("Spectre doesn't breathe"))
 }
