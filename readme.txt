@@ -8,8 +8,7 @@ Spectre's enhancements are improved by calibrating the plugin for each ghost. Wh
 
 Ghosts that have not yet been calibrated will have a calibration button on the main menu. Ghosts that have already been calibrated may be recalibrated at any time from the plugin's settings menu.
 
-//TODO did i make custom calibration happen in the menu?? cuz not everyone will open that... or did i do it in aitalk, or...
-If you are a ghost developer, you can provide a custom calibration for your ghost. This will complete calibration automatically to provide an easier experience for the user, and it will allow you to maximize your ghost's compatbility. Once you have spent some time using the plugin and are familiar with its effects, check the information in dev_info.txt!
+If you are a ghost developer, you can provide a custom calibration for your ghost. This will complete calibration automatically when the user opens the plugin's menu to provide an easier experience for the user, and it will allow you to maximize your ghost's compatbility. Once you have spent some time using the plugin and are familiar with its effects, check the information in dev_info.txt!
 
 For specific content warnings, scroll down.
 
@@ -58,4 +57,4 @@ For specific content warnings, scroll down.
 
 
 Content warnings:
-is a ghost lol
+Death, misery, body horror, insects, gallows humor, misdirected anger towards the user
