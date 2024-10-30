@@ -244,5 +244,5 @@ emdash
 
 CanGoToStage2
 {
-	if Flag("User is not lost") && (Flag("Spectre hasn't eaten") || Flag("Spectre hasn't drank") || Flag("Spectre doesn't breathe"))
+	Flag("User is not lost") && (Flag("Spectre hasn't eaten") || Flag("Spectre hasn't drank") || Flag("Spectre doesn't breathe"))
 }

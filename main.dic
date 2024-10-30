@@ -35,6 +35,15 @@ PluginUnload
 OnGhostBoot
 {
 	BootedGhosts ,= reference[1]
+	
+	//This, tragically, interrupts boot events...
+	// if !IsCalibrated(reference[1])
+	// {
+		// res_target = reference[1]
+		// CalibrationConfirm = "OnGhostBoot"
+		
+		// "\![raise,OnSpectrePlugin.ConfirmCalibration]"
+	// }
 }
 
 OnGhostExit

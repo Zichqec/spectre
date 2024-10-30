@@ -4,7 +4,7 @@ Spectre provides various enhancements for SSP. These enhancements may be turned 
 
 Note that it is recommended to use the balloon "Ghost Balloon" while using this plugin.
 
-Spectre's enhancements are improved by calibrating the plugin for each ghost. Which ghost Spectre will calibrate depends on which ghost you open the plugin menu with.
+Spectre's enhancements are improved by calibrating the plugin for each ghost. Which ghost Spectre will calibrate depends on which ghost you open the plugin menu with. (Note: for ghosts with custom calibration, you still need to open Spectre's menu with them at least once! Doing so should complete the calibration automatically.)
 
 Ghosts that have not yet been calibrated will have a calibration button on the main menu. Ghosts that have already been calibrated may be recalibrated at any time from the plugin's settings menu.
 

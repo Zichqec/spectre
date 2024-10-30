@@ -99,6 +99,7 @@ OnMainMenu : all
 		"Stage: \__q[OnToggleStage]%(Flag('Stage 1') + Flag('Stage 2') + Flag('Stage 3')) ---\__q\n"
 		"Today's pool: %(TodaysPool)\n"
 		"GreetedToday %(GreetedToday)\n"
+		"CanGoToStage2 %(CanGoToStage2)\n"
 		//"\![*]\q[Tester!,script:""%(smile)Smiling? Maybe. %(embarrassed)Embarrassed... perhaps.""]"
 		"\n"
 	}
@@ -449,7 +450,7 @@ OnCustomCalibrationConfirm : all
 		
 		"\x\![raiseplugin,Spectre,%(MenuToReturnTo),""%(CurrentGhost)""]"
 	}
-	else
+	elseif CalibrationConfirm == "OnMainMenu"
 	{
 		"\![raiseplugin,Spectre,OnMainMenu]"
 	}
