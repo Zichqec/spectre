@@ -20,6 +20,7 @@ OnMainMenu : all
 	
 	"\C\![lock,balloonrepaint]\c" //I don't think this is working but whatever
 	"\0\_q\*\b[2]\![no-autopause]\![set,autoscroll,disable]"
+	"\![timerraise,0,1,OnSpectrePlugin.Possession]"
 	"%(Heading('Spectre'))"
 	
 	//"%(ControlLevel)\n\n"
@@ -27,6 +28,29 @@ OnMainMenu : all
 	"Spectre enhancements: \_a[OnToggleSpectreEnhancements]%(('Off','On')[SpectreOn])\_a\n\n"
 	
 	if !SpectreOn; "\f[color,disable]"
+	
+	if SpectreOn
+	{
+		if Flag("Spectre seen") && !MetSpectre
+		{
+			if !Flag("Stage 1") && Flag("Stage 0 greeted")
+			{
+				"\__q[OnSpectreSeen.StillThere]Hello?\![dummy] Are you still there?\__q"
+			}
+			else
+			{
+				"\__q[OnSpectreSeen]Is someone else here?\__q"
+			}
+			"\n\n"
+		}
+		elseif !Flag("Second boot complete") && !GreetedToday
+		{
+			"\__q[OnSecondSeen]Hello?\__q"
+			"\n\n"
+		}
+		
+	}
+	
 	if MetSpectre
 	{
 		switch SpectreOn
@@ -71,6 +95,7 @@ OnMainMenu : all
 		"Met spectre: \__q[OnToggleMetSpectre]%(MetSpectre) ---\__q\n"
 		"Stage: \__q[OnToggleStage]%(Flag('Stage 1') + Flag('Stage 2') + Flag('Stage 3')) ---\__q\n"
 		"Today's pool: %(TodaysPool)\n"
+		"GreetedToday %(GreetedToday)\n"
 		//"\![*]\q[Tester!,script:""%(smile)Smiling? Maybe. %(embarrassed)Embarrassed... perhaps.""]"
 		"\n"
 	}
@@ -80,42 +105,126 @@ OnMainMenu : all
 	"\![unlock,balloonrepaint]"
 }
 
+OnSpectreSeen : all
+{
+	GreetedToday = 1
+	AddFlag("Stage 0 greeted")
+	"\*\t"
+	AutoPause("\0%(blank)W-what? Hello? Did you%(emdash) Can you... hear me?")
+	"\n\n\_q"
+	"\![*]\__q[OnSpectreSeen.ICanHear]I can hear you.\__q\n"
+	"\![*]\__q[OnSpectreSeen.Silent]...\__q"
+}
+
+	OnSpectreSeen.ICanHear : all
+	{
+		"\*\t"
+		AutoPause("\0%(blank)You can? Really!? I thought I was going to be alone forever! \n\nCan you see anything from where you are? It's dark here...")
+		"\n\n\_q"
+		"\![*]\__q[OnSpectreSeen.ICanSee]I can see,\![dummy] but I don't know where you are.\__q\n"
+		"\![*]\__q[OnSpectreSeen.ItsDarkHere]It's dark here,\![dummy] too.\__q"
+	}
+	
+		OnSpectreSeen.ICanSee : all
+		{
+			AddFlag("Stage 1")
+			AutoPause("\0%(blank)O-oh... Maybe you can try to find me? Or, I'll try to find you! %(fadein)\_w[1500]Just... keep talking to me until then? Please?%(end)")
+		}
+		
+		OnSpectreSeen.ItsDarkHere : all
+		{
+			AddFlag("Stage 1")
+			AutoPause("\0%(blank)D-don't be scared! I'll try to find you... Or maybe you'll find me? %(fadein)\_w[1500]... Either way, we should keep talking so we don't get even more lost, right?%(end)")
+		}
+	
+	OnSpectreSeen.Silent : all
+	{
+		_ending = SpookyText.grow("Where did you go!?")
+		AutoPause("\0%(blank)...? \_w[1500]Hello? \_w[1500]Where did you go...? \_w[1500]Where did you go? \_w[1500]%(_ending)%(end)")
+	}
+
+	OnSpectreSeen.StillThere : all
+	{
+		GreetedToday = 1
+		
+		"\*\t"
+		AutoPause("\0%(blank)...! You! I knew you were real! That... \f[italic,1]hic...\w8\w8\f[italic,default] that was so mean... Why would you do that?")
+		"\n\n\_q"
+		"\![*]\__q[OnSpectreSeen.Sorry]Sorry...\__q\n"
+		"\![*]\__q[OnSpectreSeen.IWasScared]I was scared.\__q"
+	}
+
+		OnSpectreSeen.Sorry : all
+		{
+			AddFlag("Stage 1")
+			
+			AutoPause("\0%(blank)... I guess it's okay. Just... please don't do it again?\n\n%(fadein)\_w[1500]I was... really scared...%(end)")
+		}
+
+		OnSpectreSeen.IWasScared : all
+		{
+			AddFlag("Stage 1")
+			
+			AutoPause("\0%(blank)Scared? Of me? \n\n%(fadein)\_w[1500]... I'm sorry. I didn't mean to scare you. I'm not sure what I did, but I'll try not to do it again, okay?%(end)")
+		}
+
+OnSecondSeen : all
+{
+	AddFlag("Second boot complete")
+	
+	AutoPause("\0%(discouraged)\f[color,disable]What... \f[italic,1]hic... \f[italic,default]\f[color,default]You came back? %(smile)You really came back... I'm so glad... %(thinking)I thought I'd be alone again...%(end)")
+}
+
 OnReachOut
 {
 	ReachedOut--
 	ReachedOutTime = GETSECCOUNT
 	if ReachedOut < 0; ReachedOut = 0
 	
-	if ReachedOut == 4 //First time reaching out
+	_amt = ReachedOut * 2
+	
+	if ReachedOut <= 0
 	{
-		"zzzzz"
-	}
-
-	elseif ReachedOut == 3
-	{
-		"zzzznoOOoOoOoooooo i'm sleepy"
-	}
-	elseif ReachedOut == 2
-	{
-		"just 10 more minutes..."
-	}
-	elseif ReachedOut == 1
-	{
-		"just 5 more minutes....... zzzzzzzzzzzzzz......"
-	}
-	else //0, break through!
-	{
-		ReachedOut = 0
+		ReachedOut = 0 //dunno why i am worried about negatives here but WHATEVER
 		TodaysPool = "miserable"
 		
-		"ok fine im awake :c"
+		AutoPause("\0%(discouraged)...? Was that your voice? %(sweat)Thank you... I'm not sure where I was for a while there...%(end)")
 	}
+	else
+	{
+		SpookyText.overflow(reachingout,_amt)
+	}
+	
+	// if ReachedOut == 4 //First time reaching out
+	// {
+		// "zzzzz"
+	// }
+
+	// elseif ReachedOut == 3
+	// {
+		// "zzzznoOOoOoOoooooo i'm sleepy"
+	// }
+	// elseif ReachedOut == 2
+	// {
+		// "just 10 more minutes..."
+	// }
+	// elseif ReachedOut == 1
+	// {
+		// "just 5 more minutes....... zzzzzzzzzzzzzz......"
+	// }
+	// else //0, break through!
+	// {
+		// ReachedOut = 0
+		// TodaysPool = "miserable"
+		
+		// "ok fine im awake :c"
+	// }
 }
 
 OnToggleMetSpectre
 {
-	if MetSpectre != 1; MetSpectre = 1
-	else; MetSpectre = 0
+	if Flag("Stage 1"); DeleteFlag("Stage 1")
+	else; AddFlag("Stage 1")
 	
 	"\![raiseplugin,Spectre,OnMainMenu]"
 }
