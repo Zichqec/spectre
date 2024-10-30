@@ -271,7 +271,7 @@ Stage2Talk : nonoverlap_pool
 	//STAGES
 	all : /
 	{
-		"\0%(discouraged(4))Man, if this is hell, what did I even do to deserve it...? %(angry)It's hardly fair to be punished when you don't even know what you did wrong!"
+		"\0%(discouraged(4))Man, if this is hell, what did I even do to deserve it...? %(angry(4))It's hardly fair to be punished when you don't even know what you did wrong!"
 		"\n\n\_q"
 		"\![*]\__q[OnStage2.WhyPunished.RememberAnything]Can you remember anything from before you were stuck?\__q\n"
 		"\![*]\__q[OnStage2.WhyPunished.SomeonesBadSide]Maybe you got on someone's bad side.\__q"
