@@ -24,7 +24,7 @@ Boot.Normal : nonoverlap_pool
 {
 	GreetedToday = 1
 	
-	if Flag("Stage 2") || TodaysPool == "miserable"
+	if !Flag("Stage 3") || TodaysPool == "miserable"
 	{
 		"\0%(discouraged)... \n\n... I don't think I'll be very good company today... Sorry..."
 		"\0%(thinking)...? Oh. You're here. \n\n... Hey. I hope you're having a better day than I am.%(end)"
