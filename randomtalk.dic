@@ -305,7 +305,7 @@ OnStage2.NeedToThinkAbout.ReallyThatBad : all
 	AddFlag("Stage 3")
 	TodaysPool = "miserable"
 	
-	AutoPause("\0%(thinking(4))I'm not sure... I don't think I can judge that sort of thing for myself. %(sweat(4))I do know that if I'm trapped here anyway, I might as well try to figure that out... In a weird way, it kind of makes me better to think there might be a reason, even if it feels unfair... Maybe I just need to figure out how to make up for it, and then everything will be okay.%(end)")
+	AutoPause("\0%(thinking(4))I'm not sure... I don't think I can judge that sort of thing for myself. %(sweat(4))I do know that if I'm trapped here anyway, I might as well try to figure that out... In a weird way, it kind of makes me feel better to think there might be a reason, even if it feels unfair... Maybe I just need to figure out how to make up for it, and then everything will be okay.%(end)")
 }
 
 OnStage2.NeedToThinkAbout.BeOk : all
