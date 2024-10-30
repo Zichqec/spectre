@@ -37,17 +37,17 @@ OnMainMenu : all
 			{
 				if !Flag("Stage 1") && Flag("Stage 0 greeted")
 				{
-					"\__q[OnSpectreSeen.StillThere]Hello?\![dummy] Are you still there?\__q"
+					"\![*]\__q[OnSpectreSeen.StillThere]Hello?\![dummy] Are you still there?\__q"
 				}
 				else
 				{
-					"\__q[OnSpectreSeen]Is someone else here?\__q"
+					"\![*]\__q[OnSpectreSeen]Is someone else here?\__q"
 				}
 				"\n\n"
 			}
 			elseif !Flag("Second boot complete") && !GreetedToday
 			{
-				"\__q[OnSecondSeen]Hello?\__q"
+				"\![*]\__q[OnSecondSeen]Hello?\__q"
 				"\n\n"
 			}
 		}
