@@ -1,15 +1,15 @@
 //BOOT RELATED DIALOGUES
-Boot.Greeted
+Boot.Greeted : nonoverlap_pool
 {
 	_ending = SpookyText.shrink("it wasn't, it wasn't...")
-	"\0%(discouraged(6))Hello? \w8\w8I know you're there... \w8\w8\w8\w8%(angry)\f[bold,1]\f[italic,1]Answer me!%(end)"
+	"\0%(discouraged(6))Hello? \w8\w8I know you're there... \w8\w8\w8\w8%(angry(6))\f[bold,1]\f[italic,1]Answer me!%(end)"
 	"\0%(anxious(6))Please come back... I don't want to be alone...%(end)"
 	"\0%(discouraged)I heard it, I know I did... It wasn't my imagination... It wasn't, it wasn't, \f[color,disable]it wasn't, it wasn't, %(_ending)%(end)"
 	"\0%(discouraged)No, no, no, I don't like the quiet... Where did you go...?%(end)"
 	"\0%(anxious(6))Say something... Anything... \w8\f[italic,1]hic...\w8\w8\f[italic,default] Please, talk to me...%(end)"
 }
 
-Boot.Returned
+Boot.Returned : nonoverlap_pool
 {
 	GreetedToday = 1
 	
@@ -20,7 +20,7 @@ Boot.Returned
 	"\0%(normal)\f[color,disable]It's not forever... It can't be forever... It's not... \n\n\f[color,default]%(surprised)...! I knew it. I knew you wouldn't leave me here...%(end)"
 }
 
-Boot.Normal
+Boot.Normal : nonoverlap_pool
 {
 	GreetedToday = 1
 	
@@ -69,6 +69,19 @@ Pool.SpookyText : array
 	"\0%(discouraged)" + SpookyText("Will anyone ever find me? Does anyone care...?") + "%(end)"
 	"\0%(discouraged)" + SpookyText("Burning, burning, turning to ash...") + "%(end)"
 	"\0%(discouraged)" + SpookyText("Churning, burning, squirming, worming...") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Gonna die gonna die gonna die gonna die") + "%(end)"
+	"\0%(discouraged)" + SpookyText("It's oozing...") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Not the roaches, not the roaches, please...") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Get out, get out get out, there's too much I'm going to explode!") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Hhhhhhhh...") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Squirming... squirming... get it out...") + "%(end)"
+	"\0%(discouraged)" + SpookyText("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Buzzing, tapping, cracking, bursting...") + "%(end)"
+	"\0%(discouraged)" + SpookyText("I want out, lemme out, lemme...") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Why... Why... Why...") + "%(end)"
+	"\0%(discouraged)" + SpookyText("It hurts... It hurts, let me out...") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Give it back... give it back to me, I need it...") + "%(end)"
+	"\0%(discouraged)" + SpookyText("Please... I'm sorry, whatever I did, I'm sorry...!") + "%(end)"
 }
 
 Stage1Talk : nonoverlap_pool
@@ -116,6 +129,100 @@ Stage1Talk : nonoverlap_pool
 
 	"\0%(normal)\f[italic,1]You're\f[italic,default] not playing some sort of trick on me, are you? %(angry)If you are, then, then... cut it out! %(discouraged)It's not funny...%(end)"
 	*/
+	
+	//STAGES
+	all : /
+	{
+		"\0%(normal)I feel so lost... %(thinking)Are you lost too...? %(discouraged)Somehow, I don't think so... You're not like me."
+		"\n\n\_q"
+		"\![*]\__q[OnStage1.FeelLost.KnowWhereIAm]I know where I am.\__q\n"
+		"\![*]\__q[OnStage1.FeelLost.NotLikeYouAre]Not like you are.\__q"
+	}
+	
+	all : /
+	{
+		"\0%(normal(4))I feel heavy. %(discouraged)Sluggish. %(anxiety)Maybe from lack of nutrition...? %(thinking)When was the last time I ate.....?"
+		"\n\n\_q"
+		"\![*]\__q[OnStage1.FeelHeavy.CanYouRemember]Can you remember?\__q\n"
+		"\![*]\__q[OnStage1.FeelHeavy.LastDrink]What about the last time you drank?\__q\n"
+		"\![*]\__q[OnStage1.FeelHeavy.SureYoureBreathing]Are you sure you're breathing?\__q"
+	}
+	
+	if CanGoToStage2; all : /
+	{
+		"\0%(thinking(4))We established that wherever I am isn't where you are, right? %(anxious(4))And that... we don't know if I'm... if my body is working like it should...? So what... what's happening to me?"
+		"\n\n\_q"
+		"\![*]\__q[OnStage1.WhatsHappening.Psychic]Maybe we have a psychic connection?\__q\n"
+		"\![*]\__q[OnStage1.WhatsHappening.SureYoureAlive]Are you sure you're alive?\__q\n"
+		"\![*]\__q[OnStage1.WhatsHappening.DontKnow]I don't know.\__q"
+	}
+}
+
+OnStage1.FeelLost.KnowWhereIAm : all
+{
+	AddFlag("User is not lost")
+	"\*\t"
+	AutoPause("\0%(discouraged(4))Oh... that's good. \n\n... Do you know where I am?")
+	"\n\n\_q"
+	"\![*]\__q[OnStage1.FeelLost.KnowWhereIAm.No]No\__q\n"
+	"\![*]\__q[OnStage1.FeelLost.KnowWhereIAm.No]No\__q\n"
+	"\![*]\__q[OnStage1.FeelLost.KnowWhereIAm.No]No\__q\n"
+	"\![*]\__q[OnStage1.FeelLost.KnowWhereIAm.Ellipses]...\__q"
+}
+
+	OnStage1.FeelLost.KnowWhereIAm.No : all
+	{
+		AutoPause("\0%(anxious)... Oh... So, wherever I am, I'm not with you... Even though we're talking? That seems wrong...%(end)")
+	}
+
+	OnStage1.FeelLost.KnowWhereIAm.Ellipses : all
+	{
+		AutoPause("\0%(anxious(6))... Oh... okay..%(end)")
+	}
+
+OnStage1.FeelLost.NotLikeYouAre : all
+{
+	AddFlag("User is not lost")
+	
+	AutoPause("\0%(normal)You mean, like, metaphorically? %(sweat)Because I understand that, but it isn't really... what I mean... I'll take that as a no, though, I guess...%(end)")
+}
+	
+OnStage1.FeelHeavy.CanYouRemember : all
+{
+	AddFlag("Spectre hasn't eaten")
+	
+	AutoPause("\0%(thinking)No, no no, I can't... I mean, I know what I last ate at home? But I haven't been home in... in... It's been a long time. Surely I must have eaten since then, right...?%(end)")
+}
+
+OnStage1.FeelHeavy.LastDrink : all
+{
+	AddFlag("Spectre hasn't drank")
+	
+	AutoPause("\0%(thinking)\![raiseplugin,Spectre,OnAddFlag,Spectre hasn't drank]I'm not sure... I feel like I'm drenched all the time, but I can't remember drinking any of it... Can you absorb enough water through your skin to not have to drink? Because maybe that's what I've been doing...%(end)")
+}
+
+OnStage1.FeelHeavy.SureYoureBreathing : all
+{
+	AddFlag("Spectre doesn't breathe")
+	
+	AutoPause("\0%(angry)I- I don't generally have to think about breathing, do you!? What are you trying to say? Of course I... %(anxious)Of course I'm...\n\n\f[italic,1]Am\f[italic,default] I breathing...?%(end)")
+}
+
+OnStage1.WhatsHappening.Psychic : all
+{
+	"\0%(sweat)Ha... Y-yeah, yeah yeah, maybe that's it! Maybe I'm having some kind of... out-of-body experience, and our minds just happened to connect? \n\n%(thinking)Yeah... Maybe... %(discouraged)Maybe that's it...%(end)"
+}
+
+OnStage1.WhatsHappening.SureYoureAlive : all
+{
+	AddFlag("Stage 2")
+	
+	"\0%(embarrassed(2))I am, I am I am, I have to be! %(anxious(2))If I wasn't... if I wasn't, that would mean... %(angry(2))No, no no, no no no! I can't be dead! I can't... %(thinking(2))can I...?%(end)"
+}
+
+OnStage1.WhatsHappening.DontKnow : all
+{
+	"\0%(normal)Yeah... I didn't think you would... I hope you'll still keep me company, though. This is all confusing, but having someone to talk to helps keep my head clear.%(end)"
 }
 
 Stage2Talk : nonoverlap_pool
@@ -153,13 +260,60 @@ Stage2Talk : nonoverlap_pool
 	"\0%(discouraged)It's too much... Just, all of it. %(thinking)Maybe if I can find a way to just... stop thinking... it'll all go away? %(anxious)Hmm...%(end)"
 	"\0%(thinking)I might be out of ideas for how to get out of this... %(unamused)But I guess I have nothing but time, so I'll try coming up with some more.%(end)"
 	"\0%(unamused)Would be nice if someone could come turn out the lights. I don't need some fancy afterlife, I just wanna stop being aware of it all, y'know?%(end)"
-	"\0%(surprised)Eek! %(embarrassed)I feel something... %(discouraged)Ick, I can't tell what it is but there's something \f[italic,1]on\f[italic,default] me.%(end)"
+	"\0%(surprised)Eek! %(anxious)I feel something... %(discouraged)Ick, I can't tell what it is but there's something \f[italic,1]on\f[italic,default] me.%(end)"
 	"\0%(discouraged)Why couldn't I like... recarnate into a tree or something. %(thinking)Being a tree sounds kinda nice...\n\n %(angry)Whatever this is, it sucks.%(end)"
 	
 	//QUESTIONS
 	/*
 	"\0%(anxious)If I'm dead, then I wonder what \f[italic,1]you\f[italic,default] are. %(thinking)A medium? A sorcerer? A witch...?\n\n %(angry)If you can help me, then why don't you?%(end)" //maybe choices here but i'm not sure what they would be, so... putting a pin in it ye, could also reword like "If you could help me, you would, right!?" or somesuch maybe but i kind of like the misdirected anger... yeah same
 	*/
+	
+	//STAGES
+	all : /
+	{
+		"\0%(discouraged(4))Man, if this is hell, what did I even do to deserve it...? %(angry)It's hardly fair to be punished when you don't even know what you did wrong!"
+		"\n\n\_q"
+		"\![*]\__q[OnStage2.WhyPunished.RememberAnything]Can you remember anything from before you were stuck?\__q\n"
+		"\![*]\__q[OnStage2.WhyPunished.SomeonesBadSide]Maybe you got on someone's bad side.\__q"
+	}
+	
+	if Flag("Spectre did something bad"); all : /
+	{
+		"\0%(normal(2))I think... I might have a lot of stuff I need to think about."
+		"\n\n\_q"
+		"\![*]\__q[OnStage2.NeedToThinkAbout.ReallyThatBad]Was what you did really that bad?\__q\n"
+		"\![*]\__q[OnStage2.NeedToThinkAbout.BeOk]Are you going to be okay?\__q"
+	}
+}
+
+OnStage2.WhyPunished.RememberAnything : all
+{
+	AddFlag("Spectre did something bad")
+	
+	AutoPause("\0%(thinking(4))I'm not sure... I know I hadn't been home in a few days, and that I was... looking for something? Or I needed something? I remember there was a house... %(anxious(4))I'm not sure \f[italic,1]what\f[italic,default], but I might have done \f[italic,1]something\f[italic,default]... It's all so fuzzy...%(end)")
+}
+
+OnStage2.WhyPunished.SomeonesBadSide : all
+{
+	AddFlag("Spectre did something bad")
+	
+	AutoPause("\0%(angry(4))What did I ever do to deserve this! %(anxious(4))I mean, I know I've pulled some pranks on people before, but I've been a good person. The only thing I've ever... %(thinking(4))Did I...? I think I remember... taking something... %(discouraged(4))Is this my own fault...?%(end)")
+}
+
+OnStage2.NeedToThinkAbout.ReallyThatBad : all
+{
+	AddFlag("Stage 3")
+	TodaysPool = "miserable"
+	
+	AutoPause("\0%(thinking(4))I'm not sure... I don't think I can judge that sort of thing for myself. %(sweat(4))I do know that if I'm trapped here anyway, I might as well try to figure that out... In a weird way, it kind of makes me better to think there might be a reason, even if it feels unfair... Maybe I just need to figure out how to make up for it, and then everything will be okay.%(end)")
+}
+
+OnStage2.NeedToThinkAbout.BeOk : all
+{
+	AddFlag("Stage 3")
+	TodaysPool = "miserable"
+	
+	AutoPause("\0%(thinking(4))I don't know? I mean... I think I can feel my body, so I can't be dead. %(discouraged(4))But I also... can't be alive, right...? That's hard to deal with on the best of days... %(thinking(4))Either way, until we can figure something out, I'd rather try to look on the bright side of things. %(smile(4))I'm not alone anymore, and I'm starting to remember more about what happened... Maybe something will change from here.%(end)")
 }
 
 Stage3Talk : nonoverlap_pool
@@ -235,10 +389,29 @@ Stage3Talk : nonoverlap_pool
 		"\0%(thinking)I hope nobody has like... stolen my identity. %(angry)That'd be a cruel thing to do.\n\n ... %(anxious)It's unlikely it's happened, it's just one of thousands of possibilities I've sifted through from boredom...%(end)"
 		"\0%(thinking)I wonder if things will ever change around here. %(anxious)I guess they have to eventually, but I wonder if it will be for better or worse...%(end)"
 		"\0%(discourage)Sorry, I'm having one of those ""doom and gloom"" kind of days. %(anxious)I hope I'm not upsetting you.%(end)"
-		"\0%(anxious)Wonder if anyone will remember my name... %(discouraged)Probably not, I wasn't exactly an important person.%(end)"
 		
-		//low control
-		//"\0%(thinking)This body is hard to move... %(anxious)I hope the lack of body language isn't making it hard to understand me.%(end)"
+		
+		//Control Levels
+		// if ControlLevel == "none"
+		// {
+			
+		// }
+		if ControlLevel == "low"
+		{
+			"\0%(thinking)This body is hard to move... %(anxious)I hope the lack of body language isn't making it hard to understand me.%(end)"
+		}
+		else //TEMPORARY, MOVE LATER
+		{
+			"\0%(anxious)Wonder if anyone will remember my name... %(discouraged)Probably not, I wasn't exactly an important person.%(end)"
+		}
+		// if ControlLevel == "medium"
+		// {
+			
+		// }
+		// if ControlLevel == "high"
+		// {
+			
+		// }
 	}
 	elseif TodaysPool == "cheerful2"
 	{
@@ -271,15 +444,35 @@ Stage3Talk : nonoverlap_pool
 		"\0%(sweat)I wonder if I'm contaminating the water here. I hope not...%(end)"
 		"\0%(surprised)Look out behind you!!\n\n \_w[1500]%(sweat)Hehe, just kidding...%(end)"
 		"\0%(smile)I remember what it was like to look up at the stars... They always filled me with so much wonder. %(sweat)It's a shame I'll never see them again, down here...%(end)"
-		"\0%(thinking)I hope you don't mind me reminiscing. %(anxious)It kinda makes me sad,\w8 %(sweat)but it also makes me feel good. %(smile)And it keeps my memories fresh so I don't lose them.%(end)"
 		
-		"\0%(smile)Let's play ""I Spy""! %(relieved)I spy something that is %(coldandslimy)." //hehehehehehe
 		
-		//High control
-		//"\0%(smile)Wiggle wiggle, hehehe.%(end)"
+		
+		//Control Levels
+		// if ControlLevel == "none"
+		// {
+			
+		// }
+		// if ControlLevel == "low"
+		// {
+			
+		// }
+		// if ControlLevel == "medium"
+		// {
+			
+		// }
+		if ControlLevel == "high"
+		{
+			"\0%(smile)Wiggle wiggle, hehehe.%(end)"
+		}
+		else //TEMPORARY FOR BALANCING, this is just part of the normal pool and can be moved later
+		{
+			"\0%(thinking)I hope you don't mind me reminiscing. %(anxious)It kinda makes me sad,\w8 %(sweat)but it also makes me feel good. %(smile)And it keeps my memories fresh so I don't lose them.%(end)"
+		}
 
 		//CHOICES
 		/*
+		"\0%(smile)Let's play ""I Spy""! %(relieved)I spy something that is %(coldandslimy)." //hehehehehehe
+		
 		//guesses
 		A stone
 		A %(bug)
@@ -349,19 +542,19 @@ Stage3Talk : nonoverlap_pool
 		//Control Levels
 		if ControlLevel == "none"
 		{
-			"I'm grateful to be able to speak with you at all, but this body feels like %(gettingsquished)... I can't get it to do anything.%(end)"
+			"\0%(anxious)I'm grateful to be able to speak with you at all, but this body feels like %(gettingsquished)... %(discouraged)I can't get it to do anything.%(end)"
 		}
 		if ControlLevel == "low"
 		{
-			"Taking control of this body has been a little awkward. It's like, %(ifyouran)... Do you know what I mean?%(end)"
+			"\0%(thinking)Taking control of this body has been a little awkward. It's like, %(ifyouran)... %(anxious)Do you know what I mean?%(end)"
 		}
 		if ControlLevel == "medium"
 		{
-			"I'm glad you had this body around for me to borrow. It's like I'm finally %(stretching).%(end)"
+			"\0%(relieved)I'm glad you had this body around for me to borrow. It's like I'm finally %(stretching).%(end)"
 		}
 		if ControlLevel == "high"
 		{
-			
+			"\0%(smile)Oh, this body feels almost like home... I feel so free...!%(end)"
 		}
 		
 		"\0%(surprised)Hey, did you know that %(bearsarealiens)?\n\n %(smile)Just kidding! Hehe. %(relieved)I made that up.%(end)"
