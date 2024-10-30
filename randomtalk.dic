@@ -210,19 +210,19 @@ OnStage1.FeelHeavy.SureYoureBreathing : all
 
 OnStage1.WhatsHappening.Psychic : all
 {
-	"\0%(sweat)Ha... Y-yeah, yeah yeah, maybe that's it! Maybe I'm having some kind of... out-of-body experience, and our minds just happened to connect? \n\n%(thinking)Yeah... Maybe... %(discouraged)Maybe that's it...%(end)"
+	AutoPause("\0%(sweat)Ha... Y-yeah, yeah yeah, maybe that's it! Maybe I'm having some kind of... out-of-body experience, and our minds just happened to connect? \n\n%(thinking)Yeah... Maybe... %(discouraged)Maybe that's it...%(end)")
 }
 
 OnStage1.WhatsHappening.SureYoureAlive : all
 {
 	AddFlag("Stage 2")
 	
-	"\0%(embarrassed(2))I am, I am I am, I have to be! %(anxious(2))If I wasn't... if I wasn't, that would mean... %(angry(2))No, no no, no no no! I can't be dead! I can't... %(thinking(2))can I...?%(end)"
+	AutoPause("\0%(embarrassed(2))I am, I am I am, I have to be! %(anxious(2))If I wasn't... if I wasn't, that would mean... %(angry(2))No, no no, no no no! I can't be dead! I can't... %(thinking(2))can I...?%(end)")
 }
 
 OnStage1.WhatsHappening.DontKnow : all
 {
-	"\0%(normal)Yeah... I didn't think you would... I hope you'll still keep me company, though. This is all confusing, but having someone to talk to helps keep my head clear.%(end)"
+	AutoPause("\0%(normal)Yeah... I didn't think you would... I hope you'll still keep me company, though. This is all confusing, but having someone to talk to helps keep my head clear.%(end)")
 }
 
 Stage2Talk : nonoverlap_pool
