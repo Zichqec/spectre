@@ -31,22 +31,25 @@ OnMainMenu : all
 	
 	if SpectreOn
 	{
-		if Flag("Spectre seen") && !MetSpectre
+		if Flag("Spectre seen")
 		{
-			if !Flag("Stage 1") && Flag("Stage 0 greeted")
+			if !MetSpectre
 			{
-				"\__q[OnSpectreSeen.StillThere]Hello?\![dummy] Are you still there?\__q"
+				if !Flag("Stage 1") && Flag("Stage 0 greeted")
+				{
+					"\__q[OnSpectreSeen.StillThere]Hello?\![dummy] Are you still there?\__q"
+				}
+				else
+				{
+					"\__q[OnSpectreSeen]Is someone else here?\__q"
+				}
+				"\n\n"
 			}
-			else
+			elseif !Flag("Second boot complete") && !GreetedToday
 			{
-				"\__q[OnSpectreSeen]Is someone else here?\__q"
+				"\__q[OnSecondSeen]Hello?\__q"
+				"\n\n"
 			}
-			"\n\n"
-		}
-		elseif !Flag("Second boot complete") && !GreetedToday
-		{
-			"\__q[OnSecondSeen]Hello?\__q"
-			"\n\n"
 		}
 		
 	}
