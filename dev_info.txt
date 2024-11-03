@@ -102,7 +102,7 @@ Code examples will be provided in YAYA, but this should work for ghosts in any c
 
 There are 3 events to add, one of which is optional.
 
-OnSpectrePlugin.Surface is an event that will be called via embed tags, and is the function that tells the plugin which surfaces to use for which expression. Note that you can use any tags you need here, including \s[], \i[], or other animation tags! Whatever makes it work for your shell.
+OnSpectrePlugin.Surface is an event that will be called via embed tags, and is the function that tells the plugin which surfaces to use for which expression. Note that you can use any tags you need here, including \s[], \i[], or other animation tags! Whatever makes it work for your shell. Also note that this only happens in later phases; if you've not progressed enough with Spectre you'll only see expressions in the balloon.
 
 Expressions will be sent as strings via reference0. The following are the possible expressions (listed in the order they appear in the balloon's files):
 
@@ -141,7 +141,7 @@ OnSpectrePlugin.Surface
 }
 
 
-***NOTE: if you can't come up with a suitable pose for a given expression, OMIT IT COMPLETELY!*** That means fully erasing the elseif for that expression, **don't send a blank string!**
+***NOTE: if you can't come up with a suitable pose for a given expression, OMIT IT COMPLETELY!*** That means fully erasing the elseif for that expression, **don't send a blank string!** You can comment it out instead if you prefer.
 Expressions that are omitted will show up as the default surface0, and Spectre will take note of how many poses it has available and will comment on this! If your shell only has a handful of suitable expressions, that is perfectly fine and adds to the experience!
 
 Next, you need a response to the event OnSpectrePlugin.ConfirmCalibration, which lets the plugin know that you have a custom calibration set up. This looks like the following:
@@ -173,8 +173,32 @@ OnSpectrePlugin.Surface
 	elseif reference0 == "unamused"; "\s[220]"
 }
 
+If your ghost only has a couple of expressions, you can add the argument --option=include to the command, and this will allow you to only write the surfaces which you've included in your calibration. Here's an implementation with the ghost If I Can't Have Shrimp No One can.
 
-That's it! Now your ghost's surfaces are set up with the plugin! 
+OnSpectrePlugin.ConfirmCalibration
+{
+	"\![raiseplugin,Spectre,OnCustomCalibrationConfirm,--option=include,normal,relieved,angry]"
+}
+
+OnSpectrePlugin.Surface
+{
+	if reference0 == "normal"; "\s[0]"
+	elseif reference0 == "relieved"; "\s[2]"
+	elseif reference0 == "angry"; "\s[1]"
+}
+
+It doesn't matter which argument the option is, so long as it is there! Use whichever makes more sense to your brain, or is less typing.
+
+If your ghost has no compatible expressions, or no expressions at all, you can use just the argument __NO_EXPRESSIONS__
+
+Here's an implementation with the ghost Needle.
+
+OnSpectrePlugin.ConfirmCalibration
+{
+	"\![raiseplugin,Spectre,OnCustomCalibrationConfirm,__NO_EXPRESSIONS__]"
+}
+
+That's it! Now your ghost's surfaces (or lack thereof) are set up with the plugin! 
 
 One more thing you can do, just for fun. After every dialogue, Spectre will raise the event OnSpectrePlugin.Possession
 You can use this to have your ghost react to being talked through! Just add whatever dialogue you want.
