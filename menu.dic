@@ -59,7 +59,7 @@ OnMainMenu : all
 		switch SpectreOn
 		{
 			"\![*]Listen to Spectre"
-			"\![*]\__q[OnAiTalk,""%(CurrentGhost)""]Listen to Spectre\__q"
+			"\![*]\__q[OnSpectreTalk,""%(CurrentGhost)""]Listen to Spectre\__q"
 		}
 		"\n\n"
 	}
