@@ -136,7 +136,7 @@ dolls : pool
 	"slippers with cat faces on them"
 	"strange sculptures"
 	"appliances with googly eyes"
-	if _argv[0] != "'not people"
+	if _argv[0] != "not people"
 	{
 		"friends"
 		"pets"
