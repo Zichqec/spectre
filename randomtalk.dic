@@ -17,7 +17,7 @@ Boot.Returned : nonoverlap_pool
 	"\0%(normal(6))Oh... I can sense you there. You really came back...%(end)"
 	"\0%(normal(6))\f[color,disable]Someone's here. Who...? \f[color,default]Hello? ... I remember you.%(end)"
 	"\0%(normal(6))You're back? %(smile(6))You're back... Hi.%(end)"
-	"\0%(normal)\f[color,disable]It's not forever... It can't be forever... It's not... \n\n\f[color,default]%(surprised)...! I knew it. I knew you wouldn't leave me here...%(end)"
+	"\0%(normal)\f[color,disable]It's not forever... It can't be forever... It's not...\n\n \f[color,default]%(surprised)...! I knew it. I knew you wouldn't leave me here...%(end)"
 }
 
 Boot.Normal : nonoverlap_pool
@@ -26,16 +26,16 @@ Boot.Normal : nonoverlap_pool
 	
 	if !Flag("Stage 3") || TodaysPool == "miserable"
 	{
-		"\0%(discouraged)... \n\n... I don't think I'll be very good company today... Sorry..."
-		"\0%(thinking)...? Oh. You're here. \n\n... Hey. I hope you're having a better day than I am.%(end)"
+		"\0%(discouraged)...\n\n... I don't think I'll be very good company today... Sorry..."
+		"\0%(thinking)...? Oh. You're here.\n\n... Hey. I hope you're having a better day than I am.%(end)"
 		"\0%(angry(6))Must be nice to come and go as you please.%(end)"
 	}
 	else //cheerful, cheerful2
 	{
 		"\0%(surprised(6))Oh! You're here! %(smile(6))It's good to see you.%(end)"
-		"\0%(indignant)There you are! It's about time. I wanted to ask you... %(thinking) ask you... uhh... uhm... \n\n%(smile)... I forgot what I wanted to ask you. Hehe.%(end)"
-		"\0%(normal)Hum dee hum... %(smile)Hum dee dee! \n\n%(thinking)Hummm...? %(smile)Oh. Hello! I was trying to remember a song.%(end)"
-		"\0%(surprised)BOO! Ghost surprise! \n\n%(smile)Hi. Did I scare you?%(end)"
+		"\0%(indignant)There you are! It's about time. I wanted to ask you... %(thinking) ask you... uhh... uhm...\n\n %(smile)... I forgot what I wanted to ask you. Hehe.%(end)"
+		"\0%(normal)Hum dee hum... %(smile)Hum dee dee!\n\n %(thinking)Hummm...? %(smile)Oh. Hello! I was trying to remember a song.%(end)"
+		"\0%(surprised)BOO! Ghost surprise!\n\n %(smile)Hi. Did I scare you?%(end)"
 		"\0%(smile)Oh, good timing. I was just wondering where you went and how much longer you would be gone and when you would be back. Now I know! You'll be back now!%(end)"
 	}
 }
@@ -162,7 +162,7 @@ OnStage1.FeelLost.KnowWhereIAm : all
 {
 	AddFlag("User is not lost")
 	"\*\t"
-	AutoPause("\0%(discouraged(4))Oh... that's good. \n\n... Do you know where I am?")
+	AutoPause("\0%(discouraged(4))Oh... that's good.\n\n... Do you know where I am?")
 	"\n\n\_q"
 	"\![*]\__q[OnStage1.FeelLost.KnowWhereIAm.No]No\__q\n"
 	"\![*]\__q[OnStage1.FeelLost.KnowWhereIAm.No]No\__q\n"
@@ -210,7 +210,7 @@ OnStage1.FeelHeavy.SureYoureBreathing : all
 
 OnStage1.WhatsHappening.Psychic : all
 {
-	AutoPause("\0%(sweat)Ha... Y-yeah, yeah yeah, maybe that's it! Maybe I'm having some kind of... out-of-body experience, and our minds just happened to connect? \n\n%(thinking)Yeah... Maybe... %(discouraged)Maybe that's it...%(end)")
+	AutoPause("\0%(sweat)Ha... Y-yeah, yeah yeah, maybe that's it! Maybe I'm having some kind of... out-of-body experience, and our minds just happened to connect?\n\n %(thinking)Yeah... Maybe... %(discouraged)Maybe that's it...%(end)")
 }
 
 OnStage1.WhatsHappening.SureYoureAlive : all
@@ -388,7 +388,7 @@ Stage3Talk : nonoverlap_pool
 		"\0%(thinking)This too shall pass, they say... %(anxious)I'll miss talking to you, whenever it stops. %(thinking)Dunno when it will, but like... %(anxious)it has to eventually, right?%(end)"
 		"\0%(thinking)I hope nobody has like... stolen my identity. %(angry)That'd be a cruel thing to do.\n\n ... %(anxious)It's unlikely it's happened, it's just one of thousands of possibilities I've sifted through from boredom...%(end)"
 		"\0%(thinking)I wonder if things will ever change around here. %(anxious)I guess they have to eventually, but I wonder if it will be for better or worse...%(end)"
-		"\0%(discourage)Sorry, I'm having one of those ""doom and gloom"" kind of days. %(anxious)I hope I'm not upsetting you.%(end)"
+		"\0%(discouraged)Sorry, I'm having one of those ""doom and gloom"" kind of days. %(anxious)I hope I'm not upsetting you.%(end)"
 		
 		
 		//Control Levels
@@ -500,7 +500,7 @@ Stage3Talk : nonoverlap_pool
 	else //cheerful
 	{
 		//upbeat
-		"\0%(normal)Oh, you know something that's weird? \n\nEven though I don't get thirsty, I really want a drink anyways... %(smile)But, can you blame me? A %(sodapop) sounds good right now!%(end)"
+		"\0%(normal)Oh, you know something that's weird?\n\n Even though I don't get thirsty, I really want a drink anyways... %(smile)But, can you blame me? A %(sodapop) sounds good right now!%(end)"
 		
 		//curiousbeat
 		"\0%(thinking(4))This body I'm borrowing, you know them, right? Do I sound the same as they do when I talk?\n\n\_q\![*]\__q[OnWhenITalk.UsingTheirVoice]Yes,\![dummy] you're using their voice.\__q\n\n\![*]\__q[OnWhenITalk.SoundCompletelyDifferent]No,\![dummy] you sound completely different,\__q\n\n\![*]\__q[OnWhenITalk.DoesntSoundLikeThem]Sort of;\![dummy] it's their voice,\![dummy] but it doesn't sound like them.\__q\n\n\![*]\__q[OnWhenITalk.TheyDontSpeak]They don't usually speak.\__q"
@@ -525,9 +525,9 @@ Stage3Talk : nonoverlap_pool
 			
 			if Flag("Theorized twice")
 			{
-				"\0%(smile(4))\![set,autoscroll,disable]I'm bored. \n\n... Theory time!"
+				"\0%(smile(4))\![set,autoscroll,disable]I'm bored.\n\n ... Theory time!"
 				"\0%(smile(4))\![set,autoscroll,disable]I have a new idea about me. Want to hear it? Or, do you have another good one?"
-				"\0%(smile(4))\![set,autoscroll,disable]Pop quiz! \n\nAm I dead? Am I not dead? Quick, for 30 points, what's your answer?"
+				"\0%(smile(4))\![set,autoscroll,disable]Pop quiz!\n\n Am I dead? Am I not dead? Quick, for 30 points, what's your answer?"
 			}
 			
 			elseif Flag("Theorized once")
@@ -557,7 +557,7 @@ Stage3Talk : nonoverlap_pool
 		}
 		if ControlLevel == "high"
 		{
-			"\0%(relieved(4))You know... talking to you like this, I almost feel like myself again. I'm glad we met — even if the circumstances are strange.\n\n%(smile(4))No, no no, you don't have to say anything! I can tell you feel the same, right?\n\n\_q\![*]\__q[OnHighControl.HappyToMeet]I do.\__q\n\n\![*]\__q[OnHighControl.UnhappyToMeet]I don't.\__q"
+			"\0%(relieved(4))You know... talking to you like this, I almost feel like myself again. I'm glad we met — even if the circumstances are strange.\n\n %(smile(4))No, no no, you don't have to say anything! I can tell you feel the same, right?\n\n\_q\![*]\__q[OnHighControl.HappyToMeet]I do.\__q\n\n\![*]\__q[OnHighControl.UnhappyToMeet]I don't.\__q"
 		}
 		
 		"\0%(surprised)Hey, did you know that %(bearsarealiens)?\n\n %(smile)Just kidding! Hehe. %(relieved)I made that up.%(end)"
@@ -618,12 +618,12 @@ OnHighControl.UnhappyToMeet
 
 OnTheorizing.SpectreTheory
 {
-	AutoPause("idk im a ghost bro")
+	AutoPause("\0%(thinking)Maybe I'm the patient 0 for a new disease, and everything I'm experiencing is in my head. %(surprised)Like a fever dream! Maybe I'm actually in bed right now with a fever of 105!%(end)")
 }
 
 OnTheorizing.AVividHallucination
 {
-	AutoPause("\0%(anxious)Do you think so? I've never really been into drugs... I don't know how that would have happened, unless... %(surprised)Someone did it to me!? Maybe it was a kidnapping and I was incapacitated by a hallucinagenic powder bomb! \n\n%(indignant)Aww... I bet my clothes are covered in the stuff. I'll have to get them super clean so it doesn't hit me again.%(end)")
+	AutoPause("\0%(anxious)Do you think so? I've never really been into drugs... I don't know how that would have happened, unless... %(surprised)Someone did it to me!? Maybe it was a kidnapping and I was incapacitated by a hallucinogenic powder bomb!\n\n %(indignant)Aww... I bet my clothes are covered in the stuff. I'll have to get them super clean so it doesn't hit me again.%(end)")
 }
 
 OnTheorizing.DefinitelyDead
@@ -636,19 +636,24 @@ OnTheorizing.JustADream
 	AutoPause("\0%(sweat(6))You think so? This would make an interesting story when I wake up, then.%(end)")
 }
 
+OnTheorizing.BugAteBrain
+{
+	AutoPause("\0%(indignant)Ew, ew ew, ew ew ew, no!! I hope it isn't that one! That's too gross...%(end)")
+}
+
 OnWhenITalk.DoesntSoundLikeThem
 {
-	AutoPause("\0%(relieved(2))I see! Good, that's good...\n\n%(normal(2))Wait, what does that mean? %(anxious(2))Is it an overlapping voices sort of thing, like in those horror films?\n\n\_q\![*]\__q[OnWhenITalk.DoesntSoundLikeThem.ItsScary]Yes,\![dummy] it's scary.\__q\n\n\_q\![*]\__q[OnWhenITalk.DoesntSoundLikeThem.LikeAnEcho]No,\![dummy] it's like an echo.\__q\n\n\![*]\__q[OnWhenITalk.DoesntSoundLikeThem.HardToExplain]It's hard to explain.\__q")
+	AutoPause("\0%(relieved(2))I see! Good, that's good...\n\n %(normal(2))Wait, what does that mean? %(anxious(2))Is it an overlapping voices sort of thing, like in those horror films?\n\n\_q\![*]\__q[OnWhenITalk.DoesntSoundLikeThem.ItsScary]Yes,\![dummy] it's scary.\__q\n\n\![*]\__q[OnWhenITalk.DoesntSoundLikeThem.LikeAnEcho]No,\![dummy] it's like an echo.\__q\n\n\![*]\__q[OnWhenITalk.DoesntSoundLikeThem.HardToExplain]It's hard to explain.\__q")
 }
 
 OnWhenITalk.DoesntSoundLikeThem.HardToExplain
 {
-	AutoPause("\0%(embarrassed)If you're as close to them as you seem, any difference would seem obvious to you, so it makes sense...\n\n%(sweat)Still, that makes me even more curious to figure out the difference!%(end)")
+	AutoPause("\0%(embarrassed)If you're as close to them as you seem, any difference would seem obvious to you, so it makes sense...\n\n %(sweat)Still, that makes me even more curious to figure out the difference!%(end)")
 }
 
 OnWhenITalk.DoesntSoundLikeThem.ItsScary
 {
-	AutoPause("\0%(surprised)Ohh, am I scary? Do I scare you?\n\n%(smile)OoOoOo I'm going to climb on the ceiling and make the walls bleed! Watch out!%(end)")
+	AutoPause("\0%(surprised)Ohh, am I scary? Do I scare you?\n\n %(smile)OoOoOo I'm going to climb on the ceiling and make the walls bleed! Watch out!%(end)")
 }
 
 OnWhenITalk.DoesntSoundLikeThem.LikeAnEcho
@@ -658,7 +663,7 @@ OnWhenITalk.DoesntSoundLikeThem.LikeAnEcho
 
 OnWhenITalk.SoundCompletelyDifferent
 {
-	AutoPause("\0%(thinking)Huh... I didn't expect that. %(sweat)I wish I could ask if I sound like me, but you can't exactly know, can you...\n\n%(anxious)Oh well.%(end)")
+	AutoPause("\0%(thinking)Huh... I didn't expect that. %(sweat)I wish I could ask if I sound like me, but you can't exactly know, can you...\n\n %(anxious)Oh well.%(end)")
 }
 
 OnWhenITalk.TheyDontSpeak
@@ -678,5 +683,5 @@ OnWhenITalk.TheyDontSpeak.Right
 
 OnWhenITalk.UsingTheirVoice
 {
-	AutoPause("\0%(sweat)Ha, that's probably confusing, huh? %(thinking)Maybe I should start announcing myself when I speak... \n\n%(smile)Here's an idea! Get me confetti and I'll throw some at you whenever it's me.%(end)")
+	AutoPause("\0%(sweat)Ha, that's probably confusing, huh? %(thinking)Maybe I should start announcing myself when I speak...\n\n %(smile)Here's an idea! Get me confetti and I'll throw some at you whenever it's me.%(end)")
 }
