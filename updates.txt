@@ -6,7 +6,7 @@ file,dev_info.txt24d4ddee8c47a4711115120fa00beebesize=6291date=2024-11-03T09:
 file,emerg.diceefa7845fe9938e113211d7aefbfdc4esize=80date=2024-10-26T20:46:31
 file,expressions.dic008d4e215822932d3cfe9f2042fc9bf6size=3385date=2024-10-29T18:29:46
 file,install.txt36230dd011299693e310f331c2206253size=64date=2024-10-25T21:12:24
-file,main.dic68eed00df7c04f0bbd43d0b7e7f81c75size=3846date=2024-11-03T08:49:04
+file,main.dica8144708bd1d6835d873ac7d9dcddeb9size=3846date=2024-11-03T13:33:19
 file,menu.dic530531ad49c734684b56cc8c61891c29size=15694date=2024-11-03T08:33:43
 file,randomtalk.dic3186c4c8f65e18102c0be1d5fb4a45c9size=52398date=2024-11-03T08:58:44
 file,readme.txta35f2d5686029508e0aea4524344a301size=1731date=2024-11-02T12:59:58
