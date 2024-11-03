@@ -10,6 +10,10 @@ Ghosts that have not yet been calibrated will have a calibration button on the m
 
 If you are a ghost developer, you can provide a custom calibration for your ghost. This will complete calibration automatically when the user opens the plugin's menu to provide an easier experience for the user, and it will allow you to maximize your ghost's compatbility. Once you have spent some time using the plugin and are familiar with its effects, check the information in dev_info.txt!
 
+Developed by:
+Galla https://gallathegalla.github.io/gtg-ghosts/
+Zichqec https://ukagaka.zichqec.com/
+
 For specific content warnings, scroll down.
 
 
