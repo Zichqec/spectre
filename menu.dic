@@ -272,6 +272,7 @@ OnCalibrationStart : all
 	MenuToReturnTo = "OnSettings"
 	if reference[1] == "mainmenu"; MenuToReturnTo = "OnMainMenu"
 	CalibrationConfirm = "OnCalibrationStart"
+	//CalibrationList = "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1" //this is done below, idk why
 	
 	"\0\_q\*\b[2]\![no-autopause]\![set,autoscroll,disable]"
 	"\![raise,OnSpectrePlugin.ConfirmCalibration]"
@@ -293,22 +294,20 @@ OnCalibration : all
 	
 	_index = CalibrationIndex(CurrentGhost)
 	
-	if reference[3] == "yes"
+	_toset = reference[2] - 1
+	if reference[3] == "alt"; _toset = reference[4]
+	
+	if reference[3] != ""
 	{
-		if CalibrationList != ""; CalibrationList += ","
-		CalibrationList += "%(TOINT(reference[2]) - 1)"
+		CalibrationList[_toset] = "%(TOINT(reference[2]) - 1)"
 	}
-	elseif reference[3] == "no"
-	{
-		if CalibrationList != ""; CalibrationList += ","
-		CalibrationList += "-1"
-	}
+	
 	
 	"\0\_q\*\b[2]\![no-autopause]\![set,autoscroll,disable]"
 	"%(Heading('Calibration'))"
 	if reference[1] == "ExpressionsYesNo"
 	{
-		CalibrationList = ""
+		CalibrationList = "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1"
 		if _index == -1
 		{
 			GhostCalibrations.Name ,= CurrentGhost
@@ -322,12 +321,10 @@ OnCalibration : all
 	}
 	elseif reference[2] == "10"
 	{
-		CalibrationList += ",-1,-1"
 		_amt = ASEARCHEX("-1",SPLIT(CalibrationList,","))
 		_amt = ARRAYSIZE(_amt)
 		
 		GhostCalibrations.List[_index] = CalibrationList
-		CalibrationList = ""
 		"\s[0]"
 		if _amt <= 2
 		{
