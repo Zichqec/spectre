@@ -1,6 +1,7 @@
 PluginLoad
 {
 	LastTalkTime = GETSECCOUNT
+	LastTalk = ""
 	if !ISVAR("BootedGhosts"); BootedGhosts = IARRAY
 	if !ISVAR("aitalkinterval"); aitalkinterval = 900
 	
@@ -67,7 +68,69 @@ OnSecondChange
 OnSpectreTalk
 {
 	LastTalkTime = GETSECCOUNT
-	if reference[0] == ""
+	
+	if ARRAYSIZE(DialogueDisperser) == 0
+	{
+		DialogueDisperser = ("reg","reg","reg","reg","reg","reg","reg","question")
+		DialogueDisperser = ArrayShuffle(DialogueDisperser)
+	}
+	_isquestion = 0
+	if DialogueDisperser[0] == "question"; _isquestion = 1
+	DialogueDisperser[0] = IARRAY
+	
+	DetermineTalkTarget(reference[0])
+	
+	if Flag("Stage 3") && TodaysPool == "dissociated" || !Flag("Stage 1"); GreetedToday = 1 //this feels wibbly wobbly
+	if !MetSpectre && Flag("Stage 0 greeted") //Not met but did greet
+	{
+		LastTalk = Boot.Greeted
+	}
+	elseif !GreetedToday //"boot" dialogues
+	{
+		if Flag("Stage 2"); LastTalk = Boot.Normal
+		elseif Flag("Stage 1") && Flag("Second boot complete"); LastTalk = Boot.Returned
+		elseif Flag("Stage 1"); LastTalk = Boot.Greeted
+	}
+	else
+	{
+		if Flag("Stage 3"); LastTalk = Stage3Talk
+		elseif Flag("Stage 2")
+		{
+			if _isquestion; LastTalk = Stage2Questions
+			else; LastTalk = Stage2Talk
+		}
+		elseif Flag("Stage 1")
+		{
+			if _isquestion; LastTalk = Stage1Questions
+			else; LastTalk = Stage1Talk
+		}
+		else
+		{
+			AddFlag("Spectre seen")
+			LastTalk = Stage0Talk
+			//LastTalk = "\0%(blank)" + LastTalk + "%(end)" //think i dont need this...
+		}
+	}
+	LastTalk = AutoPause(LastTalk)
+	LastTalk = "\![no-autopause]\![timerraise,0,1,OnSpectrePlugin.Possession]" + LastTalk
+	LastTalk
+}
+
+ArrayShuffle
+{
+	_array = _argv
+	_output = IARRAY
+	while ARRAYSIZE(_array) > 0
+	{
+		_output ,= ANY(_array)
+		_array[LSO] = IARRAY
+	}
+	_output
+}
+
+DetermineTalkTarget
+{
+	if _argv[0] == ""
 	{
 		_possible_ghosts = IARRAY
 		foreach BootedGhosts; _ghost
@@ -87,33 +150,6 @@ OnSpectreTalk
 	TalkingGhost = res_target
 	res_marker = eventfrom
 	res_script_option = "nobreak"
-	
-	if Flag("Stage 3") && TodaysPool == "dissociated" || !Flag("Stage 1"); GreetedToday = 1 //this feels wibbly wobbly
-	if !MetSpectre && Flag("Stage 0 greeted") //Not met but did greet
-	{
-		LastTalk = Boot.Greeted
-	}
-	elseif !GreetedToday //"boot" dialogues
-	{
-		if Flag("Stage 2"); LastTalk = Boot.Normal
-		elseif Flag("Stage 1") && Flag("Second boot complete"); LastTalk = Boot.Returned
-		elseif Flag("Stage 1"); LastTalk = Boot.Greeted
-	}
-	else
-	{
-		if Flag("Stage 3"); LastTalk = Stage3Talk
-		elseif Flag("Stage 2"); LastTalk = Stage2Talk
-		elseif Flag("Stage 1"); LastTalk = Stage1Talk
-		else
-		{
-			AddFlag("Spectre seen")
-			LastTalk = Stage0Talk
-			//LastTalk = "\0%(blank)" + LastTalk + "%(end)" //think i dont need this...
-		}
-	}
-	LastTalk = AutoPause(LastTalk)
-	LastTalk = "\![no-autopause]\![timerraise,0,1,OnSpectrePlugin.Possession]" + LastTalk
-	LastTalk
 }
 
 //writing this again cuz i'll die without it... and hey! what do you know! YAYA as PLUGIN doesn't have OnTranslateInternal...

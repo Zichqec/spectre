@@ -129,7 +129,10 @@ Stage1Talk : nonoverlap_pool
 
 	"\0%(normal)\f[italic,1]You're\f[italic,default] not playing some sort of trick on me, are you? %(angry)If you are, then, then... cut it out! %(discouraged)It's not funny...%(end)"
 	*/
-	
+}
+
+Stage1Questions : nonoverlap_pool
+{
 	//STAGES
 	all : /
 	{
@@ -172,57 +175,66 @@ OnStage1.FeelLost.KnowWhereIAm : all
 
 	OnStage1.FeelLost.KnowWhereIAm.No : all
 	{
-		AutoPause("\0%(anxious)... Oh... So, wherever I am, I'm not with you... Even though we're talking? That seems wrong...%(end)")
+		LastTalk = AutoPause("\0%(anxious)... Oh... So, wherever I am, I'm not with you... Even though we're talking? That seems wrong...%(end)")
+		LastTalk
 	}
 
 	OnStage1.FeelLost.KnowWhereIAm.Ellipses : all
 	{
-		AutoPause("\0%(anxious(6))... Oh... okay..%(end)")
+		LastTalk = AutoPause("\0%(anxious(6))... Oh... okay..%(end)")
+		LastTalk
 	}
 
 OnStage1.FeelLost.NotLikeYouAre : all
 {
 	AddFlag("User is not lost")
 	
-	AutoPause("\0%(normal)You mean, like, metaphorically? %(sweat)Because I understand that, but it isn't really... what I mean... I'll take that as a no, though, I guess...%(end)")
+	LastTalk = AutoPause("\0%(normal)You mean, like, metaphorically? %(sweat)Because I understand that, but it isn't really... what I mean... I'll take that as a no, though, I guess...%(end)")
+	LastTalk
 }
 	
 OnStage1.FeelHeavy.CanYouRemember : all
 {
 	AddFlag("Spectre hasn't eaten")
 	
-	AutoPause("\0%(thinking)No, no no, I can't... I mean, I know what I last ate at home? But I haven't been home in... in... It's been a long time. Surely I must have eaten since then, right...?%(end)")
+	LastTalk = AutoPause("\0%(thinking)No, no no, I can't... I mean, I know what I last ate at home? But I haven't been home in... in... It's been a long time. Surely I must have eaten since then, right...?%(end)")
+	LastTalk
 }
 
 OnStage1.FeelHeavy.LastDrink : all
 {
 	AddFlag("Spectre hasn't drank")
 	
-	AutoPause("\0%(thinking)\![raiseplugin,Spectre,OnAddFlag,Spectre hasn't drank]I'm not sure... I feel like I'm drenched all the time, but I can't remember drinking any of it... Can you absorb enough water through your skin to not have to drink? Because maybe that's what I've been doing...%(end)")
+	LastTalk = AutoPause("\0%(thinking)\![raiseplugin,Spectre,OnAddFlag,Spectre hasn't drank]I'm not sure... I feel like I'm drenched all the time, but I can't remember drinking any of it... Can you absorb enough water through your skin to not have to drink? Because maybe that's what I've been doing...%(end)")
+	LastTalk
 }
 
 OnStage1.FeelHeavy.SureYoureBreathing : all
 {
 	AddFlag("Spectre doesn't breathe")
 	
-	AutoPause("\0%(angry)I- I don't generally have to think about breathing, do you!? What are you trying to say? Of course I... %(anxious)Of course I'm...\n\n\f[italic,1]Am\f[italic,default] I breathing...?%(end)")
+	LastTalk = AutoPause("\0%(angry)I-\w8 I don't generally have to think about breathing, do you!? What are you trying to say? Of course I... %(anxious)Of course I'm...\n\n \f[italic,1]Am\f[italic,default] I breathing...?%(end)")
+	LastTalk
 }
 
 OnStage1.WhatsHappening.Psychic : all
 {
-	AutoPause("\0%(sweat)Ha... Y-yeah, yeah yeah, maybe that's it! Maybe I'm having some kind of... out-of-body experience, and our minds just happened to connect?\n\n %(thinking)Yeah... Maybe... %(discouraged)Maybe that's it...%(end)")
+	LastTalk = AutoPause("\0%(sweat)Ha... Y-yeah, yeah yeah, maybe that's it! Maybe I'm having some kind of... out-of-body experience, and our minds just happened to connect?\n\n %(thinking)Yeah... Maybe... %(discouraged)Maybe that's it...%(end)")
+	LastTalk
 }
 
 OnStage1.WhatsHappening.SureYoureAlive : all
 {
 	AddFlag("Stage 2")
 	
-	AutoPause("\0%(embarrassed(2))I am, I am I am, I have to be! %(anxious(2))If I wasn't... if I wasn't, that would mean... %(angry(2))No, no no, no no no! I can't be dead! I can't... %(thinking(2))can I...?%(end)")
+	LastTalk = AutoPause("\0%(embarrassed(2))I am, I am I am, I have to be! %(anxious(2))If I wasn't... if I wasn't, that would mean... %(angry(2))No, no no, no no no! I can't be dead! I can't... %(thinking(2))can I...?%(end)")
+	LastTalk
 }
 
 OnStage1.WhatsHappening.DontKnow : all
 {
-	AutoPause("\0%(normal)Yeah... I didn't think you would... I hope you'll still keep me company, though. This is all confusing, but having someone to talk to helps keep my head clear.%(end)")
+	LastTalk = AutoPause("\0%(normal)Yeah... I didn't think you would... I hope you'll still keep me company, though. This is all confusing, but having someone to talk to helps keep my head clear.%(end)")
+	LastTalk
 }
 
 Stage2Talk : nonoverlap_pool
@@ -267,7 +279,10 @@ Stage2Talk : nonoverlap_pool
 	/*
 	"\0%(anxious)If I'm dead, then I wonder what \f[italic,1]you\f[italic,default] are. %(thinking)A medium? A sorcerer? A witch...?\n\n %(angry)If you can help me, then why don't you?%(end)" //maybe choices here but i'm not sure what they would be, so... putting a pin in it ye, could also reword like "If you could help me, you would, right!?" or somesuch maybe but i kind of like the misdirected anger... yeah same
 	*/
-	
+}
+
+Stage2Questions : nonoverlap_pool
+{
 	//STAGES
 	all : /
 	{
@@ -290,14 +305,16 @@ OnStage2.WhyPunished.RememberAnything : all
 {
 	AddFlag("Spectre did something bad")
 	
-	AutoPause("\0%(thinking(4))I'm not sure... I know I hadn't been home in a few days, and that I was... looking for something? Or I needed something? I remember there was a house... %(anxious(4))I'm not sure \f[italic,1]what\f[italic,default], but I might have done \f[italic,1]something\f[italic,default]... It's all so fuzzy...%(end)")
+	LastTalk = AutoPause("\0%(thinking(4))I'm not sure... I know I hadn't been home in a few days, and that I was... looking for something? Or I needed something? I remember there was a house... %(anxious(4))I'm not sure \f[italic,1]what\f[italic,default], but I might have done \f[italic,1]something\f[italic,default]... It's all so fuzzy...%(end)")
+	LastTalk
 }
 
 OnStage2.WhyPunished.SomeonesBadSide : all
 {
 	AddFlag("Spectre did something bad")
 	
-	AutoPause("\0%(angry(4))What did I ever do to deserve this! %(anxious(4))I mean, I know I've pulled some pranks on people before, but I've been a good person. The only thing I've ever... %(thinking(4))Did I...? I think I remember... taking something... %(discouraged(4))Is this my own fault...?%(end)")
+	LastTalk = AutoPause("\0%(angry(4))What did I ever do to deserve this! %(anxious(4))I mean, I know I've pulled some pranks on people before, but I've been a good person. The only thing I've ever... %(thinking(4))Did I...? I think I remember... taking something... %(discouraged(4))Is this my own fault...?%(end)")
+	LastTalk
 }
 
 OnStage2.NeedToThinkAbout.ReallyThatBad : all
@@ -305,7 +322,8 @@ OnStage2.NeedToThinkAbout.ReallyThatBad : all
 	AddFlag("Stage 3")
 	TodaysPool = "miserable"
 	
-	AutoPause("\0%(thinking(4))I'm not sure... I don't think I can judge that sort of thing for myself. %(sweat(4))I do know that if I'm trapped here anyway, I might as well try to figure that out... In a weird way, it kind of makes me feel better to think there might be a reason, even if it feels unfair... Maybe I just need to figure out how to make up for it, and then everything will be okay.%(end)")
+	LastTalk = AutoPause("\0%(thinking(4))I'm not sure... I don't think I can judge that sort of thing for myself. %(sweat(4))I do know that if I'm trapped here anyway, I might as well try to figure that out... In a weird way, it kind of makes me feel better to think there might be a reason, even if it feels unfair... Maybe I just need to figure out how to make up for it, and then everything will be okay.%(end)")
+	LastTalk
 }
 
 OnStage2.NeedToThinkAbout.BeOk : all
@@ -313,7 +331,8 @@ OnStage2.NeedToThinkAbout.BeOk : all
 	AddFlag("Stage 3")
 	TodaysPool = "miserable"
 	
-	AutoPause("\0%(thinking(4))I don't know? I mean... I think I can feel my body, so I can't be dead. %(discouraged(4))But I also... can't be alive, right...? That's hard to deal with on the best of days... %(thinking(4))Either way, until we can figure something out, I'd rather try to look on the bright side of things. %(smile(4))I'm not alone anymore, and I'm starting to remember more about what happened... Maybe something will change from here.%(end)")
+	LastTalk = AutoPause("\0%(thinking(4))I don't know? I mean... I think I can feel my body, so I can't be dead. %(discouraged(4))But I also... can't be alive, right...? That's hard to deal with on the best of days... %(thinking(4))Either way, until we can figure something out, I'd rather try to look on the bright side of things. %(smile(4))I'm not alone anymore, and I'm starting to remember more about what happened... Maybe something will change from here.%(end)")
+	LastTalk
 }
 
 Stage3Talk : nonoverlap_pool
@@ -608,37 +627,44 @@ Stage3Talk : nonoverlap_pool
 
 OnHighControl.HappyToMeet
 {
-	"\0%(smile(6))Ha! I knew it! What a softie.%(end)"
+	LastTalk = AutoPause("\0%(smile(6))Ha! I knew it! What a softie.%(end)")
+	LastTalk
 }
 
 OnHighControl.UnhappyToMeet
 {
-	"\0%(indignant)Oh yeah? If you hate me and keep me around anyways, I think that says a lot about you.\n\n\f[color,disable]%(smile)... Hehe.%(end)"
+	LastTalk = AutoPause("\0%(indignant)Oh yeah? If you hate me and keep me around anyways, I think that says a lot about you.\n\n\f[color,disable]%(smile)... Hehe.%(end)")
+	LastTalk
 }
 
 OnTheorizing.SpectreTheory
 {
-	AutoPause("\0%(thinking)Maybe I'm the patient 0 for a new disease, and everything I'm experiencing is in my head. %(surprised)Like a fever dream! Maybe I'm actually in bed right now with a fever of 105!%(end)")
+	LastTalk = AutoPause("\0%(thinking)Maybe I'm the patient 0 for a new disease, and everything I'm experiencing is in my head. %(surprised)Like a fever dream! Maybe I'm actually in bed right now with a fever of 105!%(end)")
+	LastTalk
 }
 
 OnTheorizing.AVividHallucination
 {
-	AutoPause("\0%(anxious)Do you think so? I've never really been into drugs... I don't know how that would have happened, unless... %(surprised)Someone did it to me!? Maybe it was a kidnapping and I was incapacitated by a hallucinogenic powder bomb!\n\n %(indignant)Aww... I bet my clothes are covered in the stuff. I'll have to get them super clean so it doesn't hit me again.%(end)")
+	LastTalk = AutoPause("\0%(anxious)Do you think so? I've never really been into drugs... I don't know how that would have happened, unless... %(surprised)Someone did it to me!? Maybe it was a kidnapping and I was incapacitated by a hallucinogenic powder bomb!\n\n %(indignant)Aww... I bet my clothes are covered in the stuff. I'll have to get them super clean so it doesn't hit me again.%(end)")
+	LastTalk
 }
 
 OnTheorizing.DefinitelyDead
 {
-	AutoPause("\0%(unamused(6))What? Just like that? What a boring way to go...%(end)")
+	LastTalk = AutoPause("\0%(unamused(6))What? Just like that? What a boring way to go...%(end)")
+	LastTalk
 }
 
 OnTheorizing.JustADream
 {
-	AutoPause("\0%(sweat(6))You think so? This would make an interesting story when I wake up, then.%(end)")
+	LastTalk = AutoPause("\0%(sweat(6))You think so? This would make an interesting story when I wake up, then.%(end)")
+	LastTalk
 }
 
 OnTheorizing.BugAteBrain
 {
-	AutoPause("\0%(indignant)Ew, ew ew, ew ew ew, no!! I hope it isn't that one! That's too gross...%(end)")
+	LastTalk = AutoPause("\0%(indignant)Ew, ew ew, ew ew ew, no!! I hope it isn't that one! That's too gross...%(end)")
+	LastTalk
 }
 
 OnWhenITalk.DoesntSoundLikeThem
@@ -648,22 +674,26 @@ OnWhenITalk.DoesntSoundLikeThem
 
 OnWhenITalk.DoesntSoundLikeThem.HardToExplain
 {
-	AutoPause("\0%(embarrassed)If you're as close to them as you seem, any difference would seem obvious to you, so it makes sense...\n\n %(sweat)Still, that makes me even more curious to figure out the difference!%(end)")
+	LastTalk = AutoPause("\0%(embarrassed)If you're as close to them as you seem, any difference would seem obvious to you, so it makes sense...\n\n %(sweat)Still, that makes me even more curious to figure out the difference!%(end)")
+	LastTalk
 }
 
 OnWhenITalk.DoesntSoundLikeThem.ItsScary
 {
-	AutoPause("\0%(surprised)Ohh, am I scary? Do I scare you?\n\n %(smile)OoOoOo I'm going to climb on the ceiling and make the walls bleed! Watch out!%(end)")
+	LastTalk = AutoPause("\0%(surprised)Ohh, am I scary? Do I scare you?\n\n %(smile)OoOoOo I'm going to climb on the ceiling and make the walls bleed! Watch out!%(end)")
+	LastTalk
 }
 
 OnWhenITalk.DoesntSoundLikeThem.LikeAnEcho
 {
-	AutoPause("\0%(thinking(6))Like the throat is a box that I'm sitting inside of? Neat.%(end)")
+	LastTalk = AutoPause("\0%(thinking(6))Like the throat is a box that I'm sitting inside of? Neat.%(end)")
+	LastTalk
 }
 
 OnWhenITalk.SoundCompletelyDifferent
 {
-	AutoPause("\0%(thinking)Huh... I didn't expect that. %(sweat)I wish I could ask if I sound like me, but you can't exactly know, can you...\n\n %(anxious)Oh well.%(end)")
+	LastTalk = AutoPause("\0%(thinking)Huh... I didn't expect that. %(sweat)I wish I could ask if I sound like me, but you can't exactly know, can you...\n\n %(anxious)Oh well.%(end)")
+	LastTalk
 }
 
 OnWhenITalk.TheyDontSpeak
@@ -673,15 +703,18 @@ OnWhenITalk.TheyDontSpeak
 
 OnWhenITalk.TheyDontSpeak.No
 {
-	AutoPause("\0%(discouraged(6))Oh...%(end)")
+	LastTalk = AutoPause("\0%(discouraged(6))Oh...%(end)")
+	LastTalk
 }
 
 OnWhenITalk.TheyDontSpeak.Right
 {
-	AutoPause("\0%(thinking)I wonder what would happen if I took over one with a voice box then. %(smile)Hey, think about getting one for me. It'll be fun!%(end)")
+	LastTalk = AutoPause("\0%(thinking)I wonder what would happen if I took over one with a voice box then. %(smile)Hey, think about getting one for me. It'll be fun!%(end)")
+	LastTalk
 }
 
 OnWhenITalk.UsingTheirVoice
 {
-	AutoPause("\0%(sweat)Ha, that's probably confusing, huh? %(thinking)Maybe I should start announcing myself when I speak...\n\n %(smile)Here's an idea! Get me confetti and I'll throw some at you whenever it's me.%(end)")
+	LastTalk = AutoPause("\0%(sweat)Ha, that's probably confusing, huh? %(thinking)Maybe I should start announcing myself when I speak...\n\n %(smile)Here's an idea! Get me confetti and I'll throw some at you whenever it's me.%(end)")
+	LastTalk
 }
