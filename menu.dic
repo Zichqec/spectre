@@ -144,19 +144,22 @@ OnSpectreSeen : all
 		OnSpectreSeen.ICanSee : all
 		{
 			AddFlag("Stage 1")
-			AutoPause("\0%(blank)O-oh... Maybe you can try to find me? Or, I'll try to find you! %(fadein)\_w[1500]Just... keep talking to me until then? Please?%(end)")
+			LastTalk = AutoPause("\0%(blank)O-oh... Maybe you can try to find me? Or, I'll try to find you! %(fadein)\_w[1500]Just... keep talking to me until then? Please?%(end)")
+			LastTalk
 		}
 		
 		OnSpectreSeen.ItsDarkHere : all
 		{
 			AddFlag("Stage 1")
-			AutoPause("\0%(blank)D-don't be scared! I'll try to find you... Or maybe you'll find me? %(fadein)\_w[1500]... Either way, we should keep talking so we don't get even more lost, right?%(end)")
+			LastTalk = AutoPause("\0%(blank)D-don't be scared! I'll try to find you... Or maybe you'll find me? %(fadein)\_w[1500]... Either way, we should keep talking so we don't get even more lost, right?%(end)")
+			LastTalk
 		}
 	
 	OnSpectreSeen.Silent : all
 	{
 		_ending = SpookyText.grow("Where did you go!?")
-		AutoPause("\0%(blank)...? \_w[1500]Hello? \_w[1500]Where did you go...? \_w[1500]Where did you go? \_w[1500]%(_ending)%(end)")
+		LastTalk = AutoPause("\0%(blank)...? \_w[1500]Hello? \_w[1500]Where did you go...? \_w[1500]Where did you go? \_w[1500]%(_ending)%(end)")
+		LastTalk
 	}
 
 	OnSpectreSeen.StillThere : all
@@ -174,21 +177,24 @@ OnSpectreSeen : all
 		{
 			AddFlag("Stage 1")
 			
-			AutoPause("\0%(blank)... I guess it's okay. Just... please don't do it again?\n\n%(fadein)\_w[1500]I was... really scared...%(end)")
+			LastTalk = AutoPause("\0%(blank)... I guess it's okay. Just... please don't do it again?\n\n%(fadein)\_w[1500]I was... really scared...%(end)")
+			LastTalk
 		}
 
 		OnSpectreSeen.IWasScared : all
 		{
 			AddFlag("Stage 1")
 			
-			AutoPause("\0%(blank)Scared? Of me? \n\n%(fadein)\_w[1500]... I'm sorry. I didn't mean to scare you. I'm not sure what I did, but I'll try not to do it again, okay?%(end)")
+			LastTalk = AutoPause("\0%(blank)Scared? Of me? \n\n%(fadein)\_w[1500]... I'm sorry. I didn't mean to scare you. I'm not sure what I did, but I'll try not to do it again, okay?%(end)")
+			LastTalk
 		}
 
 OnSecondSeen : all
 {
 	AddFlag("Second boot complete")
 	
-	AutoPause("\0%(discouraged)\f[color,disable]What... \f[italic,1]hic... \f[italic,default]\f[color,default]You came back? %(smile)You really came back... I'm so glad... %(thinking)I thought I'd be alone again...%(end)")
+	LastTalk = AutoPause("\0%(discouraged)\f[color,disable]What... \f[italic,1]hic... \f[italic,default]\f[color,default]You came back? %(smile)You really came back... I'm so glad... %(thinking)I thought I'd be alone again...%(end)")
+	LastTalk
 }
 
 OnReachOut
@@ -308,11 +314,8 @@ OnCalibration : all
 	
 	_toset = reference[2] - 1
 	if reference[3] == "alt"; _toset = reference[4]
-	
-	if reference[3] != ""
-	{
-		CalibrationList[_toset] = "%(TOINT(reference[2]) - 1)"
-	}
+	elseif reference[3] == "yes" ; CalibrationList[_toset] = "%(TOINT(reference[2]) - 1)"
+	elseif reference[3] == "no"; CalibrationList[_toset] = "-1"
 	
 	
 	"\0\_q\*\b[2]\![no-autopause]\![set,autoscroll,disable]"
