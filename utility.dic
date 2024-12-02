@@ -86,6 +86,34 @@ end
 	"\![timerraise,15000,1,OnSpectrePlugin.Possession]"
 }
 
+//randomly make the input be an array of letters or an array of words - adjustable with _argv[1]
+AtomizeInput
+{
+	_input = _argv[0]
+	_output = IARRAY
+	
+	_letters_or_words = RAND(2)
+	if _argv[1] != ""; _letters_or_words = _argv[1]
+	
+	if _letters_or_words == 0
+	{
+		for _i = 0; _i < STRLEN(_input); _i++
+		{
+			_output ,= SUBSTR(_input,_i,1)
+		}
+	}
+	else
+	{
+		_string = SPLIT(_input," ")
+		for _i = 0; _i < ARRAYSIZE(_string); _i++
+		{
+			if ARRAYSIZE(_output) > 0; _output ,= " "
+			_output ,= _string[_i]
+		}
+	}
+	_output
+}
+
 SpookyText
 {
 	_list = GETFUNCLIST("SpookyText.")
@@ -96,38 +124,41 @@ SpookyText
 
 SpookyText.scatter : all
 {
-	_amt = STRLEN(_argv[0])
-	for _i = 0; _i < _amt; _i++
+	_input = AtomizeInput(_argv[0])
+	
+	for _i = 0; _i < ARRAYSIZE(_input); _i++
 	{
+		if _input[_i] == " "; continue
+		
 		"\f[height,%(ANY('+,-'))%(RAND(2) + 1)]"
 		"\_l[%(RAND(247)),%(RAND(25))]"
-		SUBSTR(_argv[0],_i,1)
+		_input[_i]
 	}
 }
 
 SpookyText.droopy : all
 {
 	_y = 0
-	_word = _argv[0]
-	for _i = 0; _i < STRLEN(_word); _i++
+	_word = AtomizeInput(_argv[0])
+	for _i = 0; _i < ARRAYSIZE(_word); _i++
 	{
 		_randy = RAND(11) - 5
 		_y += _randy
 		if _y < 0; _y = 0
 		"\_l[,%(_y)]"
-		SUBSTR(_word,_i,1)
+		_word[_i]
 	}
 }
 
 SpookyText.drippy : all
 {
-	_word = _argv[0]
-	for _i = 0; _i < STRLEN(_word); _i++
+	_word = AtomizeInput(_argv[0])
+	for _i = 0; _i < ARRAYSIZE(_word); _i++
 	{
 		for _y = 0; _y < 25; _y++
 		{
 			"\_l[%(_i)em,%(_y)]"
-			SUBSTR(_word,_i,1)
+			_word[_i]
 		}
 	}
 }
@@ -148,23 +179,23 @@ SpookyText.overflow : all
 
 SpookyText.grow : all
 {
-	_word = _argv[0]
+	_word = AtomizeInput(_argv[0])
 	"\f[height,6]"
-	for _i = 0; _i < STRLEN(_word); _i++
+	for _i = 0; _i < ARRAYSIZE(_word); _i++
 	{
-		if STRLEN(_word) < 20 || _i % 2 == 0; "\f[height,+1]"
-		SUBSTR(_word,_i,1)
+		if ARRAYSIZE(_word) < 20 || _i % 2 == 0; "\f[height,+1]"
+		_word[_i]
 	}
 }
 
 SpookyText.shrink : all
 {
-	_word = _argv[0]
+	_word = AtomizeInput(_argv[0])
 	"\f[height,20]"
-	for _i = 0; _i < STRLEN(_word); _i++
+	for _i = 0; _i < ARRAYSIZE(_word); _i++
 	{
-		if STRLEN(_word) < 20 || _i % 2 == 0; "\f[height,-1]"
-		SUBSTR(_word,_i,1)
+		if ARRAYSIZE(_word) < 20 || _i % 2 == 0; "\f[height,-1]"
+		_word[_i]
 	}
 }
 
@@ -222,6 +253,50 @@ SpookyText.crossword : all
 			_x++
 			_y = 0
 		}
+	}
+}
+
+SpookyText.linebyline : all
+{
+	_input = IARRAY
+	_string = SPLIT(_argv[0]," ")
+	for _i = 0; _i < ARRAYSIZE(_string); _i++
+	{
+		if ARRAYSIZE(_input) > 0; _input ,= " "
+		_input ,= _string[_i]
+	}
+	
+	_aligntype = RAND(6)
+	_alignindex = 0
+	
+	for _i = 0; _i < ARRAYSIZE(_input); _i++
+	{
+		if _aligntype == 3; "\f[align,center]" //center aligned
+		if _aligntype == 4; "\f[align,right]" //right aligned
+		
+		if _input[_i] == " "; continue
+		_input[_i]
+		"\n"
+		
+		if _aligntype == 1 //left & right
+		{
+			if _alignindex % 2 == 0; "\f[align,right]"
+			else; "\f[align,left]"
+		}
+		elseif _aligntype == 2 //left right & center
+		{
+			if _alignindex % 3 == 0; "\f[align,center]"
+			elseif _alignindex % 3 == 1; "\f[align,right]"
+			else; "\f[align,left]"
+		}
+		elseif _aligntype == 5 //back-and-forth
+		{
+			if _alignindex % 4 == 0; "\f[align,center]"
+			elseif _alignindex % 4 == 1; "\f[align,right]"
+			elseif _alignindex % 4 == 2; "\f[align,center]"
+			else; "\f[align,left]"
+		}
+		_alignindex++
 	}
 }
 
