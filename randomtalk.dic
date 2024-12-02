@@ -366,12 +366,12 @@ Stage3Talk : nonoverlap_pool
 		"\0%(surprised)Ow! %(anxious)What was that...?\n\n \_w[1500]%(thinking)Hmm... %(discouraged)Hopefully it doesn't come back.%(end)"
 		"\0%(anxious)Maybe I'll never be found, maybe I'll be down here after humanity has gone totally extinct.\n\n %(discouraged)I don't wanna be the last one left, all alone on the planet...%(end)"
 		"\0%(thinking)I wish I had something to work on. %(anxious)It'd get my mind off things...%(end)"
-		"\0%(anxious)If I could just move my arms a little... %(discouraged)Nothing. Not even a little bit.%(end)"
+		"\0%(anxious)If I could just move my arms a little... %(discouraged)Nothing. Not even a tiny bit.%(end)"
 		"\0%(thinking)I wonder if I'll eventually fade away... %(anxious)I hope it doesn't hurt.%(end)"
 		"\0%(discouraged)Days like today need to not exist.%(end)"
 		"\0%(anxious)I wonder if I'll eventually be picked apart by archaeologists or something.%(end)"
 		"\0%(anxious)I think if I somehow got out of here, I wouldn't even look at a bath again...%(end)"
-		"\0%(discouraged)Being cooped up on one place all the time sucks.%(end)"
+		"\0%(discouraged)Being cooped up in one place all the time sucks.%(end)"
 		"\0%(anxious)Wonder what's gonna nibble at me next. %(discouraged)Maybe a %(fishbug).%(end)"
 		"\0%(anxious)I wish I could melt away and become part of the water... %(discouraged)I could be evil and drag people in to drown with me. %(anxious)That sounds nice...%(end)"
 		"\0%(thinking)My %(toes) kinda hurt. %(anxious)Just... aching. Cold.%(end)"
@@ -434,7 +434,7 @@ Stage3Talk : nonoverlap_pool
 		"\0%(thinking)I wonder what my family will do with my recipes. %(relieved)I had collected a bunch of recipes passed down through my family and put them in a book. I added some favorites of mine, too... %(smile)I wanted to pass it down to my kids eventually. %(sweat)But, well... I guess kids are out of the question these days.%(end)"
 		"\0%(thinking)I miss a lot of things, but I might miss baking most of all. %(relieved)It was my stress relief, you know?%(end)"
 		"\0%(relieved)Feeling a little nostalgic... Thinking about all the movies I've seen. %(sweat)I guess they're probably considered old movies by now... %(smile)Makes me wonder what new stories they've told.%(end)"
-		"\0%(relieved)I wonder if they know how I died. The people up above, I mean. %(smile) Maybe I died so spectacularly they had to make a sign, like ""BEWARE OF %(TOUPPER(bears))"". Hehe!%(end)"
+		"\0%(relieved)I wonder if they know how I died. The people up above, I mean. %(smile)Maybe I died so spectacularly they had to make a sign, like ""BEWARE OF %(TOUPPER(bears))"". Hehe!%(end)"
 		"\0%(thinking)I wonder what my obituary was like. Did I even get one, or am I just a missing person? %(relieved)I guess I'll never know... but I'm guessing most dead people don't.%(end)"
 		"\0%(thinking)I guess a watery grave isn't the worst thing ever. %(relieved)To be honest, I never wanted to be buried in a cemetery... %(sweat)Sounds like a crowded place to be.%(end)"
 		"\0%(thinking)I wonder if my family still thinks of me... %(relieved)Then again, I don't know how much time has passed, they might all be dead... %(normal)It's really a shame that I'll never know.%(end)"
@@ -525,18 +525,18 @@ Stage3Talk : nonoverlap_pool
 			
 			if Flag("Theorized twice")
 			{
-				"\0%(smile(4))\![set,autoscroll,disable]I'm bored.\n\n ... Theory time!"
-				"\0%(smile(4))\![set,autoscroll,disable]I have a new idea about me. Want to hear it? Or, do you have another good one?"
-				"\0%(smile(4))\![set,autoscroll,disable]Pop quiz!\n\n Am I dead? Am I not dead? Quick, for 30 points, what's your answer?"
+				"\0%(smile(4))I'm bored.\n\n ... Theory time!"
+				"\0%(smile(4))I have a new idea about me. Want to hear it? Or, do you have another good one?"
+				"\0%(smile(4))Pop quiz!\n\n Am I dead? Am I not dead? Quick, for 30 points, what's your answer?"
 			}
 			
 			elseif Flag("Theorized once")
 			{
-				"\0%(thinking(4))\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized twice]Out of curiosity, have you come up with any more theories? For what's happening with the 'dead or alive' thing, you know?"
+				"\0%(thinking(4))\![raiseplugin,Spectre,OnAddFlag,Theorized twice]Out of curiosity, have you come up with any more theories? For what's happening with the 'dead or alive' thing, you know?"
 			}
 			else
 			{
-				"\0%(thinking(4))\![set,autoscroll,disable]\![raiseplugin,Spectre,OnAddFlag,Theorized once]We don't know what's going on with me, with the whole 'am I dead or am I alive' thing, right? Right. It makes me think, 'What's the harm in making some theories?' So... how about it? Have you had any ideas?"
+				"\0%(thinking(4))\![raiseplugin,Spectre,OnAddFlag,Theorized once]We don't know what's going on with me, with the whole 'am I dead or am I alive' thing, right? Right. It makes me think, 'What's the harm in making some theories?' So... how about it? Have you had any ideas?"
 			}
 			--
 			"\n\n\_q\![*]\__q[OnTheorizing.SpectreTheory]What's your theory?\__q\n\n%(_choice1)\n\n%(_choice2)\n\n%(_choice3)"
