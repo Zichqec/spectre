@@ -61,6 +61,11 @@ OnMainMenu : all
 			"\![*]Listen to Spectre"
 			"\![*]\__q[OnSpectreTalk,""%(CurrentGhost)""]Listen to Spectre\__q"
 		}
+		if SpectreOn && LastTalk != ""
+		{
+			"\n"
+			"\![*]\__q[OnSpectreLastTalk,""%(CurrentGhost)""]Remember what Spectre said\__q"
+		}
 		"\n\n"
 	}
 	
@@ -101,12 +106,19 @@ OnMainMenu : all
 		"CanGoToStage2 %(CanGoToStage2)\n"
 		"Calibration: %(GhostCalibrations.List[_index]) - %(_index)\n"
 		"\![*]\q[Tester!,script:""%(normal)Normal\_w[1000]\n %(embarrassed)Embarrassed\_w[1000]\n %(surprised)Surprised\_w[1000]\n %(anxious)Anxious\_w[1000]\n%(discouraged)Discouraged\_w[1000]\n%(smile)Smile\_w[1000]\n%(relieved)Relieved\_w[1000]\n%(angry)Angry\_w[1000]\n%(sweat)Sweat\_w[1000]\n%(indignant)Indignant\_w[1000]\n%(thinking)Thinking\_w[1000]\n%(unamused)Unamused""]\n"
+		"%(DialogueDisperser)\n"
 		"\n"
 	}
 	
 	"\f[color,default]"
 	"\![*]\q[Close menu,OnCancel]"
 	"\![unlock,balloonrepaint]"
+}
+
+OnSpectreLastTalk
+{
+	DetermineTalkTarget(reference[0])
+	LastTalk
 }
 
 OnSpectreSeen : all
