@@ -580,7 +580,7 @@ Stage3Talk : nonoverlap_pool
 		}
 		
 		"\0%(surprised)Hey, did you know that %(bearsarealiens)?\n\n %(smile)Just kidding! Hehe. %(relieved)I made that up.%(end)"
-		"\0%(thinking)I wonder what time it is, I wonder if the sun is up... %(sweat)Even if it %(('isn''t','is')[isdaytime]) for you, I'm not sure it is for me.%(end)"
+		"\0%(thinking)I wonder what time it is, I wonder if the sun is up... %(sweat)Even if it %(('isn''t','is')[isdaytime]) for you, I'm not sure it %(('isn''t','is')[isdaytime]) for me.%(end)"
 		"\0%(thinking)I wonder what great achievements humanity has accomplished since I've been gone. %(normal)Man, I'm probably missing out, huh. %(sweat)Or maybe we've started backsliding and I don't wanna know...\n\n %(smile)Well, as they say, ignorance is bliss! Hehe.%(end)"
 		"\0%(thinking)Kinda craving some %(candy)... %(normal)Even if you happened to have some, I suppose there's no way to share, huh. %(sweat)Oh well.%(end)"
 		"\0%(thinking)Man, I wonder if they're gonna put me in a museum one day. %(normal)If they find my body, I mean. %(thinking)I don't know if I want to be on display...\n\n %(relieved)I guess I might be super famous though, for what that's worth...%(end)"
