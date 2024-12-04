@@ -343,7 +343,7 @@ Stage3Talk : nonoverlap_pool
 		"\0%(discouraged)... I can't... feel my fingers... They were here a moment ago... Where... Give them back...%(end)"
 		"\0%(discouraged(6))It's in my ear... I feel it squirming... deeper... deeper... My head...!%(end)"
 		"\0%(discouraged)Wrapped around my foot, pulling me down, deeper, deeper... Pressure, can't breathe... Don't crack...%(end)"
-		"\0%(discouraged)Oozing out... What is it...? %(graymatter)......?%(end)"
+		"\0%(discouraged)Oozing out... What is it...? %(Capitalize(graymatter))......?%(end)"
 		"\0%(discouraged)This is the end, is it...? It'll always be this way? Always......?%(end)"
 		"\0%(discouraged)I'm falling, always... down down down, deeper into the abyss, but still able to see the light above...%(end)"
 		"\0%(discouraged)Someone's there, someone... Not you, no, not you... I don't think I should let them see me...%(end)"
