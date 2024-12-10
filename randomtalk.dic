@@ -596,7 +596,7 @@ Stage3Talk : nonoverlap_pool
 		"\0%(smile)I've been thinking really hard about what it was like to bake %(cupcakes). The sights, the smells, the sounds, the textures... %(relieved)It makes me feel happy to get absorbed in those memories.%(end)"
 		"\0%(relieved)I guess I'm glad I didn't sink years into studying something super complicated at college, only to end up stuck here, unable to use it... %(smile)That would've sucked, hehe.%(end)"
 		"\0%(thinking)I wonder if it's possible there's more people like me and I just can't reach them. %(anxious)Is there a whole ghost society I'm missing out on, are we all stuck out on our own, or am I the only one like me... %(sweat)I'm not sure which is worse.%(end)"
-		"\0%(thinking)Man, if I ever got out of here I could write so many books about this experience. %(normal)I wonder if anyone would really get it though, without actually experiencing it.\n\n %(relieved)I guess I could raise some awareness for ghosts...%(end)"
+		"\0%(thinking)Man, if I ever got out of here I could write so many books about this experience. %(normal)I wonder if anyone would really get it though, without actually going through it.\n\n %(relieved)I guess I could raise some awareness for ghosts...%(end)"
 		"\0%(relieved)Hey, hey hey, I got a good one. %(whatscoldandwet)? %(smile)Me! Hehe."
 		"\0%(thinking)I wish I could write down my thoughts. I'd keep a journal, or maybe get into writing novels or something... %(sweat)It'd be something to do.\n\n %(smile)Hey, here's an idea! If you got into transcription you could write my stories down for me! %(relieved)I could be a ghost writer, hehe."
 		"\0%(thinking)I used to like the feeling of sand between my fingers at the beach, but honestly I feel like I could do without right now.%(end)"
