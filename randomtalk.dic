@@ -87,7 +87,7 @@ Pool.SpookyText : array
 Stage1Talk : nonoverlap_pool
 {
 	"\0%(anxious)It's so dark, I don't know why... %(discouraged)And cold. It's really, really cold. I feel like I've been cold for so long...%(end)"
-	"\0%(surprise)What's that!? ... %(thinking)Hm... There was something strange, but I'm not sure...%(end)"
+	"\0%(surprised)What's that!? ... %(thinking)Hm... There was something strange, but I'm not sure...%(end)"
 	"\0%(thinking)Maybe this is all a bad dream...? %(sweat)Maybe I'll wake up and it'll all go away... %(anxious)Maybe.%(end)"
 	"\0%(normal)Maybe I'm... in a coma? %(thinking)Maybe I'll wake up...?%(end)"
 	"\0%(angry)I wish someone would turn the lights on already, I can't see anything.\n\n ... %(anxious)Please?%(end)"
@@ -119,7 +119,7 @@ Stage1Talk : nonoverlap_pool
 	/*
 	"\0%(thinking)I can't help but think about... What if... %(discouraged)What if I die before someone finds me...?\n\n %(thinking)Then again, I guess you already found me... %(normal)I hope you've sent for help.%(end)" //unsure about choices
 
-	"\0%(normal)I've been lonely for so long... %(thinking)Yours is the first voice I've heard besides my own in... I'm not sure how long.\n\n %(anxious)... You're not going to leave me, are you? %(surprise)Don't leave, I don't want to be alone!%(end)"
+	"\0%(normal)I've been lonely for so long... %(thinking)Yours is the first voice I've heard besides my own in... I'm not sure how long.\n\n %(anxious)... You're not going to leave me, are you? %(surprised)Don't leave, I don't want to be alone!%(end)"
 
 	"\0%(thinking)Did I hear something...? %(anxious)Might just be in my own head..."
 	//I heard it too
@@ -620,7 +620,7 @@ Stage3Talk : nonoverlap_pool
 		//Yes
 			"\0%(sweat)Well, I tried, and nothing happened. %(smile)I think maybe you're not a figment of my imagination after all! %(relieved)So... that's nice, hehe.%(end)"
 		//No - cuz you might not have seen that dialogue lol yea makes sense
-			"\0%(surprise)Oh.\n\n ... %(sweat)Hehe, maybe I kept that thought to myself, I don't remember...%(end)"
+			"\0%(surprised)Oh.\n\n ... %(sweat)Hehe, maybe I kept that thought to myself, I don't remember...%(end)"
 		*/
 	}
 }

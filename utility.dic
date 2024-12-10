@@ -26,7 +26,7 @@ Flag
 
 OnAddFlag
 {
-	AddFlag(reference0)
+	AddFlag(reference[0])
 }
 
 AddFlag

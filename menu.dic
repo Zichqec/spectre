@@ -432,9 +432,9 @@ OnCustomCalibrationConfirm : all
 	_expressions = ("normal","embarrassed","surprised","anxious","discouraged","smile","relieved","angry","sweat","indignant","thinking","unamused")
 	_calibrationlist = ("*,*,*,*,*,*,*,*,*,*,*,*")
 	
-	if reference0 == "__NO_EXPRESSIONS__"
+	if reference[0] == "__NO_EXPRESSIONS__"
 	{
-		_calibrationlist = _none
+		_calibrationlist = "none"
 	}
 	else
 	{
