@@ -154,7 +154,7 @@ DetermineTalkTarget
 
 Capitalize
 {
-	TOUPPER(SUBSTR(_argv[0]),0,1) + ERASE(_argv[0],0,1)
+	TOUPPER(SUBSTR(_argv[0],0,1)) + ERASE(_argv[0],0,1)
 }
 
 //writing this again cuz i'll die without it... and hey! what do you know! YAYA as PLUGIN doesn't have OnTranslateInternal...
