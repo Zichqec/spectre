@@ -13,12 +13,11 @@ PluginLoad
 	if !ISVAR("SpectreOn"); SpectreOn = 1
 	
 	YesterdaysPool = TodaysPool
-	_pools = "dissociated,miserable,cheerful,cheerful2"
-	TodaysPool = ANY(_pools)
+	TodaysPool = ANY(DialoguePools)
 	_i = 0
 	while TodaysPool == YesterdaysPool
 	{
-		TodaysPool = ANY(_pools)
+		TodaysPool = ANY(DialoguePools)
 		_i++
 		if _i > 1000; break
 	}
@@ -31,6 +30,14 @@ PluginLoad
 PluginUnload
 {
 	BootedGhosts = IARRAY
+}
+
+DialoguePools : array
+{
+	"dissociated"
+	"miserable"
+	"cheerful"
+	"cheerful2"
 }
 
 OnGhostBoot

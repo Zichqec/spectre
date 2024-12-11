@@ -102,8 +102,13 @@ OnMainMenu : all
 		"Met spectre: \__q[OnToggleMetSpectre]%(MetSpectre) ---\__q\n"
 		"Stage: \__q[OnToggleStage]%(Flag('Stage 1') + Flag('Stage 2') + Flag('Stage 3')) ---\__q\n"
 		"Today's pool: %(TodaysPool)\n"
-		"GreetedToday %(GreetedToday)\n"
-		"CanGoToStage2 %(CanGoToStage2)\n"
+		foreach DialoguePools; _pool
+		{
+			"\q[%(_pool),OnDebug.ChangePool,%(_pool)]  "
+		}
+		"\c[char,2]\n"
+		//"GreetedToday %(GreetedToday)\n"
+		//"CanGoToStage2 %(CanGoToStage2)\n"
 		"Calibration: %(GhostCalibrations.List[_index]) - %(_index)\n"
 		"\![*]\q[Tester!,script:""%(normal)Normal\_w[1000]\n %(embarrassed)Embarrassed\_w[1000]\n %(surprised)Surprised\_w[1000]\n %(anxious)Anxious\_w[1000]\n%(discouraged)Discouraged\_w[1000]\n%(smile)Smile\_w[1000]\n%(relieved)Relieved\_w[1000]\n%(angry)Angry\_w[1000]\n%(sweat)Sweat\_w[1000]\n%(indignant)Indignant\_w[1000]\n%(thinking)Thinking\_w[1000]\n%(unamused)Unamused""]\n"
 		"%(DialogueDisperser)\n"
@@ -271,6 +276,13 @@ OnToggleStage
 	{
 		AddFlag("Stage 1")
 	}
+	"\![raiseplugin,Spectre,OnMainMenu]"
+}
+
+OnDebug.ChangePool
+{
+	YesterdaysPool = TodaysPool
+	TodaysPool = reference[0]
 	"\![raiseplugin,Spectre,OnMainMenu]"
 }
 
