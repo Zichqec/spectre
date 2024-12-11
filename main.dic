@@ -32,6 +32,7 @@ PluginUnload
 	BootedGhosts = IARRAY
 }
 
+//NOTE - if we add more here in the future, please update the "end" function as well. yes this is messy don't @ me this whole thing is a nightmare lol
 DialoguePools : array
 {
 	"dissociated"

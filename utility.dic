@@ -83,7 +83,25 @@ ControlLevel
 
 end
 {
-	"\![timerraise,15000,1,OnSpectrePlugin.Possession]"
+	_emotion = ""
+	if Flag("Stage 3")
+	{
+		if "cheerful" _in_ TodaysPool; _emotion = "cheerful"
+		elseif "miserable" _in_ TodaysPool; _emotion = "miserable"
+		else; _emotion = "dissociated"
+	}
+	elseif Flag("Stage 1") //1 or 2
+	{
+		_emotion = "miserable"
+	}
+	else //Stage 0
+	{
+		_emotion = "dissociated"
+	}
+	
+	_spookytext = 0
+	if _argv[0] == "spookytext"; _spookytext = 1
+	"\![timerraise,15000,1,OnSpectrePlugin.Possession,%(_emotion),%(_spookytext)]"
 }
 
 //randomly make the input be an array of letters or an array of words - adjustable with _argv[1]

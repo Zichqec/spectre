@@ -62,7 +62,7 @@ Pool.SpookyText : array
 			_face = SPLIT(_dialogue,"||")[0]
 			_dialogue = SPLIT(_dialogue,"||")[1]
 		}
-		"\0%(_face)" + SpookyText(_dialogue) + "%(end)"
+		"\0%(_face)" + SpookyText(_dialogue) + "%(end('spookytext'))"
 	}
 }
 
