@@ -54,34 +54,48 @@ Stage0Talk : nonoverlap_pool
 
 Pool.SpookyText : array
 {
-	"\0%(discouraged)" + SpookyText("Get out get out get out...!") + "%(end)"
-	"\0%(discouraged)" + SpookyText("No more, no more...") + "%(end)"
-	"\0%(discouraged)" + SpookyText("I can't breathe...!") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Enough...!") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Someone, please...!") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Scratching, scratching, bleed bleed bleed...") + "%(end)"
-	"\0%(discouraged)" + SpookyText("It won't stop, it won't stop, it won't stop") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Alone alone alone alone alone") + "%(end)"
-	"\0%(discouraged)" + SpookyText("H... hell... help...") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Lost... stuck? Stuck... trapped.") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Bugs in the walls, in the ceiling, in the floorboards, IN MY SKIN...") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Nobody knows, all alone, nobody knows...") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Will anyone ever find me? Does anyone care...?") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Burning, burning, turning to ash...") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Churning, burning, squirming, worming...") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Gonna die gonna die gonna die gonna die") + "%(end)"
-	"\0%(discouraged)" + SpookyText("It's oozing...") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Not the roaches, not the roaches, please...") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Get out, get out get out, there's too much I'm going to explode!") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Hhhhhhhh...") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Squirming... squirming... get it out...") + "%(end)"
-	"\0%(discouraged)" + SpookyText("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Buzzing, tapping, cracking, bursting...") + "%(end)"
-	"\0%(discouraged)" + SpookyText("I want out, lemme out, lemme...") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Why... Why... Why...") + "%(end)"
-	"\0%(discouraged)" + SpookyText("It hurts... It hurts, let me out...") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Give it back... give it back to me, I need it...") + "%(end)"
-	"\0%(discouraged)" + SpookyText("Please... I'm sorry, whatever I did, I'm sorry...!") + "%(end)"
+	foreach SpookyDialogue; _dialogue
+	{
+		_face = discouraged
+		if "||" _in_ _dialogue
+		{
+			_face = SPLIT(_dialogue,"||")[0]
+			_dialogue = SPLIT(_dialogue,"||")[1]
+		}
+		"\0%(_face)" + SpookyText(_dialogue) + "%(end)"
+	}
+}
+
+SpookyDialogue : array
+{
+	"Get out get out get out...!"
+	"No more, no more..."
+	"I can't breathe...!"
+	"Enough...!"
+	"Someone, please...!"
+	"Scratching, scratching, bleed bleed bleed..."
+	"It won't stop, it won't stop, it won't stop"
+	"Alone alone alone alone alone"
+	"H... hell... help..."
+	"Lost... stuck? Stuck... trapped."
+	"Bugs in the walls, in the ceiling, in the floorboards, IN MY SKIN..."
+	"Nobody knows, all alone, nobody knows..."
+	"Will anyone ever find me? Does anyone care...?"
+	"Burning, burning, turning to ash..."
+	"Churning, burning, squirming, worming..."
+	"Gonna die gonna die gonna die gonna die"
+	"It's oozing..."
+	"Not the roaches, not the roaches, please..."
+	"%(surprised)||Get out, get out get out, there's too much I'm going to explode!"
+	"Hhhhhhhh..."
+	"Squirming... squirming... get it out..."
+	"%(surprised)||AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	"Buzzing, tapping, cracking, bursting..."
+	"I want out, lemme out, lemme..."
+	"Why... Why... Why..."
+	"It hurts... It hurts, let me out..."
+	"Give it back... give it back to me, I need it..."
+	"Please... I'm sorry, whatever I did, I'm sorry...!"
 }
 
 Stage1Talk : nonoverlap_pool
