@@ -27,7 +27,9 @@ OnMainMenu : all
 	
 	"Spectre enhancements: \_a[OnToggleSpectreEnhancements]%(('Off','On')[SpectreOn])\_a\n\n"
 	
-	if !SpectreOn; "\f[color,disable]"
+	_spectreon = "\f[color,default]"
+	if !SpectreOn; _spectreon = "\f[color,disable]"
+	_spectreon
 	
 	if SpectreOn
 	{
@@ -54,22 +56,35 @@ OnMainMenu : all
 		
 	}
 	
-	if MetSpectre
+	if MetSpectre && Flag("Second boot complete")
 	{
-		switch SpectreOn
+		if !GreetedToday
 		{
-			"\![*]Listen to Spectre"
-			"\![*]\__q[OnSpectreTalk,""%(CurrentGhost)""]Listen to Spectre\__q"
+			switch SpectreOn
+			{
+				"\![*]\Hello?\![dummy] Are you there?"
+				"\![*]\__q[OnBoot.GreetSpectre]Hello?\![dummy] Are you there?\__q"
+			}
 		}
-		if SpectreOn && LastTalk != ""
+		else
 		{
+			switch SpectreOn
+			{
+				"\![*]Listen to Spectre"
+				"\![*]\__q[OnSpectreTalk,""%(CurrentGhost)""]Listen to Spectre\__q"
+			}
 			"\n"
-			"\![*]\__q[OnSpectreLastTalk,""%(CurrentGhost)""]Remember what Spectre said\__q"
+			switch SpectreOn && LastTalk != ""
+			{
+				"\f[color,disable]\![*]Remember what Spectre said"
+				"\![*]\__q[OnSpectreLastTalk,""%(CurrentGhost)""]Remember what Spectre said\__q"
+			}
+			_spectreon
 		}
 		"\n\n"
 	}
 	
-	if Flag("Stage 3") && TodaysPool == "dissociated"
+	if Flag("Stage 3") && TodaysPool == "dissociated" && GreetedToday
 	{
 		"\![*]\__q[OnReachOut]"
 		switch ReachedOut //this is in REVERSE ORDER!!! when it hits 0 you win and get through
@@ -98,6 +113,7 @@ OnMainMenu : all
 	
 	if DebugMode == 1
 	{
+		"\b[4]"
 		"DEBUG:\n"
 		"Met spectre: \__q[OnToggleMetSpectre]%(MetSpectre) ---\__q\n"
 		"Stage: \__q[OnToggleStage]%(Flag('Stage 1') + Flag('Stage 2') + Flag('Stage 3')) ---\__q\n"
@@ -107,7 +123,8 @@ OnMainMenu : all
 			"\q[%(_pool),OnDebug.ChangePool,%(_pool)]  "
 		}
 		"\c[char,2]\n"
-		//"GreetedToday %(GreetedToday)\n"
+		"GreetedToday \q[%(GreetedToday) ---,OnToggleGreetedToday]\n"
+		"Second boot complete \q[%(Flag('Second boot complete')) ---,OnToggleSecondBoot]\n"
 		//"CanGoToStage2 %(CanGoToStage2)\n"
 		"Calibration: %(GhostCalibrations.List[_index]) - %(_index)\n"
 		"\![*]\q[Tester!,script:""%(normal)Normal\_w[1000]\n %(embarrassed)Embarrassed\_w[1000]\n %(surprised)Surprised\_w[1000]\n %(anxious)Anxious\_w[1000]\n%(discouraged)Discouraged\_w[1000]\n%(smile)Smile\_w[1000]\n%(relieved)Relieved\_w[1000]\n%(angry)Angry\_w[1000]\n%(sweat)Sweat\_w[1000]\n%(indignant)Indignant\_w[1000]\n%(thinking)Thinking\_w[1000]\n%(unamused)Unamused""]\n"
@@ -276,6 +293,21 @@ OnToggleStage
 	{
 		AddFlag("Stage 1")
 	}
+	"\![raiseplugin,Spectre,OnMainMenu]"
+}
+
+OnToggleSecondBoot
+{
+	_flag = "Second boot complete"
+	if Flag(_flag); DeleteFlag(_flag)
+	else; AddFlag(_flag)
+	"\![raiseplugin,Spectre,OnMainMenu]"
+}
+
+OnToggleGreetedToday
+{
+	if GreetedToday == 1; GreetedToday = 0
+	else; GreetedToday = 1
 	"\![raiseplugin,Spectre,OnMainMenu]"
 }
 

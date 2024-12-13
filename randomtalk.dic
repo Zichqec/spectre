@@ -40,6 +40,62 @@ Boot.Normal : nonoverlap_pool
 	}
 }
 
+//This is for the USER greeting SPECTRE before Spectre says hi! because omg this is the one time we can do a special greeting instead of a special goodbye!! hello!!!
+OnBoot.GreetSpectre
+{
+	GreetedToday = 1
+	
+	AutoPause(Boot.GreetSpectre)
+}
+
+Boot.GreetSpectre : nonoverlap_pool
+{
+	if Flag("Stage 3")
+	{
+		if TodaysPool == "dissociated"
+		{
+			"\0%(discouraged).\w8.\w8.\w8.\w8.\w8.\w8.\w8.\w8.\w8.%(end)"
+			"\0%(discouraged).\w8.\w8.\w8.\w8.\w8.\w8.\w8.\w8.\w8.%(end)"
+			"\0%(discouraged).\w8.\w8.\w8.\w8.\w8.\w8.\w8.\w8.\w8.%(end)"
+			"\0%(discouraged).\w8.\w8.\w8.\w8.\w8.\w8.\w8.\w8.\w8.%(end)"
+			"\0%(discouraged).\w8.\w8.\w8.\w8.\w8.\w8.\w8.\w8.\w8.%(end)"
+			"\0%(surprised)" + SpookyText.overflow("Who's there!?") + "%(end)"
+			"\0%(surprised)" + SpookyText.overflow("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA") + "%(end)"
+			"\0%(discouraged)" + SpookyText.droopy("don't eat me don't eat me don't eat me don't") + "%(end)"
+		}
+		elseif TodaysPool == "miserable"
+		{
+			"\0%(thinking)Hm...? %(normal)Is that you? ... %(smile)It's nice to see you today. \w8\w8%(thinking)Or, well, hear you.\n\n %(discouraged)... I'm not feeling super well at the moment, sorry.%(end)"
+			"\0%(surprised)Aah!? ... %(normal)Oh. %(thinking)It's just you. %(anxious)Sorry, I'm a bit on edge today and you startled me. %(smile)I'm glad you're here, though...%(end)"
+			"\0%(thinking)Huh...? %(anxious)Oh, hi. ... %(discouraged)Um, sorry, I'm not feeling super great...%(end)"
+			"\0%(anxious)Oh thank god, it's you. %(sweat)I was hoping you'd show up... %(thinking)I'm having kind of a crummy day and could use some company. %(anxious)I hope you don't mind.%(end)"
+			"\0%(surprised)Ah! Hey! %(sweat)It's you! %(anxious)What a relief. %(thinking)There's some kind of %(bug) or something bothering me and I'm having trouble keeping my mind off it. %(sweat)Maybe if we talk I can forget it's there...%(end)"
+		}
+		else //cheerful & cheerful2
+		{
+			"\0%(smile)Hello, hello hello! I'm so glad to see you today! %(relieved)I'm always glad to see you.%(end)"
+			"\0%(thinking)Huh? Did I hear...? %(smile)Yes, it's you! Hi!%(end)"
+			"\0%(smile)Hihihihihi I've been waiting for you!!\n\n %(relieved)Hehe, sorry. I've just been thinking about all sorts of things, and I'm itching to share. %(smile)And now you're here, so it's sharing time!%(end)"
+			"\0%(smile)Hi! I thought you might show up soon, hehe. %(relieved)My sense of time isn't the best anymore, but sometimes I have an inkling that you're coming soon.%(end)"
+			"\0%(relieved)Oh, hi, hi hi! %(smile)Good timing, I was just getting bored, hehe.%(end)"
+			"\0%(anxious)Hm...? \w8\w8%(relieved)Oh! Hey! %(sweat)Sorry, I was deep in thought there. %(smile)I'm so glad you're here! %(relieved)It was getting a little too quiet.%(end)"
+			"\0%(surprised)Eek! A ghost! ... %(relieved)I'm just kidding, hehe. %(smile)Hi."
+		}
+	}
+	elseif Flag("Stage 2")
+	{
+		"\0%(thinking)Huh...? \w8\w8%(anxious)You came back. ... %(discouraged)Why d'you wanna hang around a dead person?\n\n %(surprised)Not that I mind! %(sweat)I don't, I don't I don't, I just... %(anxious)I dunno, won't I just make you miserable...?\n\n %(thinking)... Well, I shouldn't complain I guess...%(end)"
+		"\0%(thinking)Oh... It's you again. ... %(sweat)I wasn't sure you would come back. %(normal)I appreciate it though, I don't like being alone...%(end)"
+		"\0%(surprised)Ah...!? %(thinking)Oh, hi. %(anxious)Uh, not much has changed. %(thinking)Just, you know... %(discouraged)being dead or whatever. %(thinking)I'm kinda surprised you came back, to be honest...%(end)"
+	}
+	else //Stage 1
+	{
+		"\0%(surprised)Ah! %(thinking)Ah...? %(sweat)Oh, you found me again! That's... that's good. I was worried. %(thinking)I'm just here still, waiting for something to happen...%(end)"
+		"\0%(surprised)Eek! What was that!? %(thinking)... Ah? %(anxious)Oh, I remember, %(sweat)yes, yes yes. My new friend who is keeping me company while we wait for... %(anxious)something to happen.\n\n %(thinking)Hi.%(end)"
+		"\0%(surprised)Ah!? %(thinking)Huh...? %(anxious)Oh, yes, yes yes. It's you. %(sweat)Sorry, I thought you were a ghost or something... %(anxious)I'm glad to hear you again though. %(thinking)It's really lonely here..."
+	}
+}
+
 //Random dialogues
 Stage0Talk : nonoverlap_pool
 {
