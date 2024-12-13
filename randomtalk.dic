@@ -158,7 +158,7 @@ Stage1Questions : nonoverlap_pool
 	
 	all : /
 	{
-		"\0%(normal(4))I feel heavy. %(discouraged(4))Sluggish. %(anxiety)Maybe from lack of nutrition...? %(thinking(4))When was the last time I ate.....?"
+		"\0%(normal(4))I feel heavy. %(discouraged(4))Sluggish. %(anxious)Maybe from lack of nutrition...? %(thinking(4))When was the last time I ate.....?"
 		"\n\n\_q"
 		"\![*]\__q[OnStage1.FeelHeavy.CanYouRemember]Can you remember?\__q\n"
 		"\![*]\__q[OnStage1.FeelHeavy.LastDrink]What about the last time you drank?\__q\n"
