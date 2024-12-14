@@ -225,9 +225,15 @@ OnSpectrePlugin.Possession
 	}
 }
 
-This event has a couple of references you can use. reference0 will be the overall "emotion" pool that Spectre is currently using, and can be "dissociated" (also applies to stage 0 dialogues), "miserable" (also applies to stages 1 and 2), and "cheerful" (either cheerful pool). You can use this if you'd like Spectre's overall vibe for the day to impact your ghost's responses!
+This event also comes with a couple references. Reference0 will be the overall "emotion" pool that Spectre is using that day. Possible values are as follows:
 
-reference1 is whether or not the dialogue in question is one of the "spooky text" dialogues, e.g. the ones with text effects like growing or shrinking or drooping, etc. This will be 1 if true and 0 if not. Note that spooky dialogues are only used when the emotion is "dissociated".
+"dissociated"
+"miserable"
+"cheerful"
+
+Note that "dissociated" is also used for stage 0 dialogues, and "miserable" is also used for stages 1 and 2.
+
+Reference1 is whether or not the dialogue in question is one of the "spooky text" dialogues, e.g. the ones with text effects like growing, shrinking, drooping, etc. This will be 1 if it's a spooky text dialogue and 0 if not. Note that spooky dialogues are only used when the emotion is "dissociated".
 
 
 That's it, have fun! If you have any issues, please get in contact and I'll try to help you out.
