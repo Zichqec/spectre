@@ -378,7 +378,11 @@ OnCalibration : all
 	_index = CalibrationIndex(CurrentGhost)
 	
 	_toset = reference[2] - 1
-	if reference[3] == "alt"; _toset = reference[4]
+	if reference[3] == "alt"
+	{
+		_toset = reference[4]
+		CalibrationList[_toset] = "%(TOINT(reference[2]) - 1)" //arguably i should set this up differently but i'll refactor it later probably, idk.......
+	}
 	elseif reference[3] == "yes" ; CalibrationList[_toset] = "%(TOINT(reference[2]) - 1)"
 	elseif reference[3] == "no"; CalibrationList[_toset] = "-1"
 	
@@ -403,6 +407,9 @@ OnCalibration : all
 	{
 		_amt = ASEARCHEX("-1",SPLIT(CalibrationList,","))
 		_amt = ARRAYSIZE(_amt)
+		LOGGING("====================================================================")
+		LOGGING("_amt: %(_amt)")
+		LOGGING("CalibrationList: %(CalibrationList)")
 		
 		GhostCalibrations.List[_index] = CalibrationList
 		"\s[0]"
