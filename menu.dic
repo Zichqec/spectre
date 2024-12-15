@@ -31,38 +31,55 @@ OnMainMenu : all
 	if !SpectreOn; _spectreon = "\f[color,disable]"
 	_spectreon
 	
-	if SpectreOn
+	/*
+	
+	I'm having trouble wrapping my brain around this and i'm gonna die, so i'm gonna write it out
+	
+	If Spectre has not been seen yet, show nothing
+	If Spectre has been seen but not talked to, show the first greeting
+		If the user backed out, show the alt greeting
+	If Spectre has been talked to and it's now the second session and the user hasn't greeted them, show the second boot greeting
+	if NONE OF THE ABOVE ARE MET
+		Show a greeting if the user hasn't greeted them yet
+		Show the talk buttons otherwise
+	
+	
+	*/
+	
+	if Flag("Spectre seen")
 	{
-		if Flag("Spectre seen")
+		if !MetSpectre
 		{
-			if !MetSpectre
+			if Flag("Stage 0 greeted")
 			{
-				if !Flag("Stage 1") && Flag("Stage 0 greeted")
+				switch SpectreOn
 				{
+					"\![*]Hello?\![dummy] Are you still there?"
 					"\![*]\__q[OnSpectreSeen.StillThere]Hello?\![dummy] Are you still there?\__q"
 				}
-				else
+			}
+			else
+			{
+				switch SpectreOn
 				{
+					"\![*]Is someone else here?"
 					"\![*]\__q[OnSpectreSeen]Is someone else here?\__q"
 				}
-				"\n\n"
-			}
-			elseif !Flag("Second boot complete") && !GreetedToday
-			{
-				"\![*]\__q[OnSecondSeen]Hello?\__q"
-				"\n\n"
 			}
 		}
-		
-	}
-	
-	if MetSpectre && Flag("Second boot complete")
-	{
-		if !GreetedToday
+		elseif !Flag("Second boot complete") && !GreetedToday
 		{
 			switch SpectreOn
 			{
-				"\![*]\Hello?\![dummy] Are you there?"
+				"\![*]Hello?"
+				"\![*]\__q[OnSecondSeen]Hello?\__q"
+			}
+		}
+		elseif !GreetedToday
+		{
+			switch SpectreOn
+			{
+				"\![*]Hello?\![dummy] Are you there?"
 				"\![*]\__q[OnBoot.GreetSpectre]Hello?\![dummy] Are you there?\__q"
 			}
 		}
@@ -74,31 +91,34 @@ OnMainMenu : all
 				"\![*]\__q[OnSpectreTalk,""%(CurrentGhost)""]Listen to Spectre\__q"
 			}
 			"\n"
-			switch SpectreOn && LastTalk != ""
+			switch SpectreOn
 			{
-				"\f[color,disable]\![*]Remember what Spectre said"
+				"\![*]Remember what Spectre said"
 				"\![*]\__q[OnSpectreLastTalk,""%(CurrentGhost)""]Remember what Spectre said\__q"
 			}
-			_spectreon
+			
+			if Flag("Stage 3") && TodaysPool == "dissociated" && GreetedToday
+			{
+				"\n\n"
+				"\![*]"
+				
+				if SpectreOn; "\__q[OnReachOut]"
+				switch ReachedOut //this is in REVERSE ORDER!!! when it hits 0 you win and get through
+				{
+					"" //leave blank
+					"Take as long as you need. I'll be here." //Last time bothering
+					"Try to breathe, nice and slowly."
+					"You'll get through this. It's not forever."
+					"It's okay now. Everything is fine."
+					"Hey, can you hear me?" //First time bothering
+				}
+				if SpectreOn; "\__q"
+			}
 		}
 		"\n\n"
 	}
 	
-	if Flag("Stage 3") && TodaysPool == "dissociated" && GreetedToday
-	{
-		"\![*]\__q[OnReachOut]"
-		switch ReachedOut //this is in REVERSE ORDER!!! when it hits 0 you win and get through
-		{
-			"" //leave blank
-			"Take as long as you need. I'll be here." //Last time bothering
-			"Try to breathe, nice and slowly."
-			"You'll get through this. It's not forever."
-			"It's okay now. Everything is fine."
-			"Hey, can you hear me?" //First time bothering
-		}
-		"\__q"
-		"\n\n"
-	}
+	
 	
 	if !IsCalibrated(CurrentGhost)
 	{
@@ -214,6 +234,7 @@ OnSpectreSeen : all
 OnSecondSeen : all
 {
 	AddFlag("Second boot complete")
+	GreetedToday = 1
 	
 	LastTalk = AutoPause("\0%(discouraged)\f[color,disable]What... \f[italic,1]hic... \f[italic,default]\f[color,default]You came back? %(smile)You really came back... I'm so glad... %(thinking)I thought I'd be alone again...%(end)")
 	LastTalk
