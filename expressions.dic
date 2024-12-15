@@ -15,7 +15,7 @@ fadein : all
 
 DetermineSurface
 {
-	_expressions = ("normal","embarrassed","surprised","anxious","discouraged","smile","relieved","angry","sweat","indignant","thinking","bored")
+	_expressions = ("normal","embarrassed","surprised","anxious","discouraged","smile","relieved","angry","sweat","indignant","thinking","unamused")
 	
 	_num = _argv[0]
 	if _num == ""; _num = 0
