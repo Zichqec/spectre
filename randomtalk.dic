@@ -235,7 +235,7 @@ OnStage1.FeelLost.KnowWhereIAm : all
 {
 	AddFlag("User is not lost")
 	"\*\t"
-	AutoPause("\0%(discouraged(4))Oh... that's good.\n\n... Do you know where I am?")
+	AutoPause("\0%(discouraged(4))Oh... that's good.\n\n ... Do you know where I am?")
 	"\n\n\_q"
 	"\![*]\__q[OnStage1.FeelLost.KnowWhereIAm.No]No\__q\n"
 	"\![*]\__q[OnStage1.FeelLost.KnowWhereIAm.No]No\__q\n"
@@ -343,7 +343,7 @@ Stage2Talk : nonoverlap_pool
 	"\0%(thinking)I might be out of ideas for how to get out of this... %(unamused)But I guess I have nothing but time, so I'll try coming up with some more.%(end)"
 	"\0%(unamused)Would be nice if someone could come turn out the lights. I don't need some fancy afterlife, I just wanna stop being aware of it all, y'know?%(end)"
 	"\0%(surprised)Eek! %(anxious)I feel something... %(discouraged)Ick, I can't tell what it is but there's something \f[italic,1]on\f[italic,default] me.%(end)"
-	"\0%(discouraged)Why couldn't I like... recarnate into a tree or something. %(thinking)Being a tree sounds kinda nice...\n\n %(angry)Whatever this is, it sucks.%(end)"
+	"\0%(discouraged)Why couldn't I like... reincarnate into a tree or something. %(thinking)Being a tree sounds kinda nice...\n\n %(angry)Whatever this is, it sucks.%(end)"
 	
 	//QUESTIONS
 	/*
