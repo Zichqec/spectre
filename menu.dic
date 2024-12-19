@@ -91,10 +91,17 @@ OnMainMenu : all
 				"\![*]\__q[OnSpectreTalk,""%(CurrentGhost)""]Listen to Spectre\__q"
 			}
 			"\n"
-			switch SpectreOn
+			if SpectreOn
+			{
+				switch LastTalk == ""
+				{
+					"\![*]\__q[OnSpectreLastTalk,""%(CurrentGhost)""]Remember what Spectre said\__q"
+					"\f[color,disable]\![*]Remember what Spectre said%(_spectreon)"
+				}
+			}
+			else
 			{
 				"\![*]Remember what Spectre said"
-				"\![*]\__q[OnSpectreLastTalk,""%(CurrentGhost)""]Remember what Spectre said\__q"
 			}
 			
 			if Flag("Stage 3") && TodaysPool == "dissociated" && GreetedToday
