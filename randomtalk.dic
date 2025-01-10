@@ -26,8 +26,8 @@ Boot.Normal : nonoverlap_pool
 	
 	if !Flag("Stage 3") || TodaysPool == "miserable"
 	{
-		"\0%(discouraged)...\n\n... I don't think I'll be very good company today... Sorry...%(end)"
-		"\0%(thinking)...? Oh. You're here.\n\n... Hey. I hope you're having a better day than I am.%(end)"
+		"\0%(discouraged)...\n\n ... I don't think I'll be very good company today... Sorry...%(end)"
+		"\0%(thinking)...? Oh. You're here.\n\n ... Hey. I hope you're having a better day than I am.%(end)"
 		"\0%(angry(6))Must be nice to come and go as you please.%(end)"
 	}
 	else //cheerful, cheerful2
